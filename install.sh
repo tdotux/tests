@@ -2,7 +2,7 @@
 
 timedatectl set-ntp true
 
-pacman -S btrfs-progs dosfstools nano wget
+pacman -S e2fsprogs dosfstools nano wget --noconfirm
 
 parted /dev/sda mklabel gpt
 
