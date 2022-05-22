@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 ###UTILITARIOS BASICOS
 
 pacman -Sy nano pacman-contrib reflector sudo grub efibootmgr --noconfirm
