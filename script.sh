@@ -39,11 +39,11 @@ echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\nSenha de Root\n"
 
 echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\nDigite a Senha de Root\n"
 
-echo "$(tput sgr0)"
+echo -e "$(tput sgr0)\n\n"
 
 passwd
 
-echo -e "\n\n"
+echo -e "$(tput sgr0)\n\n"
 
 
 
@@ -53,9 +53,9 @@ echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\nUsername\n"
 
 read -p "Digite o Nome de Usuário : " USERNAME
 
-echo -e "$(tput sgr0)\n\n"
-
 useradd -m $USERNAME
+
+echo -e "$(tput sgr0)\n\n"
 
 
 
