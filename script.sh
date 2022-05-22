@@ -39,8 +39,6 @@ echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\nSenha de Root\n"
 
 echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\nDigite a Senha de Root\n"
 
-echo -e "$(tput sgr0)\n\n"
-
 passwd
 
 echo -e "$(tput sgr0)\n\n"
