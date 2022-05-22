@@ -31,6 +31,8 @@ echo -e "127.0.0.1 localhost.localdomain localhost\n::1 localhost.localdomain lo
 
 ###SENHA ROOT
 
+echo -e 'Digite a senha de Root'
+
 passwd
 
 
@@ -44,6 +46,8 @@ useradd -m $USERNAME
 
 
 ###SENHA DO USUARIO
+
+echo -e 'Digite a senha do Usuário'
 
 passwd $USERNAME
 
@@ -72,16 +76,16 @@ grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=Arch 
 ###DRIVER DE VIDEO
 
 if [  $(lspci | grep -c Radeon) = 1 ]; then
-sudo pacman -S xf86-video-amdgpu xf86-video-ati
+pacman -S xf86-video-amdgpu xf86-video-ati --noconfirm
 
 elif [  $(lspci | grep -c Intel) = 1 ]; then
-sudo pacman -S xf86-video-intel
+pacman -S xf86-video-intel --noconfirm
 
 elif [  $(lspci | grep -c GeForce) = 1 ]; then
-sudo pacman -S xf86-video-nouveau
+pacman -S xf86-video-nouveau --noconfirm
 
 elif [  $(lspci | grep -c VMware) = 1 ]; then
-sudo pacman -S xf86-video-vmware
+pacman -S xf86-video-vmware xf86-input-vmmouse --noconfirm
 
 fi
 
@@ -89,7 +93,7 @@ fi
 
 ###PACOTES
 
-pacman -S xorg-server xorg-xinit xterm xf86-video-vesa xf86-video-vmware xf86-input-vmmouse networkmanager network-manager-applet xfce4 xfce4-screenshooter xfce4-pulseaudio-plugin xfce4-whiskermenu-plugin ristretto mousepad galculator xarchiver file-roller tar gzip bzip2 zip unzip unrar p7zip thunar-archive-plugin lightdm lightdm-gtk-greeter pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs --noconfirm
+pacman -S xorg-server xorg-xinit xterm linux-zen-headers networkmanager network-manager-applet xfce4 xfce4-screenshooter xfce4-pulseaudio-plugin xfce4-whiskermenu-plugin ristretto mousepad galculator xarchiver file-roller tar gzip bzip2 zip unzip unrar p7zip thunar-archive-plugin lightdm lightdm-gtk-greeter pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs --noconfirm
 
 
 
