@@ -5,13 +5,33 @@
 
 pacman -Sy nano pacman-contrib reflector sudo grub efibootmgr --noconfirm
 
+
+
+###MIRRORS
+
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak && curl -s "https://archlinux.org/mirrorlist/?country=BR&use_mirror_status=on" | sed -e 's/^#Server/Server/' -e '/^#/d' | rankmirrors -n 5 - | tee /etc/pacman.d/mirrorlist && sed -i '/br.mirror.archlinux-br.org/d' /etc/pacman.d/mirrorlist
+
+
+
+###PARALLEL DOWNLOADS
 
 cp /etc/pacman.conf /etc/pacman.conf.bak && sudo sed -i '37c\ParallelDownloads = 16' /etc/pacman.conf && pacman -Syyyuuu --noconfirm
 
+
+
+###MULTILIB
+
 sed -i '93c\[multilib]' /etc/pacman.conf && sudo sed -i '94c\Include = /etc/pacman.d/mirrorlist' /etc/pacman.conf && pacman -Syyyuu --noconfirm
 
+
+
+###FUSO HORARIO
+
 ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime && hwclock --systohc
+
+
+
+###LOCALE
 
 mv /etc/locale.gen /etc/locale.gen.bak && echo -e 'pt_BR.UTF-8 UTF-8' | tee /etc/locale.gen && locale-gen && echo -e 'LANG=pt_BR.UTF-8' | tee /etc/locale.conf
 
