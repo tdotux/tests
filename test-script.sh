@@ -18,8 +18,10 @@ mv /etc/locale.gen /etc/locale.gen.bak && echo -e 'pt_BR.UTF-8 UTF-8' | tee /etc
 
 ###HOSTNAME
 
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\nHostname\n"
+
 read -p "Digite o Hostname : " HOST
-echo
+echo "$(tput sgr0)"
 echo "$HOST" | sudo tee /etc/hostname
 
 
@@ -31,7 +33,11 @@ echo -e "127.0.0.1 localhost.localdomain localhost\n::1 localhost.localdomain lo
 
 ###SENHA ROOT
 
-echo -e 'Digite a senha de Root'
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\nSenha de Root\n"
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\nDigite a Senha de Root\n"
+
+echo "$(tput sgr0)"
 
 passwd
 
@@ -39,15 +45,21 @@ passwd
 
 ###USERNAME
 
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\nUsername\n"
+
 read -p "Digite o Nome de Usuário : " USERNAME
-echo
+
+echo "$(tput sgr0)"
+
 useradd -m $USERNAME
 
 
 
 ###SENHA DO USUARIO
 
-echo -e 'Digite a senha do Usuário'
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\nSenha do Usuário\n"
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\nDigite a Senha do Usuário\n"
 
 passwd $USERNAME
 
