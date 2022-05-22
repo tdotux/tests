@@ -22,14 +22,17 @@ mv /etc/locale.gen /etc/locale.gen.bak && echo -e 'pt_BR.UTF-8 UTF-8' | tee /etc
 echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\nHostname\n"
 
 read -p "Digite o Hostname : " HOST
-echo -e "$(tput sgr0)\n\n"
 echo "$HOST" | sudo tee /etc/hostname
+
+echo -e "$(tput sgr0)\n\n"
 
 
 
 ###HOSTS
 
 echo -e "127.0.0.1 localhost.localdomain localhost\n::1 localhost.localdomain localhost\n127.0.1.1 $HOST.localdomain $HOST" | sudo tee /etc/hosts
+
+echo -e "$(tput sgr0)\n\n"
 
 
 
