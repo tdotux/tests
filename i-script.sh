@@ -9,10 +9,10 @@ pacman -S e2fsprogs dosfstools nano wget --noconfirm
 PASTA_EFI=/sys/firmware/efi
 if [ ! -d "$PASTA_EFI" ];then
 echo -e "Sistema Legacy"
-parted /dev/sda mklabel mbr -s
+parted /dev/sda mklabel msdos -s
 parted /dev/sda mkpart primary ext4 1MiB 100% -s
 parted /dev/sda set 1 boot on
-mkfs.ext4 /dev/sda2
+mkfs.ext4 /dev/sda1
 mount /dev/sda1 /mnt
 
 
