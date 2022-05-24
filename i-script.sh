@@ -38,6 +38,6 @@ genfstab -U /mnt > /mnt/etc/fstab
 
 cd /mnt
 
-git clone http://github.com/tdotux/archscript
+git clone http://github.com/tdotux/tests
 
 arch-chroot /mnt
