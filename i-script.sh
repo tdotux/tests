@@ -36,51 +36,55 @@ pacstrap /mnt base e2fsprogs linux-zen linux-firmware
 
 genfstab -U /mnt > /mnt/etc/fstab
 
-arch-chroot /mnt <<EOF
+
+#####CHROOT
+
 
 ###AJUSTAR HORA AUTOMATICAMENTE
 
-timedatectl set-ntp true
+arch-chroot /mnt timedatectl set-ntp true
 
 
 
 ###UTILITARIOS BASICOS
 
-pacman -Sy nano pacman-contrib reflector sudo grub --noconfirm
+arch-chroot /mnt pacman -Sy nano pacman-contrib reflector sudo grub --noconfirm
 
 
 
 ###MIRRORS
 
-cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak && curl -s "https://archlinux.org/mirrorlist/?country=BR&use_mirror_status=on" | sed -e 's/^#Server/Server/' -e '/^#/d' | rankmirrors -n 5 - | tee /etc/pacman.d/mirrorlist && sed -i '/br.mirror.archlinux-br.org/d' /etc/pacman.d/mirrorlist
+arch-chroot /mnt cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak && curl -s "https://archlinux.org/mirrorlist/?country=BR&use_mirror_status=on" | sed -e 's/^#Server/Server/' -e '/^#/d' | rankmirrors -n 5 - | tee /etc/pacman.d/mirrorlist && sed -i '/br.mirror.archlinux-br.org/d' /etc/pacman.d/mirrorlist
 
 
 
 ###PARALLEL DOWNLOADS
 
-cp /etc/pacman.conf /etc/pacman.conf.bak && sudo sed -i '37c\ParallelDownloads = 16' /etc/pacman.conf && pacman -Syyyuuu --noconfirm
+arch-chroot /mnt cp /etc/pacman.conf /etc/pacman.conf.bak && sudo sed -i '37c\ParallelDownloads = 16' /etc/pacman.conf && pacman -Syyyuuu --noconfirm
 
 
 
 ###MULTILIB
 
-sed -i '93c\[multilib]' /etc/pacman.conf && sudo sed -i '94c\Include = /etc/pacman.d/mirrorlist' /etc/pacman.conf && pacman -Syyyuu --noconfirm
+arch-chroot /mnt sed -i '93c\[multilib]' /etc/pacman.conf && sudo sed -i '94c\Include = /etc/pacman.d/mirrorlist' /etc/pacman.conf && pacman -Syyyuu --noconfirm
 
 
 
 ###FUSO HORARIO
 
-ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime && hwclock --systohc
+arch-chroot /mnt ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime && hwclock --systohc
 
 
 
 ###LOCALE
 
-mv /etc/locale.gen /etc/locale.gen.bak && echo -e 'pt_BR.UTF-8 UTF-8' | tee /etc/locale.gen && locale-gen && echo -e 'LANG=pt_BR.UTF-8' | tee /etc/locale.conf
+arch-chroot /mnt mv /etc/locale.gen /etc/locale.gen.bak && echo -e 'pt_BR.UTF-8 UTF-8' | tee /etc/locale.gen && locale-gen && echo -e 'LANG=pt_BR.UTF-8' | tee /etc/locale.conf
 
 
 
 ###HOSTNAME
+
+arch-chroot /mnt <<EOF
 
 echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\nHostname\n"
 
@@ -89,17 +93,17 @@ echo "$HOST" | sudo tee /etc/hostname
 
 echo -e "$(tput sgr0)\n\n"
 
+EOF
 
 
 ###HOSTS
 
-echo -e "127.0.0.1 localhost.localdomain localhost\n::1 localhost.localdomain localhost\n127.0.1.1 $HOST.localdomain $HOST" | sudo tee /etc/hosts
-
-echo -e "$(tput sgr0)\n\n"
+arch-chroot /mnt echo -e "127.0.0.1 localhost.localdomain localhost\n::1 localhost.localdomain localhost\n127.0.1.1 $HOST.localdomain $HOST" | sudo tee /etc/hosts
 
 
 
 ###SENHA ROOT
+arch-chroot /mnt <<EOF
 
 echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\nSenha de Root\n"
 
@@ -109,9 +113,12 @@ passwd
 
 echo -e "$(tput sgr0)\n\n"
 
+EOF
 
 
 ###USERNAME
+
+arch-chroot /mnt <<EOF
 
 echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\nUsername\n"
 
@@ -121,9 +128,13 @@ useradd -m $USERNAME
 
 echo -e "$(tput sgr0)\n\n"
 
+EOF
+
 
 
 ###SENHA DO USUARIO
+
+arch-chroot /mnt <<EOF
 
 echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\nSenha do Usuário\n"
 
@@ -133,23 +144,30 @@ passwd $USERNAME
 
 echo -e "$(tput sgr0)\n\n"
 
+EOF
+
 
 
 ###GRUPOS
+
+arch-chroot /mnt <<EOF
 
 groupadd -r autologin && groupadd -r sudo
 
 usermod -G autologin,sudo,wheel,lp $USERNAME
 
+EOF
 
 
 ###WHEEL
 
-cp /etc/sudoers /etc/sudoers.bak && sed -i '82c\ %wheel ALL=(ALL:ALL) ALL' /etc/sudoers
+arch-chroot /mnt cp /etc/sudoers /etc/sudoers.bak && sed -i '82c\ %wheel ALL=(ALL:ALL) ALL' /etc/sudoers
 
 
 
 ###GRUB
+
+arch-chroot /mnt <<EOF
 
 PASTA_EFI=/sys/firmware/efi
 if [ ! -d "$PASTA_EFI" ];then
@@ -163,8 +181,11 @@ grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=Arch 
 
 fi
 
+EOF
 
 ###DRIVER DE VIDEO
+
+arch-chroot /mnt <<EOF
 
 if [  $(lspci | grep -c Radeon) = 1 ]; then
 pacman -S xf86-video-amdgpu xf86-video-ati --noconfirm
@@ -180,15 +201,19 @@ pacman -S xf86-video-vmware xf86-input-vmmouse --noconfirm
 
 fi
 
+EOF
+
 
 
 ###PACOTES PADRÃO
 
-pacman -S xorg-server xorg-xinit xterm linux-zen-headers networkmanager xarchiver tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
+arch-chroot /mnt pacman -S xorg-server xorg-xinit xterm linux-zen-headers networkmanager xarchiver tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
 
 
 
 ###INTERFACE GRÁFICA
+
+arch-chroot /mnt <<EOF
 
 echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\n#### INTERFACE GRÁFICA (DE) ####"
 
@@ -274,10 +299,10 @@ pacman -S xfce4 xfce4-screenshooter xfce4-pulseaudio-plugin xfce4-whiskermenu-pl
 systemctl enable lightdm NetworkManager
 fi
 
+EOF
+
 
 
 ###USER DIRS UPDATE
 
-xdg-user-dirs-update
-
-EOF
+arch-chroot /mnt xdg-user-dirs-update
