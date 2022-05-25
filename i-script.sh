@@ -43,7 +43,8 @@ genfstab -U /mnt > /mnt/etc/fstab
 #arch-chroot /mnt
 
 
-chroot /mnt /bin/bash -x <<'EOF'
+arch-chroot /mnt /bin/bash -x <<'EOF'
+
 ###AJUSTAR HORA AUTOMATICAMENTE
 
 timedatectl set-ntp true
