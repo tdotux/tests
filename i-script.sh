@@ -36,13 +36,6 @@ pacstrap /mnt base e2fsprogs linux-zen linux-firmware
 
 genfstab -U /mnt > /mnt/etc/fstab
 
-#cd /mnt
-
-#git clone http://github.com/tdotux/tests
-
-#arch-chroot /mnt
-
-
 arch-chroot /mnt /bin/bash -x <<'EOF'
 
 ###AJUSTAR HORA AUTOMATICAMENTE
