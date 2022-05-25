@@ -36,5 +36,6 @@ pacstrap /mnt base e2fsprogs linux-zen linux-firmware
 
 genfstab -U /mnt > /mnt/etc/fstab
 
-git clone http://github.com/tdotux/tests
+arch-chroot /mnt git clone http://github.com/tdotux/tests
+
 arch-chroot /mnt sh /tests/pi-script.sh
