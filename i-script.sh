@@ -36,7 +36,7 @@ pacstrap /mnt base e2fsprogs linux-zen linux-firmware
 
 genfstab -U /mnt > /mnt/etc/fstab
 
-arch-chroot /mnt /bin/bash -x <<'EOF'
+arch-chroot /mnt <<EOF
 
 ###AJUSTAR HORA AUTOMATICAMENTE
 
