@@ -192,6 +192,8 @@ pacman -S deepin network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
 
 systemctl enable lightdm NetworkManager
 
+;;
+
 "4")
 
 echo "Gnome"
@@ -202,6 +204,7 @@ pacman -S gnome gnome-tweaks network-manager-applet gdm --noconfirm
 
 systemctl enable gdm NetworkManager
 
+;;
 
 "5")
 
@@ -213,6 +216,8 @@ pacman -S plasma konsole sddm dolphin spectacle kcalc kwrite gwenview plasma-nm 
 
 systemctl enable sddm NetworkManager
 
+;;
+
 "6")
 
 echo "KDE Plasma (Wayland)"
@@ -222,6 +227,8 @@ sleep 2
 pacman -S plasma konsole sddm dolphin spectacle kcalc kwrite gwenview plasma-nm plasma-pa plasma-wayland-session --noconfirm
 
 systemctl enable sddm NetworkManager
+
+;;
 
 "7")
 
@@ -233,6 +240,8 @@ pacman -S lxde-gtk3 lxtask network-manager-applet lightdm lightdm-gtk-greeter --
 
 systemctl enable lightdm NetworkManager
 
+;;
+
 "8")
 
 echo "LXQT"
@@ -243,6 +252,8 @@ pacman -S lxqt lxtask network-manager-applet sddm --noconfirm
 
 systemctl enable sddm NetworkManager
 
+;;
+
 "9")
 
 echo "MATE"
@@ -252,6 +263,8 @@ sleep 2
 pacman -S mate mate-extra network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
 
 systemctl enable lightdm NetworkManager
+
+;;
 
 "0")
 
