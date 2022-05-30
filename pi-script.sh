@@ -283,34 +283,9 @@ xdg-user-dirs-update
 
 ###SWAP FILE
 
-echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\n#### SWAP ####"
 
-echo -e "\nESCOLHA O TAMANHO DO ARQUIVO DE SWAP\n\n\nPARA MAQUINAS COM POUCA RAM (ATE 8GB) RECOMENDO 4GB DE SWAP\n\n\nACIMA DE 8GB DE RAM, ESOLHA 2GB DE SWAP)\n\n\nDIGITE O NUMERO CORRESPONDENTE A QUANTIDADE DE SWAP\n\n2 - 2GB\n\n4 - 4GB\n\n"
-
-echo -ne "Escolha uma quantidade de SWAP : "
-read -n1 -s SWAP
-
-case $SWAP in
-
-"2")
-
-echo "2GB"
-sleep 2
-echo -e "$(tput sgr0)\n\n"
-fallocate -l 2G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && cp /etc/fstab /etc/fstab.bak && echo -e '/swapfile   none    swap    sw    0   0' | tee -a /etc/fstab
-
-
-;;
-
-"4")
-
-echo "4GB"
-sleep 2
-echo -e "$(tput sgr0)\n\n"
 fallocate -l 4G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && cp /etc/fstab /etc/fstab.bak && echo -e '/swapfile   none    swap    sw    0   0' | tee -a /etc/fstab
 
-
-esac
 
 
 echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\n####INSTALAÇÃO CONCLUÍDA!!!\n"
