@@ -9,7 +9,7 @@ timedatectl set-ntp true
 
 ###UTILITARIOS BASICOS
 
-pacman -Sy nano pacman-contrib reflector sudo grub --noconfirm
+pacman -Sy nano wget pacman-contrib reflector sudo grub --noconfirm
 
 
 
@@ -146,7 +146,7 @@ fi
 
 ###PACOTES PADRÃO
 
-pacman -S xorg-server xorg-xinit xterm linux-zen-headers networkmanager xarchiver tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
+pacman -S xorg-server xorg-xinit xterm linux-zen-headers networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
 
 
 
@@ -164,7 +164,7 @@ case $DE in
 "1")
 
 echo "Budge"
-sleep 3
+sleep 2
 echo -e "$(tput sgr0)\n\n"
 pacman -S budgie-desktop gnome-terminal gedit gnome-calculator gnome-calendar gnome-system-monitor nautilus network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
 systemctl enable lightdm NetworkManager
@@ -175,7 +175,7 @@ systemctl enable lightdm NetworkManager
 
 echo "Cinnamon"
 
-sleep 3
+sleep 2
 echo -e "$(tput sgr0)\n\n"
 pacman -S cinnamon network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
 systemctl enable lightdm NetworkManager
@@ -186,7 +186,7 @@ systemctl enable lightdm NetworkManager
 
 echo "Deepin"
 
-sleep 3
+sleep 2
 echo -e "$(tput sgr0)\n\n"
 pacman -S deepin network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
 systemctl enable lightdm NetworkManager
@@ -197,7 +197,7 @@ systemctl enable lightdm NetworkManager
 
 echo "Gnome"
 
-sleep 3
+sleep 2
 echo -e "$(tput sgr0)\n\n"
 pacman -S gnome gnome-tweaks network-manager-applet gdm --noconfirm
 systemctl enable gdm NetworkManager
@@ -208,7 +208,7 @@ systemctl enable gdm NetworkManager
 
 echo "KDE Plasma (X11)"
 
-sleep 3
+sleep 2
 echo -e "$(tput sgr0)\n\n"
 pacman -S plasma konsole sddm dolphin spectacle kcalc kwrite gwenview plasma-nm plasma-pa --noconfirm
 systemctl enable sddm NetworkManager
@@ -219,7 +219,7 @@ systemctl enable sddm NetworkManager
 
 echo "KDE Plasma (Wayland)"
 
-sleep 3
+sleep 2
 echo -e "$(tput sgr0)\n\n"
 pacman -S plasma konsole sddm dolphin spectacle kcalc kwrite gwenview plasma-nm plasma-pa plasma-wayland-session --noconfirm
 systemctl enable sddm NetworkManager
@@ -230,7 +230,7 @@ systemctl enable sddm NetworkManager
 
 echo "LXDE"
 
-sleep 3
+sleep 2
 echo -e "$(tput sgr0)\n\n"
 pacman -S lxde-gtk3 lxtask network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
 systemctl enable lightdm NetworkManager
@@ -241,7 +241,7 @@ systemctl enable lightdm NetworkManager
 
 echo "LXQT"
 
-sleep 3
+sleep 2
 echo -e "$(tput sgr0)\n\n"
 pacman -S lxqt lxtask network-manager-applet sddm --noconfirm
 systemctl enable sddm NetworkManager
@@ -252,7 +252,7 @@ systemctl enable sddm NetworkManager
 
 echo "MATE"
 
-sleep 3
+sleep 2
 echo -e "$(tput sgr0)\n\n"
 pacman -S mate mate-extra network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
 systemctl enable lightdm NetworkManager
@@ -263,9 +263,9 @@ systemctl enable lightdm NetworkManager
 
 echo "XFCE"
 
-sleep 3
+sleep 2
 echo -e "$(tput sgr0)\n\n"
-pacman -S xfce4 xfce4-screenshooter xfce4-pulseaudio-plugin xfce4-whiskermenu-plugin lxtask ristretto mousepad galculator thunar-archive-plugin network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
+pacman -S xfce4 xfce4-screenshooter xfce4-pulseaudio-plugin xfce4-whiskermenu-plugin xarchiver lxtask ristretto mousepad galculator thunar-archive-plugin network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
 systemctl enable lightdm NetworkManager
 
 esac
@@ -283,8 +283,34 @@ xdg-user-dirs-update
 
 ###SWAP FILE
 
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\n#### SWAP ####"
+
+echo -e "\nESCOLHA O TAMANHO DO ARQUIVO DE SWAP\n\nPARA MAQUINAS COM POUCA RAM (ATE 8GB) RECOMENDO 4GB DE SWAP\n\nACIMA DE 8GB DE RAM, ESOLHA 2GB DE SWAP)\n\nDIGITE O NUMERO CORRESPONDENTE A QUANTIDADE DE SWAP\n\n2 - 2GB\n\n4 - 4GB"
+
+echo -ne "Escolha uma quantidade de SWAP : "
+read -n1 -s SWAP
+
+case $SWAP in
+
+"2")
+
+echo "2GB"
+sleep 2
+echo -e "$(tput sgr0)\n\n"
+fallocate -l 2G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && cp /etc/fstab /etc/fstab.bak && echo -e '/swapfile   none    swap    sw    0   0' | tee -a /etc/fstab
+
+
+;;
+
+"4")
+
+echo "4GB"
+sleep 2
+echo -e "$(tput sgr0)\n\n"
 fallocate -l 4G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && cp /etc/fstab /etc/fstab.bak && echo -e '/swapfile   none    swap    sw    0   0' | tee -a /etc/fstab
 
+
+;;
 
 
 echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\n####INSTALAÇÃO CONCLUÍDA!!!\n"
