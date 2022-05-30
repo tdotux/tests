@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 ###AJUSTAR HORA AUTOMATICAMENTE
 
 timedatectl set-ntp true
@@ -44,7 +45,7 @@ mv /etc/locale.gen /etc/locale.gen.bak && echo -e 'pt_BR.UTF-8 UTF-8' | tee /etc
 
 ###HOSTNAME
 
-echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\nHostname\n"
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\nHOSTNAME\n"
 
 read -p "Digite o Hostname : " HOST
 echo "$HOST" | sudo tee /etc/hostname
@@ -57,13 +58,11 @@ echo -e "$(tput sgr0)\n\n"
 
 echo -e "127.0.0.1 localhost.localdomain localhost\n::1 localhost.localdomain localhost\n127.0.1.1 $HOST.localdomain $HOST" | sudo tee /etc/hosts
 
-echo -e "$(tput sgr0)\n\n"
-
 
 
 ###SENHA ROOT
 
-echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\nSenha de Root\n"
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\nSENHA DE ROOT\n"
 
 echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\nDigite a Senha de Root\n"
 
@@ -75,7 +74,7 @@ echo -e "$(tput sgr0)\n\n"
 
 ###USERNAME
 
-echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\nUsername\n"
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\nUSERNAME\n"
 
 read -p "Digite o Nome de Usuário : " USERNAME
 
@@ -87,7 +86,7 @@ echo -e "$(tput sgr0)\n\n"
 
 ###SENHA DO USUARIO
 
-echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\nSenha do Usuário\n"
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\nSENHA DO USUARIO\n"
 
 echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\nDigite a Senha do Usuário\n"
 
@@ -126,6 +125,7 @@ grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=Arch 
 fi
 
 
+
 ###DRIVER DE VIDEO
 
 if [  $(lspci | grep -c Radeon) = 1 ]; then
@@ -152,89 +152,124 @@ pacman -S xorg-server xorg-xinit xterm linux-zen-headers networkmanager xarchive
 
 ###INTERFACE GRÁFICA
 
-echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\n#### INTERFACE GRÁFICA (DE) ####"
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\n#### INTERFACE GRAFICA (DE) ####"
+
+echo -ne "Escolha uma DE : "
+read -n1 -s DE
+
+case $DE in
+
+"1")
+
+echo "Budge"
+sleep 2
+pacman -S budgie-desktop gnome-terminal gedit gnome-calculator gnome-calendar gnome-system-monitor nautilus network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
+systemctl enable lightdm NetworkManager
+
+;;
+
+"2")
+
+echo "Cinnamon"
+
+sleep 2
+
+pacman -S cinnamon network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
+
+systemctl enable lightdm NetworkManager
+
+;;
+
+"3")
+
+echo "Deepin"
+
+sleep 2
+
+pacman -S deepin network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
+
+systemctl enable lightdm NetworkManager
+
+"4")
+
+echo "Gnome"
+
+sleep 2
+
+pacman -S gnome gnome-tweaks network-manager-applet gdm --noconfirm
+
+systemctl enable gdm NetworkManager
 
 
-echo -e "\n1  - Budgie\n2  - Cinnamon\n3  - Deepin\n4  - GNOME\n5  - GNOME Flashback\n6  - KDE Plasma (X11)\n7  - KDE Plasma (Wayland)\n8  - LXDE\n9  - LXQt\n10 - MATE\n11 - XFCE\n"
+"5")
+
+echo "KDE Plasma (X11)"
+
+sleep 2
+
+pacman -S plasma konsole sddm dolphin spectacle kcalc kwrite gwenview plasma-nm plasma-pa --noconfirm
+
+systemctl enable sddm NetworkManager
+
+"6")
+
+echo "KDE Plasma (Wayland)"
+
+sleep 2
+
+pacman -S plasma konsole sddm dolphin spectacle kcalc kwrite gwenview plasma-nm plasma-pa plasma-wayland-session --noconfirm
+
+systemctl enable sddm NetworkManager
+
+"7")
+
+echo "LXDE"
+
+sleep 2
+
+pacman -S lxde-gtk3 lxtask network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
+
+systemctl enable lightdm NetworkManager
+
+"8")
+
+echo "LXQT"
+
+sleep 2
+
+pacman -S lxqt lxtask network-manager-applet sddm --noconfirm
+
+systemctl enable sddm NetworkManager
+
+"9")
+
+echo "MATE"
+
+sleep 2
+
+pacman -S mate mate-extra network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
+
+systemctl enable lightdm NetworkManager
+
+"0")
+
+echo "XFCE"
+
+sleep 2
+
+pacman -S xfce4 xfce4-screenshooter xfce4-pulseaudio-plugin xfce4-whiskermenu-plugin lxtask ristretto mousepad galculator thunar-archive-plugin network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
+
+systemctl enable lightdm NetworkManager
 
 
-read -p "Digite o Nº Correspondente à Interface Gráfica : " DE
+
+*)
+		echo "Opção Inválida"
+	;;
+esac
 
 
 echo -e "$(tput sgr0)\n\n"
-
-if [ $DE = 1 ]; then
-pacman -S budgie-desktop gnome-terminal gedit gnome-calculator gnome-calendar gnome-system-monitor nautilus network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
-systemctl enable lightdm NetworkManager
-fi
-
-
-
-if [ $DE = 2 ]; then
-pacman -S cinnamon network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
-systemctl enable lightdm NetworkManager
-fi
-
-
-
-if [ $DE = 3 ]; then
-pacman -S deepin network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
-systemctl enable lightdm NetworkManager
-fi
-
-
-
-if [ $DE = 4 ]; then
-pacman -S gnome gnome-tweaks network-manager-applet gdm --noconfirm
-systemctl enable gdm NetworkManager
-fi
-
-
-
-if [ $DE = 5 ]; then
-pacman -S gnome-flashback gnome-tweaks gnome-terminal gnome-system-monitor nautilus network-manager-applet gdm --noconfirm
-systemctl enable gdm NetworkManager
-fi
-
-
-
-if [ $DE = 6 ]; then
-pacman -S plasma konsole sddm dolphin spectacle kcalc plasma-nm plasma-pa --noconfirm
-systemctl enable sddm NetworkManager
-fi
-
-
-
-if [ $DE = 7 ]; then
-pacman -S plasma konsole sddm dolphin spectacle kcalc plasma-nm plasma-pa plasma-wayland-session --noconfirm
-systemctl enable sddm NetworkManager
-fi
-
-
-if [ $DE = 8 ]; then
-pacman -S lxde-gtk3 lxtask network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
-systemctl enable lightdm NetworkManager
-fi
-
-
-if [ $DE = 9 ]; then
-pacman -S lxqt lxtask network-manager-applet sddm --noconfirm
-systemctl enable sddm NetworkManager
-fi
-
-
-
-if [ $DE = 10 ]; then
-pacman -S mate mate-extra network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
-systemctl enable lightdm NetworkManager
-fi
-
-
-
-if [ $DE = 11 ]; then
-pacman -S xfce4 xfce4-screenshooter xfce4-pulseaudio-plugin xfce4-whiskermenu-plugin lxtask ristretto mousepad galculator thunar-archive-plugin network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
-systemctl enable lightdm NetworkManager
-fi
 
 
 
@@ -243,4 +278,11 @@ fi
 xdg-user-dirs-update
 
 
-exit
+
+###SWAP FILE
+
+fallocate -l 4G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && cp /etc/fstab /etc/fstab.bak && echo -e '/swapfile   none    swap    sw    0   0' | tee -a /etc/fstab
+
+
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\n####INSTALAÇÃO CONCLUÍDA!!!\n"
