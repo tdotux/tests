@@ -154,6 +154,8 @@ pacman -S xorg-server xorg-xinit xterm linux-zen-headers networkmanager xarchive
 
 echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\n#### INTERFACE GRAFICA (DE) ####"
 
+echo -e "\n1  - Budgie\n2  - Cinnamon\n3  - Deepin\n4  - GNOME\n5  - KDE Plasma (X11)\n6  - KDE Plasma (Wayland)\n7  - LXDE\n8  - LXQt\n9 - MATE\n0 - XFCE\n"
+
 echo -ne "Escolha uma DE : "
 read -n1 -s DE
 
@@ -261,11 +263,6 @@ pacman -S xfce4 xfce4-screenshooter xfce4-pulseaudio-plugin xfce4-whiskermenu-pl
 
 systemctl enable lightdm NetworkManager
 
-
-
-*)
-		echo "Opção Inválida"
-	;;
 esac
 
 
