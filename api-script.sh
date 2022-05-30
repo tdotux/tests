@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 
 ###AJUSTAR HORA AUTOMATICAMENTE
@@ -127,6 +127,38 @@ fi
 
 
 ###DRIVER DE VIDEO
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\n#### DRIVER DE VIDEO ####"
+
+echo -e "\n\n 1 - AMDGPU\n2 - ATI\n\n3 - Intel\n4 - Nouveau (Nvidia Open Source)\n5 - Intel + Nouveau\n6 - Intel + Nvidia\n7 - Intel + AMDGPU\n8 - AMDGPU + Nouveau\n9 - AMDGPU + Nvidia \n"
+
+echo -ne "Escolha um Driver ou uma Combinação de Drivers : "
+read -n1 -s DRIVERS
+
+case $DRIVERS in
+
+"1")
+
+echo "Budge"
+sleep 2
+echo -e "$(tput sgr0)\n\n"
+pacman -S budgie-desktop gnome-terminal gedit gnome-calculator gnome-calendar gnome-system-monitor nautilus network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
+systemctl enable lightdm NetworkManager
+
+;;
+
+"2")
+
+echo "Cinnamon"
+
+sleep 2
+echo -e "$(tput sgr0)\n\n"
+pacman -S cinnamon network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
+systemctl enable lightdm NetworkManager
+
+;;
+
+
 
 if [  $(lspci | grep -c Radeon) = 1 ]; then
 pacman -S xf86-video-amdgpu xf86-video-ati --noconfirm
