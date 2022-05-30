@@ -68,7 +68,7 @@ arch-chroot /mnt git clone http://github.com/tdotux/tests
 
 ###EXECUTAR O SCRIPT DE POS INSTALAÇÃO DENTRO DO CHROOT
 
-arch-chroot /mnt sh /archscript/pi-script.sh
+arch-chroot /mnt sh /tests/pi-script.sh
 
 
 
