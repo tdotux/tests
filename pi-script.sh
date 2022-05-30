@@ -164,7 +164,8 @@ case $DE in
 "1")
 
 echo "Budge"
-sleep 2
+sleep 3
+echo -e "$(tput sgr0)\n\n"
 pacman -S budgie-desktop gnome-terminal gedit gnome-calculator gnome-calendar gnome-system-monitor nautilus network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
 systemctl enable lightdm NetworkManager
 
@@ -174,10 +175,9 @@ systemctl enable lightdm NetworkManager
 
 echo "Cinnamon"
 
-sleep 2
-
+sleep 3
+echo -e "$(tput sgr0)\n\n"
 pacman -S cinnamon network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
-
 systemctl enable lightdm NetworkManager
 
 ;;
@@ -186,10 +186,9 @@ systemctl enable lightdm NetworkManager
 
 echo "Deepin"
 
-sleep 2
-
+sleep 3
+echo -e "$(tput sgr0)\n\n"
 pacman -S deepin network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
-
 systemctl enable lightdm NetworkManager
 
 ;;
@@ -198,10 +197,9 @@ systemctl enable lightdm NetworkManager
 
 echo "Gnome"
 
-sleep 2
-
+sleep 3
+echo -e "$(tput sgr0)\n\n"
 pacman -S gnome gnome-tweaks network-manager-applet gdm --noconfirm
-
 systemctl enable gdm NetworkManager
 
 ;;
@@ -210,10 +208,9 @@ systemctl enable gdm NetworkManager
 
 echo "KDE Plasma (X11)"
 
-sleep 2
-
+sleep 3
+echo -e "$(tput sgr0)\n\n"
 pacman -S plasma konsole sddm dolphin spectacle kcalc kwrite gwenview plasma-nm plasma-pa --noconfirm
-
 systemctl enable sddm NetworkManager
 
 ;;
@@ -222,10 +219,9 @@ systemctl enable sddm NetworkManager
 
 echo "KDE Plasma (Wayland)"
 
-sleep 2
-
+sleep 3
+echo -e "$(tput sgr0)\n\n"
 pacman -S plasma konsole sddm dolphin spectacle kcalc kwrite gwenview plasma-nm plasma-pa plasma-wayland-session --noconfirm
-
 systemctl enable sddm NetworkManager
 
 ;;
@@ -234,10 +230,9 @@ systemctl enable sddm NetworkManager
 
 echo "LXDE"
 
-sleep 2
-
+sleep 3
+echo -e "$(tput sgr0)\n\n"
 pacman -S lxde-gtk3 lxtask network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
-
 systemctl enable lightdm NetworkManager
 
 ;;
@@ -246,10 +241,9 @@ systemctl enable lightdm NetworkManager
 
 echo "LXQT"
 
-sleep 2
-
+sleep 3
+echo -e "$(tput sgr0)\n\n"
 pacman -S lxqt lxtask network-manager-applet sddm --noconfirm
-
 systemctl enable sddm NetworkManager
 
 ;;
@@ -258,10 +252,9 @@ systemctl enable sddm NetworkManager
 
 echo "MATE"
 
-sleep 2
-
+sleep 3
+echo -e "$(tput sgr0)\n\n"
 pacman -S mate mate-extra network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
-
 systemctl enable lightdm NetworkManager
 
 ;;
@@ -270,10 +263,9 @@ systemctl enable lightdm NetworkManager
 
 echo "XFCE"
 
-sleep 2
-
+sleep 3
+echo -e "$(tput sgr0)\n\n"
 pacman -S xfce4 xfce4-screenshooter xfce4-pulseaudio-plugin xfce4-whiskermenu-plugin lxtask ristretto mousepad galculator thunar-archive-plugin network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
-
 systemctl enable lightdm NetworkManager
 
 esac
