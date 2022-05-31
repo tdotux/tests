@@ -204,11 +204,11 @@ echo -e "$(tput sgr0)\n\n"
 
 echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\n#### DRIVER DE VIDEO SECUNDARIO ####"
 
+echo -e "\n\nOU PRESSIONE ENTER PARA PULAR ESTA ETAPA\n\n"
+
 echo -e "\n\n1 - AMDGPU\n2 - ATI\n3 - Intel\n4 - Nouveau (Nvidia Open Source)\n5 - Nvidia (Proprietário)\n\n"
 
 echo -ne "Escolha um Driver Secundário : "
-
-echo -e "OU PRESSIONE ENTER PARA PULAR ESTA ETAPA\n"
 
 read -n1 -s SDRIVER
 
