@@ -22,13 +22,13 @@ parted /dev/sda mklabel gpt -s
 
 echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\n#### SISTEMA DE ARQUIVOS ####"
 
-echo -e "\n1  - EXT 4\n2 - BTRFS\n"
+echo -e "\n1  - EXT4\n2 - BTRFS\n"
 echo -ne "Escolha um SISTEMA DE ARQUIVOS : "
 read -n1 -s ARQUIVOS
 case $ARQUIVOS in
 
 "1")
-echo "EXT 4"
+echo "EXT4"
 sleep 2
 echo -e "$(tput sgr0)\n\n"
 parted /dev/sda mkpart primary fat32 1MiB 301MiB -s
