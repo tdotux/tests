@@ -100,11 +100,14 @@ fi
 
 if [ $(pacman -Q | grep -c 'e2fsprogs') = 1 ] then
 pacstrap /mnt base e2fsprogs dosfstools linux-zen linux-firmware
-
-elif [ $(pacman -Q | grep -c 'btrfs-progs') = 1 ] then
-pacstrap /mnt base btrfs-progs dosfstools linux-zen linux-firmware
-
 fi
+
+
+if [ $(pacman -Q | grep -c 'btrfs-progs') = 1 ] then
+pacstrap /mnt base btrfs-progs dosfstools linux-zen linux-firmware
+fi
+
+
 
 ###FSTAB
 
