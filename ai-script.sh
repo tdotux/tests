@@ -47,7 +47,7 @@ mount /dev/sda1 /mnt/boot/efi
 echo "BTRFS"
 sleep 2
 echo -e "$(tput sgr0)\n\n"
-pacman -S btrfs-progs
+pacman -S btrfs-progs --noconfirm
 parted /dev/sda mkpart primary fat32 1MiB 301MiB -s
 parted /dev/sda set 1 esp on
 parted /dev/sda mkpart primary btrfs 301MiB 100% -s
@@ -85,7 +85,7 @@ mount /dev/sda1 /mnt
 echo "BTRFS"
 sleep 2
 echo -e "$(tput sgr0)\n\n"
-pacman -S btrfs-progs
+pacman -S btrfs-progs --noconfirm
 parted /dev/sda mkpart primary btrfs 1MiB 100% -s
 parted /dev/sda set 1 boot on
 mkfs.btrfs -f /dev/sda1
