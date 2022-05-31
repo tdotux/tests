@@ -71,7 +71,7 @@ read -n1 -s ARQUIVOS
 case $ARQUIVOS in
 
 "1")
-echo "EXT 4"
+echo "EXT4"
 sleep 2
 echo -e "$(tput sgr0)\n\n"
 parted /dev/sda mkpart primary ext4 1MiB 100% -s
