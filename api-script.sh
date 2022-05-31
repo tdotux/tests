@@ -199,6 +199,67 @@ esac
 
 
 
+### DRIVER DE VIDEO SECUNDARIO ###
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\n#### DRIVER DE VIDEO ####"
+
+echo -e "\n\n1 - AMDGPU\n2 - ATI\n3 - Intel\n4 - Nouveau (Nvidia Open Source)\n5 - Nvidia (Proprietário)"
+
+echo -ne "Escolha um Driver Secundário : "
+read -n1 -s PDRIVER
+
+case $PDRIVER in
+
+"1")
+
+echo "AMDGPU"
+sleep 2
+echo -e "$(tput sgr0)\n\n"
+pacman -S xf86-video-amdgpu --noconfirm
+
+;;
+
+"2")
+
+echo "ATI"
+
+sleep 2
+echo -e "$(tput sgr0)\n\n"
+pacman -S xf86-video-ati
+
+;;
+
+
+"3")
+
+echo "INTEL"
+
+sleep 2
+echo -e "$(tput sgr0)\n\n"
+pacman -S xf86-video-intel
+
+;;
+
+"4")
+
+echo "Nouveau"
+
+sleep 2
+echo -e "$(tput sgr0)\n\n"
+pacman -S xf86-video-nouveau
+
+;;
+
+"5")
+
+echo "Nvidia"
+
+sleep 2
+echo -e "$(tput sgr0)\n\n"
+pacman -S xf86-video-nvidia
+
+esac
+
 
 ###PACOTES PADRÃO
 
