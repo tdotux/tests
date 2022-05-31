@@ -57,7 +57,7 @@ mount /dev/sda2 /mnt
 mkdir /mnt/boot/
 mkdir /mnt/boot/efi
 mount /dev/sda1 /mnt/boot/efi
-
+esac
 
 else
 echo -e "Sistema Legacy"
@@ -90,6 +90,8 @@ parted /dev/sda mkpart primary btrfs 1MiB 100% -s
 parted /dev/sda set 1 boot on
 mkfs.btrfs -f /dev/sda1
 mount /dev/sda1 /mnt
+esac
+
 fi
 
 
