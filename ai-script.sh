@@ -99,10 +99,10 @@ fi
 ###PACSTRAP
 
 if [ $ (pacman -Q | grep -c 'e2fsprogs' = 1 ] then
-pacstrap /mnt base e2fsprogs linux-zen linux-firmware
+pacstrap /mnt base e2fsprogs dosfstools linux-zen linux-firmware
 
 elif [ $ (pacman -Q | grep -c 'e2fsprogs' = 1 ] then
-pacstrap /mnt base btrfs-progs linux-zen linux-firmware
+pacstrap /mnt base btrfs-progs dosfstools linux-zen linux-firmware
 
 fi
 
