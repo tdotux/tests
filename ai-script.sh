@@ -9,7 +9,7 @@ timedatectl set-ntp true
 
 ###UTILITARIOS BASICOS
 
-pacman -S e2fsprogs dosfstools nano wget --noconfirm
+pacman -S dosfstools nano wget --noconfirm
 
 
 
@@ -98,9 +98,13 @@ fi
 
 ###PACSTRAP
 
-pacstrap /mnt base e2fsprogs btrfs-progs linux-zen linux-firmware
+if [ $ (pacman -Q | grep -c 'e2fsprogs' = 1 ] then
+pacstrap /mnt base e2fsprogs linux-zen linux-firmware
 
+elif [ $ (pacman -Q | grep -c 'e2fsprogs' = 1 ] then
+pacstrap /mnt base btrfs-progs linux-zen linux-firmware
 
+fi
 
 ###FSTAB
 
