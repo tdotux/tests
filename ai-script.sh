@@ -98,7 +98,7 @@ fi
 
 ###PACSTRAP
 
-pacstrap /mnt base e2fsprogs linux-zen linux-firmware
+pacstrap /mnt base e2fsprogs btrfs-progs linux-zen linux-firmware
 
 
 
