@@ -204,12 +204,12 @@ echo -e "$(tput sgr0)\n\n"
 
 echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\n#### DRIVER DE VIDEO SECUNDARIO ####"
 
-echo -e "\n\n1 - AMDGPU\n2 - ATI\n3 - Intel\n4 - Nouveau (Nvidia Open Source)\n5 - Nvidia (Proprietário)\n\n"
+echo -e "\n\nPRESSIONE ENTER PARA PULAR ESTA ESTAPA\n\n1 - AMDGPU\n2 - ATI\n3 - Intel\n4 - Nouveau (Nvidia Open Source)\n5 - Nvidia (Proprietário)\n\n"
 
 echo -ne "Escolha um Driver Secundário : "
-read -n1 -s PDRIVER
+read -n1 -s SDRIVER
 
-case $PDRIVER in
+case $SDRIVER in
 
 "1")
 
@@ -226,7 +226,7 @@ echo "ATI"
 
 sleep 2
 echo -e "$(tput sgr0)\n\n"
-pacman -S xf86-video-ati
+pacman -S xf86-video-ati --noconfirm
 
 ;;
 
@@ -237,7 +237,7 @@ echo "INTEL"
 
 sleep 2
 echo -e "$(tput sgr0)\n\n"
-pacman -S xf86-video-intel
+pacman -S xf86-video-intel --noconfirm
 
 ;;
 
@@ -247,7 +247,7 @@ echo "Nouveau"
 
 sleep 2
 echo -e "$(tput sgr0)\n\n"
-pacman -S xf86-video-nouveau
+pacman -S xf86-video-nouveau --noconfirm
 
 ;;
 
@@ -257,7 +257,7 @@ echo "Nvidia"
 
 sleep 2
 echo -e "$(tput sgr0)\n\n"
-pacman -S xf86-video-nvidia
+pacman -S xf86-video-nvidia --noconfirm
 
 esac
 
