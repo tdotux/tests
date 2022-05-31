@@ -151,7 +151,7 @@ echo "ATI"
 
 sleep 2
 echo -e "$(tput sgr0)\n\n"
-pacman -S xf86-video-ati
+pacman -S xf86-video-ati --noconfirm
 
 ;;
 
@@ -162,7 +162,7 @@ echo "INTEL"
 
 sleep 2
 echo -e "$(tput sgr0)\n\n"
-pacman -S xf86-video-intel
+pacman -S xf86-video-intel --noconfirm
 
 ;;
 
@@ -172,7 +172,7 @@ echo "Nouveau"
 
 sleep 2
 echo -e "$(tput sgr0)\n\n"
-pacman -S xf86-video-nouveau
+pacman -S xf86-video-nouveau --noconfirm
 
 ;;
 
@@ -182,7 +182,7 @@ echo "Nvidia"
 
 sleep 2
 echo -e "$(tput sgr0)\n\n"
-pacman -S xf86-video-nvidia
+pacman -S xf86-video-nvidia --noconfirm
 
 ;;
 
@@ -192,7 +192,7 @@ echo "VMWARE"
 
 sleep 2
 echo -e "$(tput sgr0)\n\n"
-pacman -S xf86-video-vmware
+pacman -S xf86-video-vmware --noconfirm
 
 esac
 
