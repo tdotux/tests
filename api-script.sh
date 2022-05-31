@@ -275,7 +275,7 @@ pacman -S xorg-server xorg-xinit xterm linux-zen-headers networkmanager tar gzip
 
 echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\n#### INTERFACE GRAFICA (DE) ####"
 
-echo -e "\n1  - Budgie\n2  - Cinnamon\n3  - Deepin\n4  - GNOME\n5  - KDE Plasma (X11)\n6  - KDE Plasma (Wayland)\n7  - LXDE\n8  - LXQt\n9  - MATE\n0  - XFCE\n"
+echo -e "\n1 ==>> Budgie\n2 ==>> Cinnamon\n3 ==>> Deepin\n4 ==>> GNOME\n5 ==>> KDE Plasma (X11)\n6 ==>> KDE Plasma (Wayland)\n7 ==>> LXDE\n8 ==>> LXQt\n9 ==>> MATE\n0 ==>> XFCE\n"
 
 echo -ne "Escolha uma DE : "
 read -n1 -s DE
@@ -406,7 +406,7 @@ xdg-user-dirs-update
 
 echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\n#### SWAP ####"
 
-echo -e "\nESCOLHA O TAMANHO DO ARQUIVO DE SWAP\n\n\nPARA MAQUINAS COM POUCA RAM (ATE 8GB) RECOMENDO 4GB DE SWAP\n\n\nACIMA DE 8GB DE RAM, ESOLHA 2GB DE SWAP)\n\n\nDIGITE O NUMERO CORRESPONDENTE A QUANTIDADE DE SWAP\n\n2 - 2GB\n\n4 - 4GB\n\n"
+echo -e "\nESCOLHA O TAMANHO DO ARQUIVO DE SWAP\n\n\nPARA MAQUINAS COM POUCA RAM (ATE 8GB) RECOMENDO 4GB DE SWAP\n\n\nACIMA DE 8GB DE RAM, ESCOLHA 2GB DE SWAP\n\n\nDIGITE O NUMERO CORRESPONDENTE A QUANTIDADE DE SWAP\n\n2 - 2GB\n\n4 - 4GB\n\n"
 
 echo -ne "Escolha uma quantidade de SWAP : "
 read -n1 -s SWAP
