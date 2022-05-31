@@ -16,13 +16,14 @@ pacman -S dosfstools nano wget --noconfirm
 ###DETECTAR UEFI OU LEGACY
 
 PASTA_EFI=/sys/firmware/efi
+
 if [ -d "$PASTA_EFI" ];then
 echo -e "Sistema EFI"
 parted /dev/sda mklabel gpt -s
 
 echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\n#### SISTEMA DE ARQUIVOS ####"
 
-echo -e "\n\n1 ==>> EXT4\n\n2 ==>> BTRFS\n\n"
+echo -e "\n1 ==>> EXT4\n\n2 ==>> BTRFS\n"
 echo -ne "Escolha um SISTEMA DE ARQUIVOS : "
 read -n1 -s ARQUIVOS
 case $ARQUIVOS in
@@ -58,6 +59,7 @@ mkdir /mnt/boot/
 mkdir /mnt/boot/efi
 mount /dev/sda1 /mnt/boot/efi
 esac
+
 
 else
 echo -e "Sistema Legacy"
