@@ -60,18 +60,6 @@ echo -e "127.0.0.1 localhost.localdomain localhost\n::1 localhost.localdomain lo
 
 
 
-###SENHA ROOT
-
-echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\nSENHA DE ROOT\n"
-
-echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\nDigite a Senha de Root\n"
-
-passwd
-
-echo -e "$(tput sgr0)\n\n"
-
-
-
 ###USERNAME
 
 echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\nUSERNAME\n"
@@ -91,6 +79,17 @@ echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\nSENHA DO USUARIO
 echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\nDigite a Senha do Usuário\n"
 
 passwd $USERNAME
+
+echo -e "$(tput sgr0)\n\n"
+
+
+###SENHA ROOT
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\nSENHA DE ROOT\n"
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\nDigite a Senha de Root\n"
+
+passwd
 
 echo -e "$(tput sgr0)\n\n"
 
