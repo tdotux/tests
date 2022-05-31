@@ -128,7 +128,7 @@ fi
 
 ###DRIVER DE VIDEO
 
-echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\n#### DRIVER DE VIDEO ####"
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\n#### DRIVER DE VIDEO PRIMARIO ####"
 
 echo -e "\n\n1 - AMDGPU\n2 - ATI\n3 - Intel\n4 - Nouveau (Nvidia Open Source)\n5 - Nvidia (Proprietário)\n6 - VMWARE\n\n"
 
@@ -197,11 +197,13 @@ pacman -S xf86-video-vmware
 
 esac
 
+echo -e "$(tput sgr0)\n\n"
+
 
 
 ### DRIVER DE VIDEO SECUNDARIO ###
 
-echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\n#### DRIVER DE VIDEO ####"
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\n#### DRIVER DE VIDEO SECUNDARIO ####"
 
 echo -e "\n\n1 - AMDGPU\n2 - ATI\n3 - Intel\n4 - Nouveau (Nvidia Open Source)\n5 - Nvidia (Proprietário)\n\n"
 
@@ -259,6 +261,9 @@ echo -e "$(tput sgr0)\n\n"
 pacman -S xf86-video-nvidia
 
 esac
+
+echo -e "$(tput sgr0)\n\n"
+
 
 
 ###PACOTES PADRÃO
