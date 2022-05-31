@@ -130,49 +130,73 @@ fi
 
 echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\n#### DRIVER DE VIDEO ####"
 
-echo -e "\n\n 1 - AMDGPU\n2 - ATI\n\n3 - Intel\n4 - Nouveau (Nvidia Open Source)\n5 - Intel + Nouveau\n6 - Intel + Nvidia\n7 - Intel + AMDGPU\n8 - AMDGPU + Nouveau\n9 - AMDGPU + Nvidia \n"
+echo -e "\n\n1 - AMDGPU\n2 - ATI\n3 - Intel\n4 - Nouveau (Nvidia Open Source)\n5 - Nvidia (Proprietário)"
 
-echo -ne "Escolha um Driver ou uma Combinação de Drivers : "
-read -n1 -s DRIVERS
+echo -ne "Escolha um Driver Primário : "
+read -n1 -s PDRIVER
 
-case $DRIVERS in
+case $PDRIVER in
 
 "1")
 
-echo "Budge"
+echo "AMDGPU"
 sleep 2
 echo -e "$(tput sgr0)\n\n"
-pacman -S budgie-desktop gnome-terminal gedit gnome-calculator gnome-calendar gnome-system-monitor nautilus network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
-systemctl enable lightdm NetworkManager
+pacman -S xf86-video-amdgpu --noconfirm
 
 ;;
 
 "2")
 
-echo "Cinnamon"
+echo "ATI"
 
 sleep 2
 echo -e "$(tput sgr0)\n\n"
-pacman -S cinnamon network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
-systemctl enable lightdm NetworkManager
+pacman -S xf86-video-ati
 
 ;;
 
 
+"3")
 
-if [  $(lspci | grep -c Radeon) = 1 ]; then
-pacman -S xf86-video-amdgpu xf86-video-ati --noconfirm
+echo "INTEL"
 
-elif [  $(lspci | grep -c Intel) = 1 ]; then
-pacman -S xf86-video-intel --noconfirm
+sleep 2
+echo -e "$(tput sgr0)\n\n"
+pacman -S xf86-video-intel
 
-elif [  $(lspci | grep -c GeForce) = 1 ]; then
-pacman -S xf86-video-nouveau --noconfirm
+;;
 
-elif [  $(lspci | grep -c VMware) = 1 ]; then
-pacman -S xf86-video-vmware xf86-input-vmmouse --noconfirm
+"4")
 
-fi
+echo "Nouveau"
+
+sleep 2
+echo -e "$(tput sgr0)\n\n"
+pacman -S xf86-video-nouveau
+
+;;
+
+"5")
+
+echo "Nvidia"
+
+sleep 2
+echo -e "$(tput sgr0)\n\n"
+pacman -S xf86-video-nvidia
+
+;;
+
+"6")
+
+echo "VMWARE"
+
+sleep 2
+echo -e "$(tput sgr0)\n\n"
+pacman -S xf86-video-vmware
+
+esac
+
 
 
 
