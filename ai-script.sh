@@ -21,7 +21,9 @@ if [ -d "$PASTA_EFI" ];then
 echo -e "Sistema EFI"
 parted /dev/sda mklabel gpt -s
 
-echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\n\n#### SISTEMA DE ARQUIVOS ####\n\n"
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
+
+echo -e "\n\n#### SISTEMA DE ARQUIVOS ####\n\n"
 
 echo -e "1 - EXT4\n2 - BTRFS"
 
@@ -68,15 +70,16 @@ else
 echo -e "Sistema Legacy"
 parted /dev/sda mklabel msdos -s
 
-echo "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)#### SISTEMA DE ARQUIVOS ####"
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
-echo -e "\n1 - EXT4\n2 - BTRFS\n"
+echo -e "\n\n#### SISTEMA DE ARQUIVOS ####\n\n"
 
-echo -ne "Escolha um Sistema de Arquivos : "
+echo -e "1 - EXT4\n2 - BTRFS"
 
-
+echo -ne "\n\nEscolha um Sistema de Arquivos : "
 
 read -n1 -s ARQUIVOS
+
 case $ARQUIVOS in
 
 "1")
