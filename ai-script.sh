@@ -27,6 +27,8 @@ echo -e "\n1 - EXT4\n2 - BTRFS\n"
 
 echo -ne "Escolha um Sistema de Arquivos : "
 
+echo -e "$(tput sgr0)\n\n"
+
 read -n1 -s ARQUIVOS
 
 case $ARQUIVOS in
@@ -68,11 +70,13 @@ else
 echo -e "Sistema Legacy"
 parted /dev/sda mklabel msdos -s
 
-echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\n#### SISTEMA DE ARQUIVOS ####"
+echo "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)#### SISTEMA DE ARQUIVOS ####"
 
 echo -e "\n1 - EXT4\n2 - BTRFS\n"
 
 echo -ne "Escolha um Sistema de Arquivos : "
+
+
 
 read -n1 -s ARQUIVOS
 case $ARQUIVOS in
