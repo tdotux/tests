@@ -150,7 +150,27 @@ echo -e "#### DRIVER DE VIDEO PRIMARIO ####"
 
 echo -e "\n\n" 
 
-echo -e "1 - AMDGPU\n2 - ATI\n3 - Intel\n4 - Nouveau (Nvidia Open Source)\n5 - Nvidia (Proprietário)\n6 - VMWARE"
+echo -e "1 - AMDGPU"
+
+echo -e "\n" 
+
+echo -e "2 - ATI"
+
+echo -e "\n" 
+
+echo -e "3 - Intel"
+
+echo -e "\n" 
+
+echo -e "4 - Nouveau (Nvidia Open Source)"
+
+echo -e "\n"
+
+echo -e "5 - Nvidia (Proprietário)"
+
+echo -e "\n" 
+
+echo -e "6 - VMWARE"
 
 echo -e "\n\n" 
 
@@ -232,11 +252,29 @@ echo -e "#### DRIVER DE VIDEO SECUNDARIO ####"
 
 echo -e "\n\n" 
 
-echo -e "\1 - AMDGPU\n2 - ATI\n3 - Intel\n4 - Nouveau (Nvidia Open Source)\n5 - Nvidia (Proprietário)"
+echo -e "1 - AMDGPU"
 
-echo -e "\n\n\n" 
+echo -e "\n" 
 
-echo -e "PRESSIONE ENTER PARA PULAR ESTA ETAPA"
+echo -e "2 - ATI"
+
+echo -e "\n" 
+
+echo -e "3 - Intel"
+
+echo -e "\n" 
+
+echo -e "4 - Nouveau (Nvidia Open Source)"
+
+echo -e "\n"
+
+echo -e "5 - Nvidia (Proprietário)"
+
+echo -e "\n\n" 
+
+echo -e "Pressione Enter para pular esta etapa"
+
+echo -e "ou"
 
 echo -ne "Escolha um Driver Secundário : "
 
