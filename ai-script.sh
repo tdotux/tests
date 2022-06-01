@@ -29,6 +29,8 @@ echo -e "\n\n"
 
 echo -e "1 - EXT4"
 
+echo -e "\n"
+
 echo -e "2 - BTRFS"
 
 echo -e "\n\n" 
@@ -83,7 +85,11 @@ echo -e "#### SISTEMA DE ARQUIVOS ####"
 
 echo -e "\n\n" 
 
-echo -e "1 - EXT4\n2 - BTRFS"
+echo -e "1 - EXT4"
+
+echo -e "\n"
+
+echo -e "2 - BTRFS"
 
 echo -e "\n\n" 
 
