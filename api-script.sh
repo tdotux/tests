@@ -86,7 +86,7 @@ echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "Senha do Usuário"
 
-echo -e "\n\n"
+echo -e "\n"
 
 echo -e "Digite a Senha do Usuário"
 
@@ -102,7 +102,7 @@ echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "### Senha de Root ###"
 
-echo -e "\n\n"
+echo -e "\n"
 
 echo -e "Digite a Senha de Root"
 
@@ -150,7 +150,7 @@ echo -e "#### DRIVER DE VIDEO PRIMARIO ####"
 
 echo -e "\n\n" 
 
-echo -e "\1 - AMDGPU\n2 - ATI\n3 - Intel\n4 - Nouveau (Nvidia Open Source)\n5 - Nvidia (Proprietário)\n6 - VMWARE"
+echo -e "1 - AMDGPU\n2 - ATI\n3 - Intel\n4 - Nouveau (Nvidia Open Source)\n5 - Nvidia (Proprietário)\n6 - VMWARE"
 
 echo -e "\n\n" 
 
@@ -306,9 +306,13 @@ pacman -S xorg-server xorg-xinit xterm linux-zen-headers networkmanager tar gzip
 
 ###INTERFACE GRÁFICA
 
-echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\n#### INTERFACE GRAFICA (DE) ####"
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
-echo -e "\n1 ==>> Budgie\n2 ==>> Cinnamon\n3 ==>> Deepin\n4 ==>> GNOME\n5 ==>> KDE Plasma (X11)\n6 ==>> KDE Plasma (Wayland)\n7 ==>> LXDE\n8 ==>> LXQt\n9 ==>> MATE\n0 ==>> XFCE\n"
+echo -e "#### INTERFACE GRAFICA (DE) ####"
+
+echo -e "1 ==>> Budgie\n2 ==>> Cinnamon\n3 ==>> Deepin\n4 ==>> GNOME\n5 ==>> KDE Plasma (X11)\n6 ==>> KDE Plasma (Wayland)\n7 ==>> LXDE\n8 ==>> LXQt\n9 ==>> MATE\n0 ==>> XFCE"
+
+echo -e "\n\n"
 
 echo -ne "Escolha uma DE : "
 read -n1 -s DE
