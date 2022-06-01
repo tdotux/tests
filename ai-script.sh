@@ -23,11 +23,15 @@ parted /dev/sda mklabel gpt -s
 
 echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
-echo -e "\n\n#### SISTEMA DE ARQUIVOS ####\n\n"
+echo -e "#### SISTEMA DE ARQUIVOS ####"
+
+echo -e "\n\n" 
 
 echo -e "1 - EXT4\n2 - BTRFS"
 
-echo -ne "\n\nEscolha um Sistema de Arquivos : "
+echo -e "\n\n" 
+
+echo -ne "Escolha um Sistema de Arquivos : "
 
 read -n1 -s ARQUIVOS
 
@@ -68,15 +72,20 @@ esac
 
 else
 echo -e "Sistema Legacy"
+
 parted /dev/sda mklabel msdos -s
 
 echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
-echo -e "\n\n#### SISTEMA DE ARQUIVOS ####\n\n"
+echo -e "#### SISTEMA DE ARQUIVOS ####"
+
+echo -e "\n\n" 
 
 echo -e "1 - EXT4\n2 - BTRFS"
 
-echo -ne "\n\nEscolha um Sistema de Arquivos : "
+echo -e "\n\n" 
+
+echo -ne "Escolha um Sistema de Arquivos : "
 
 read -n1 -s ARQUIVOS
 
