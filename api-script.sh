@@ -47,7 +47,9 @@ mv /etc/locale.gen /etc/locale.gen.bak && echo -e 'pt_BR.UTF-8 UTF-8' | tee /etc
 
 echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
-echo -e "Hostname"
+echo -e "### Hostname ###"
+
+echo -e "\n\n"
 
 read -p "Digite o Hostname : " HOST
 echo "$HOST" | sudo tee /etc/hostname
@@ -68,6 +70,8 @@ echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "Nome de Usuário (Username)"
 
+echo -e "\n\n"
+
 read -p "Digite o Nome de Usuário : " USERNAME
 
 useradd -m $USERNAME
@@ -82,6 +86,8 @@ echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "Senha do Usuário"
 
+echo -e "\n\n"
+
 echo -e "Digite a Senha do Usuário"
 
 passwd $USERNAME
@@ -93,6 +99,10 @@ echo -e "$(tput sgr0)\n\n"
 ###SENHA ROOT
 
 echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
+
+echo -e "### Senha de Root ###"
+
+echo -e "\n\n"
 
 echo -e "Digite a Senha de Root"
 
@@ -134,11 +144,18 @@ fi
 
 ###DRIVER DE VIDEO
 
-echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\n#### DRIVER DE VIDEO PRIMARIO ####"
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
-echo -e "\n\n1 - AMDGPU\n2 - ATI\n3 - Intel\n4 - Nouveau (Nvidia Open Source)\n5 - Nvidia (Proprietário)\n6 - VMWARE\n\n"
+echo -e "#### DRIVER DE VIDEO PRIMARIO ####"
+
+echo -e "\n\n" 
+
+echo -e "\1 - AMDGPU\n2 - ATI\n3 - Intel\n4 - Nouveau (Nvidia Open Source)\n5 - Nvidia (Proprietário)\n6 - VMWARE"
+
+echo -e "\n\n" 
 
 echo -ne "Escolha um Driver Primário : "
+
 read -n1 -s PDRIVER
 
 case $PDRIVER in
@@ -209,11 +226,17 @@ echo -e "$(tput sgr0)\n\n"
 
 ### DRIVER DE VIDEO SECUNDARIO ###
 
-echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\n#### DRIVER DE VIDEO SECUNDARIO ####"
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
-echo -e "\n\nOU PRESSIONE ENTER PARA PULAR ESTA ETAPA\n\n"
+echo -e "#### DRIVER DE VIDEO SECUNDARIO ####"
 
-echo -e "\n\n1 - AMDGPU\n2 - ATI\n3 - Intel\n4 - Nouveau (Nvidia Open Source)\n5 - Nvidia (Proprietário)\n\n"
+echo -e "\n\n" 
+
+echo -e "\1 - AMDGPU\n2 - ATI\n3 - Intel\n4 - Nouveau (Nvidia Open Source)\n5 - Nvidia (Proprietário)"
+
+echo -e "\n\n\n" 
+
+echo -e "PRESSIONE ENTER PARA PULAR ESTA ETAPA"
 
 echo -ne "Escolha um Driver Secundário : "
 
