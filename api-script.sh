@@ -152,23 +152,13 @@ echo -e "\n\n"
 
 echo -e "1 - AMDGPU"
 
-echo -e "\n" 
-
 echo -e "2 - ATI"
-
-echo -e "\n" 
 
 echo -e "3 - Intel"
 
-echo -e "\n" 
-
 echo -e "4 - Nouveau (Nvidia Open Source)"
 
-echo -e "\n"
-
 echo -e "5 - Nvidia (Proprietário)"
-
-echo -e "\n" 
 
 echo -e "6 - VMWARE"
 
@@ -254,19 +244,11 @@ echo -e "\n\n"
 
 echo -e "1 - AMDGPU"
 
-echo -e "\n" 
-
 echo -e "2 - ATI"
-
-echo -e "\n" 
 
 echo -e "3 - Intel"
 
-echo -e "\n" 
-
 echo -e "4 - Nouveau (Nvidia Open Source)"
-
-echo -e "\n"
 
 echo -e "5 - Nvidia (Proprietário)"
 
@@ -274,7 +256,11 @@ echo -e "\n\n"
 
 echo -e "Pressione Enter para pular esta etapa"
 
-echo -e "ou"
+echo -e "\n"
+
+echo -e "Ou"
+
+echo -e "\n"
 
 echo -ne "Escolha um Driver Secundário : "
 
@@ -348,7 +334,25 @@ echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "#### INTERFACE GRAFICA (DE) ####"
 
-echo -e "1 ==>> Budgie\n2 ==>> Cinnamon\n3 ==>> Deepin\n4 ==>> GNOME\n5 ==>> KDE Plasma (X11)\n6 ==>> KDE Plasma (Wayland)\n7 ==>> LXDE\n8 ==>> LXQt\n9 ==>> MATE\n0 ==>> XFCE"
+echo -e "1 - Budgie"
+
+echo -e "2 - Cinnamon"
+
+echo -e "3 - Deepin"
+
+echo -e "4 - GNOME"
+
+echo -e "5 - KDE Plasma (X11)"
+
+echo -e "6 - KDE Plasma (Wayland)"
+
+echo -e "7 - LXDE"
+
+echo -e "8 - LXQt"
+
+echo -e "9 - MATE"
+
+echo -e "0 - XFCE"
 
 echo -e "\n\n"
 
