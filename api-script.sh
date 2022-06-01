@@ -148,7 +148,7 @@ echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "#### DRIVER DE VIDEO PRIMARIO ####"
 
-echo -e "\n\n" 
+echo -e "\n\n"
 
 echo -e "1 - AMDGPU"
 
@@ -240,7 +240,7 @@ echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "#### DRIVER DE VIDEO SECUNDARIO ####"
 
-echo -e "\n\n" 
+echo -e "\n\n"
 
 echo -e "1 - AMDGPU"
 
@@ -333,6 +333,8 @@ pacman -S xorg-server xorg-xinit xterm linux-zen-headers networkmanager tar gzip
 echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "#### INTERFACE GRAFICA (DE) ####"
+
+echo -e "\n\n"
 
 echo -e "1 - Budgie"
 
