@@ -23,9 +23,9 @@ parted /dev/sda mklabel gpt -s
 
 echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\n\n#### SISTEMA DE ARQUIVOS ####\n\n"
 
-echo -e "\n1 - EXT4\n2 - BTRFS\n"
+echo -e "1 - EXT4\n2 - BTRFS"
 
-echo -ne "Escolha um Sistema de Arquivos : "
+echo -ne "\n\nEscolha um Sistema de Arquivos : "
 
 read -n1 -s ARQUIVOS
 
