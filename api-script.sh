@@ -479,9 +479,21 @@ xdg-user-dirs-update
 
 ###SWAP FILE
 
-echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\n#### SWAP ####"
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
-echo -e "\nESCOLHA O TAMANHO DO ARQUIVO DE SWAP\n\n\nPARA MAQUINAS COM POUCA RAM (ATE 8GB) RECOMENDO 4GB DE SWAP\n\n\nACIMA DE 8GB DE RAM, ESCOLHA 2GB DE SWAP\n\n\nDIGITE O NUMERO CORRESPONDENTE A QUANTIDADE DE SWAP\n\n2 - 2GB\n\n4 - 4GB\n\n"
+echo -e "Swap"
+
+echo -e "Escolha o Tamanho do Arquivo de Swap"
+
+echo -e "PARA MAQUINAS COM POUCA RAM (ATE 8GB) RECOMENDO 4GB DE SWAP
+
+echo -e "ACIMA DE 8GB DE RAM, ESCOLHA 2GB DE SWAP"
+
+echo -e "DIGITE O NUMERO CORRESPONDENTE A QUANTIDADE DE SWAP"
+
+echo -e "2 - 2GB"
+
+echo -e "4 - 4GB"
 
 echo -ne "Escolha uma quantidade de SWAP : "
 read -n1 -s SWAP
