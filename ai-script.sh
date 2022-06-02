@@ -41,6 +41,7 @@ echo -e "\n"
 
 echo -e "4 - XFS"
 
+echo -e "\n"
 
 echo -ne "Escolha um Sistema de Arquivos : "
 
@@ -141,6 +142,7 @@ echo -e "\n"
 
 echo -e "4 - XFS"
 
+echo -e "\n"
 
 echo -ne "Escolha um Sistema de Arquivos : "
 
