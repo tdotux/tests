@@ -520,8 +520,20 @@ case $SWAP in
 
 echo "2GB"
 sleep 2
-echo -e "$(tput sgr0)\n\n"
+echo -e "$(tput sgr0)"
+
+fs=$(blkid -o value -s TYPE /dev/sda2)
+
+if [ "$fs" = "ext4" ];then
+
 fallocate -l 2G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && cp /etc/fstab /etc/fstab.bak && echo -e '/swapfile   none    swap    sw    0   0' | tee -a /etc/fstab
+
+elif [ "$fs" = "btrfs" ];then
+
+truncate -s 0 /swapfile && chattr +C /swapfile && btrfs property set /swapfile compression "" && fallocate -l 2G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && echo -e '/swapfile none swap defaults 0 0\n' | tee -a /etc/fstab
+
+fi
+
 
 ;;
 
@@ -529,7 +541,7 @@ fallocate -l 2G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /
 
 echo "4GB"
 sleep 2
-echo -e "$(tput sgr0)\n\n"
+echo -e "$(tput sgr0)"
 fallocate -l 4G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && cp /etc/fstab /etc/fstab.bak && echo -e '/swapfile   none    swap    sw    0   0' | tee -a /etc/fstab
 
 esac
