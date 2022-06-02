@@ -25,19 +25,11 @@ echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "#### Sistema de Arquivos ####"
 
-echo -e "$(tput sgr0)"
-
-echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
-
 echo -e "1 - Ext4"
 
 echo -e "\n"
 
 echo -e "2 - Btrfs"
-
-echo -e "$(tput sgr0)"
-
-echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -ne "Escolha um Sistema de Arquivos : "
 
@@ -87,19 +79,11 @@ echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "#### Sistema de Arquivos ####"
 
-echo -e "$(tput sgr0)"
-
-echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
-
 echo -e "1 - Ext4"
 
 echo -e "\n"
 
 echo -e "2 - Btrfs"
-
-echo -e "$(tput sgr0)"
-
-echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -ne "Escolha um Sistema de Arquivos : "
 
