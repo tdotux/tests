@@ -149,6 +149,8 @@ echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "#### DRIVER DE VIDEO PRIMARIO ####"
 
+echo -e "\n"
+
 echo -e "1 - AMDGPU"
 
 echo -e "2 - ATI"
