@@ -35,6 +35,13 @@ echo -e "2 - Btrfs"
 
 echo -e "\n"
 
+echo -e "3 - F2FS"
+
+echo -e "\n"
+
+echo -e "4 - XFS"
+
+
 echo -ne "Escolha um Sistema de Arquivos : "
 
 read -n1 -s ARQUIVOS
@@ -71,6 +78,40 @@ mount /dev/sda2 /mnt
 mkdir /mnt/boot/
 mkdir /mnt/boot/efi
 mount /dev/sda1 /mnt/boot/efi
+
+;;
+
+"3")
+echo "F2FS"
+sleep 2
+echo -e "$(tput sgr0)\n\n"
+pacman -S f2fs-tools --noconfirm
+parted /dev/sda mkpart primary fat32 1MiB 301MiB -s
+parted /dev/sda set 1 esp on
+parted /dev/sda mkpart primary f2fs 301MiB 100% -s
+mkfs.fat -F32 /dev/sda1
+mkfs.f2fs -f /dev/sda2
+mount /dev/sda2 /mnt
+mkdir /mnt/boot/
+mkdir /mnt/boot/efi
+mount /dev/sda1 /mnt/boot/efi
+
+;;
+
+"4")
+echo "XFS"
+sleep 2
+echo -e "$(tput sgr0)\n\n"
+pacman -S xfsprogs --noconfirm
+parted /dev/sda mkpart primary fat32 1MiB 301MiB -s
+parted /dev/sda set 1 esp on
+parted /dev/sda mkpart primary btrfs 301MiB 100% -s
+mkfs.fat -F32 /dev/sda1
+mkfs.xfs -f /dev/sda2
+mount /dev/sda2 /mnt
+mkdir /mnt/boot/
+mkdir /mnt/boot/efi
+mount /dev/sda1 /mnt/boot/efi
 esac
 
 
@@ -90,6 +131,15 @@ echo -e "1 - Ext4"
 echo -e "\n"
 
 echo -e "2 - Btrfs"
+
+echo -e "\n"
+
+echo -e "3 - F2FS"
+
+echo -e "\n"
+
+echo -e "4 - XFS"
+
 
 echo -ne "Escolha um Sistema de Arquivos : "
 
@@ -117,6 +167,31 @@ parted /dev/sda mkpart primary btrfs 1MiB 100% -s
 parted /dev/sda set 1 boot on
 mkfs.btrfs -f /dev/sda1
 mount /dev/sda1 /mnt
+
+;;
+
+"3")
+echo "F2FS"
+sleep 2
+echo -e "$(tput sgr0)\n\n"
+pacman -S f2fs-tools --noconfirm
+parted /dev/sda mkpart primary f2fs 1MiB 100% -s
+parted /dev/sda set 1 boot on
+mkfs.f2fs -f /dev/sda1
+mount /dev/sda1 /mnt
+
+;;
+
+"4")
+echo "XFS"
+sleep 2
+echo -e "$(tput sgr0)\n\n"
+pacman -S xfsprogs --noconfirm
+parted /dev/sda mkpart primary xfs 1MiB 100% -s
+parted /dev/sda set 1 boot on
+mkfs.xfs -f /dev/sda1
+mount /dev/sda1 /mnt
+
 esac
 
 fi
