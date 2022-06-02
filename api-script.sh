@@ -573,4 +573,6 @@ fi
 
 esac
 
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
+
 echo -e "INSTALAÇÃO CONCLUÍDA!!!!!!"
