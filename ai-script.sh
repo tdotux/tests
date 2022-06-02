@@ -21,9 +21,9 @@ if [ -d "$PASTA_EFI" ];then
 echo -e "Sistema EFI"
 parted /dev/sda mklabel gpt -s
 
-echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
+echo "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
-echo "Sistema de Arquivos"
+echo "#### Sistema de Arquivos ####"
 
 echo "$(tput sgr0)"
 
