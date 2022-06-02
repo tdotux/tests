@@ -532,6 +532,14 @@ elif [ "$fs" = "btrfs" ];then
 
 truncate -s 0 /swapfile && chattr +C /swapfile && btrfs property set /swapfile compression "" && fallocate -l 2G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && echo -e '/swapfile none swap defaults 0 0\n' | tee -a /etc/fstab
 
+elif [ "$fs" = "f2fs" ];then
+
+fallocate -l 2G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && cp /etc/fstab /etc/fstab.bak && echo -e '/swapfile   none    swap    sw    0   0' | tee -a /etc/fstab
+
+elif [ "$fs" = "xfs" ];then
+
+fallocate -l 2G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && cp /etc/fstab /etc/fstab.bak && echo -e '/swapfile   none    swap    sw    0   0' | tee -a /etc/fstab
+
 fi
 
 
@@ -553,10 +561,13 @@ elif [ "$fs" = "btrfs" ];then
 
 truncate -s 0 /swapfile && chattr +C /swapfile && btrfs property set /swapfile compression "" && fallocate -l 4G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && echo -e '/swapfile none swap defaults 0 0\n' | tee -a /etc/fstab
 
-elif [ "$fs" = "e2fs" ];then
+elif [ "$fs" = "f2fs" ];then
 
 fallocate -l 4G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && cp /etc/fstab /etc/fstab.bak && echo -e '/swapfile   none    swap    sw    0   0' | tee -a /etc/fstab
 
+elif [ "$fs" = "xfs" ];then
+
+fallocate -l 4G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && cp /etc/fstab /etc/fstab.bak && echo -e '/swapfile   none    swap    sw    0   0' | tee -a /etc/fstab
 
 fi
 
