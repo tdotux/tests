@@ -25,11 +25,15 @@ echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "#### Sistema de Arquivos ####"
 
+echo -e "\n"
+
 echo -e "1 - Ext4"
 
 echo -e "\n"
 
 echo -e "2 - Btrfs"
+
+echo -e "\n"
 
 echo -ne "Escolha um Sistema de Arquivos : "
 
@@ -78,6 +82,8 @@ parted /dev/sda mklabel msdos -s
 echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "#### Sistema de Arquivos ####"
+
+echo -e "\n"
 
 echo -e "1 - Ext4"
 
