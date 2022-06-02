@@ -70,7 +70,9 @@ echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "Nome de Usuário (Username)"
 
-echo -e "\n\n"
+echo -e "$(tput sgr0)"
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 read -p "Digite o Nome de Usuário : " USERNAME
 
@@ -86,7 +88,9 @@ echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "Senha do Usuário"
 
-echo -e "\n"
+echo -e "$(tput sgr0)\n\n"
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "Digite a Senha do Usuário"
 
@@ -102,7 +106,9 @@ echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "### Senha de Root ###"
 
-echo -e "\n"
+echo -e "$(tput sgr0)\n\n"
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "Digite a Senha de Root"
 
@@ -148,21 +154,45 @@ echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "#### DRIVER DE VIDEO PRIMARIO ####"
 
-echo -e "\n\n"
+echo -e "$(tput sgr0)\n\n"
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "1 - AMDGPU"
 
+echo -e "$(tput sgr0)\n\n"
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
+
 echo -e "2 - ATI"
+
+echo -e "$(tput sgr0)\n\n"
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "3 - Intel"
 
+echo -e "$(tput sgr0)\n\n"
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
+
 echo -e "4 - Nouveau (Nvidia Open Source)"
+
+echo -e "$(tput sgr0)\n\n"
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "5 - Nvidia (Proprietário)"
 
+echo -e "$(tput sgr0)\n\n"
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
+
 echo -e "6 - VMWARE"
 
-echo -e "\n\n" 
+echo -e "$(tput sgr0)\n\n"
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -ne "Escolha um Driver Primário : "
 
@@ -240,27 +270,45 @@ echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "#### DRIVER DE VIDEO SECUNDARIO ####"
 
-echo -e "\n\n"
+echo -e "$(tput sgr0)\n\n"
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "1 - AMDGPU"
 
+echo -e "$(tput sgr0)\n\n"
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
+
 echo -e "2 - ATI"
+
+echo -e "$(tput sgr0)\n\n"
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "3 - Intel"
 
+echo -e "$(tput sgr0)\n\n"
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
+
 echo -e "4 - Nouveau (Nvidia Open Source)"
+
+echo -e "$(tput sgr0)\n\n"
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "5 - Nvidia (Proprietário)"
 
-echo -e "\n\n" 
+echo -e "$(tput sgr0)\n\n"
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "Pressione Enter para pular esta etapa"
 
-echo -e "\n"
+echo -e "$(tput sgr0)\n\n"
 
-echo -e "Ou"
-
-echo -e "\n"
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -ne "Escolha um Driver Secundário : "
 
@@ -334,29 +382,69 @@ echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "#### INTERFACE GRAFICA (DE) ####"
 
-echo -e "\n\n"
+echo -e "$(tput sgr0)\n\n"
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "1 - Budgie"
 
+echo -e "$(tput sgr0)\n\n"
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
+
 echo -e "2 - Cinnamon"
+
+echo -e "$(tput sgr0)\n\n"
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "3 - Deepin"
 
+echo -e "$(tput sgr0)\n\n"
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
+
 echo -e "4 - GNOME"
+
+echo -e "$(tput sgr0)\n\n"
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "5 - KDE Plasma (X11)"
 
+echo -e "$(tput sgr0)\n\n"
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
+
 echo -e "6 - KDE Plasma (Wayland)"
+
+echo -e "$(tput sgr0)\n\n"
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "7 - LXDE"
 
+echo -e "$(tput sgr0)\n\n"
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
+
 echo -e "8 - LXQt"
+
+echo -e "$(tput sgr0)\n\n"
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "9 - MATE"
 
+echo -e "$(tput sgr0)\n\n"
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
+
 echo -e "0 - XFCE"
 
-echo -e "\n\n"
+echo -e "$(tput sgr0)\n\n"
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -ne "Escolha uma DE : "
 read -n1 -s DE
@@ -489,19 +577,40 @@ echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "Swap"
 
+echo -e "$(tput sgr0)\n\n"
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
+
 echo -e "Escolha o Tamanho do Arquivo de Swap"
 
-echo -e "PARA MAQUINAS COM POUCA RAM (ATE 8GB) RECOMENDO 4GB DE SWAP
+echo -e "Para Máquinas Até 8GB de RAM = 4GB DE SWAP
 
-echo -e "ACIMA DE 8GB DE RAM, ESCOLHA 2GB DE SWAP"
+echo -e "$(tput sgr0)\n\n"
 
-echo -e "DIGITE O NUMERO CORRESPONDENTE A QUANTIDADE DE SWAP"
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
+
+echo -e "Acima de 8GB de RAM = 2GB DE SWAP"
+
+echo -e "$(tput sgr0)\n\n"
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
+
+echo -e "Digite o Número Correspondente a Quantidade de Swap"
+
+echo -e "$(tput sgr0)\n\n"
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "2 - 2GB"
+
+echo -e "$(tput sgr0)\n\n"
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "4 - 4GB"
 
 echo -ne "Escolha uma quantidade de SWAP : "
+
 read -n1 -s SWAP
 
 case $SWAP in
@@ -527,4 +636,6 @@ fallocate -l 4G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /
 esac
 
 
-echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)\n####INSTALAÇÃO CONCLUÍDA!!!\n"
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
+
+echo -e "INSTALAÇÃO CONCLUÍDA!!!!!!"
