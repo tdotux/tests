@@ -25,15 +25,15 @@ echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "#### SISTEMA DE ARQUIVOS ####"
 
-echo -e "\n\n" 
+echo -e "$(tput sgr0)"
 
 echo -e "1 - EXT4"
 
-echo -e "\n"
-
 echo -e "2 - BTRFS"
 
-echo -e "\n\n" 
+echo -e "$(tput sgr0)"
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -ne "Escolha um Sistema de Arquivos : "
 
