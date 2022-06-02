@@ -492,7 +492,7 @@ echo -e "Escolha o Tamanho do Arquivo de Swap"
 
 echo -e "\n"
 
-echo -e "Para Máquinas Até 8GB de RAM = 4GB DE SWAP
+echo -e "Para Máquinas Até 8GB de RAM = 4GB DE SWAP"
 
 echo -e "\n"
 
@@ -502,9 +502,7 @@ echo -e "\n"
 
 echo -e "Digite o Número Correspondente a Quantidade de Swap"
 
-echo -e "$(tput sgr0)\n\n"
-
-echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
+echo -e "\n"
 
 echo -e "2 - 2GB"
 
@@ -525,7 +523,6 @@ sleep 2
 echo -e "$(tput sgr0)\n\n"
 fallocate -l 2G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && cp /etc/fstab /etc/fstab.bak && echo -e '/swapfile   none    swap    sw    0   0' | tee -a /etc/fstab
 
-
 ;;
 
 "4")
@@ -535,10 +532,6 @@ sleep 2
 echo -e "$(tput sgr0)\n\n"
 fallocate -l 4G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && cp /etc/fstab /etc/fstab.bak && echo -e '/swapfile   none    swap    sw    0   0' | tee -a /etc/fstab
 
-
 esac
-
-
-echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "INSTALAÇÃO CONCLUÍDA!!!!!!"
