@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
 
 ###SINCRONIZAR RELOGIO COM A INTERNET
@@ -36,6 +36,8 @@ echo "2 - Btrfs"
 echo "$(tput sgr0)"
 
 echo "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
+
+echo -e "\n"
 
 echo -ne "Escolha um Sistema de Arquivos : "
 
