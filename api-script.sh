@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 
 ###AJUSTAR HORA AUTOMATICAMENTE
@@ -49,12 +49,15 @@ echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "### Hostname ###"
 
-echo -e "\n\n"
+echo -e "$(tput sgr0)"
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 read -p "Digite o Hostname : " HOST
+
 echo "$HOST" | sudo tee /etc/hostname
 
-echo -e "$(tput sgr0)\n\n"
+echo -e "$(tput sgr0)"
 
 
 
@@ -78,7 +81,7 @@ read -p "Digite o Nome de Usuário : " USERNAME
 
 useradd -m $USERNAME
 
-echo -e "$(tput sgr0)\n\n"
+echo -e "$(tput sgr0)"
 
 
 
@@ -106,7 +109,7 @@ echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "### Senha de Root ###"
 
-echo -e "$(tput sgr0)\n\n"
+echo -e "$(tput sgr0)"
 
 echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
@@ -114,7 +117,7 @@ echo -e "Digite a Senha de Root"
 
 passwd
 
-echo -e "$(tput sgr0)\n\n"
+echo -e "$(tput sgr0)"
 
 
 
