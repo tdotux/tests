@@ -39,8 +39,6 @@ echo -e "$(tput sgr0)"
 
 echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
-echo -e "\n"
-
 echo -ne "Escolha um Sistema de Arquivos : "
 
 read -n1 -s ARQUIVOS
