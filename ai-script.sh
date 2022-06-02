@@ -23,19 +23,19 @@ parted /dev/sda mklabel gpt -s
 
 echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
-echo -e "#### SISTEMA DE ARQUIVOS ####"
+echo "Sistema de Arquivos"
 
-echo -e "$(tput sgr0)"
+echo "$(tput sgr0)"
 
-echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
+echo "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
-echo -e "1 - Ext4"
+echo "1 - Ext4"
 
-echo -e "2 - Btrfs"
+echo "2 - Btrfs"
 
-echo -e "$(tput sgr0)"
+echo "$(tput sgr0)"
 
-echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
+echo "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -ne "Escolha um Sistema de Arquivos : "
 
