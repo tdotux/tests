@@ -46,7 +46,7 @@ read -n1 -s ARQUIVOS
 case $ARQUIVOS in
 
 "1")
-echo "EXT4"
+echo "Ext4"
 sleep 2
 echo -e "$(tput sgr0)\n\n"
 parted /dev/sda mkpart primary fat32 1MiB 301MiB -s
@@ -62,7 +62,7 @@ mount /dev/sda1 /mnt/boot/efi
 ;;
 
 "2")
-echo "BTRFS"
+echo "Btrfs"
 sleep 2
 echo -e "$(tput sgr0)\n\n"
 pacman -S btrfs-progs --noconfirm
@@ -85,17 +85,21 @@ parted /dev/sda mklabel msdos -s
 
 echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
-echo -e "#### SISTEMA DE ARQUIVOS ####"
+echo -e "#### Sistema de Arquivos ####"
 
-echo -e "\n\n" 
+echo -e "$(tput sgr0)"
 
-echo -e "1 - EXT4"
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
+
+echo -e "1 - Ext4"
 
 echo -e "\n"
 
-echo -e "2 - BTRFS"
+echo -e "2 - Btrfs"
 
-echo -e "\n\n" 
+echo -e "$(tput sgr0)"
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -ne "Escolha um Sistema de Arquivos : "
 
@@ -104,7 +108,7 @@ read -n1 -s ARQUIVOS
 case $ARQUIVOS in
 
 "1")
-echo "EXT4"
+echo "Ext4"
 sleep 2
 echo -e "$(tput sgr0)\n\n"
 parted /dev/sda mkpart primary ext4 1MiB 100% -s
@@ -115,7 +119,7 @@ mount /dev/sda1 /mnt
 ;;
 
 "2")
-echo "BTRFS"
+echo "Btrfs"
 sleep 2
 echo -e "$(tput sgr0)\n\n"
 pacman -S btrfs-progs --noconfirm
