@@ -116,6 +116,7 @@ esac
 
 
 else
+
 echo -e "Sistema Legacy"
 
 parted /dev/sda mklabel msdos -s
@@ -208,10 +209,22 @@ pacstrap /mnt base e2fsprogs dosfstools linux-zen linux-firmware
 fi
 
 
+
 if [  $( pacman -Q | grep -c 'btrfs-progs' ) = 1 ]; then
 pacstrap /mnt base btrfs-progs dosfstools linux-zen linux-firmware
 fi
 
+
+
+if [  $( pacman -Q | grep -c 'f2fs-tools' ) = 1 ]; then
+pacstrap /mnt base f2fs-tools dosfstools linux-zen linux-firmware
+fi
+
+
+
+if [  $( pacman -Q | grep -c 'xfsprogs' ) = 1 ]; then
+pacstrap /mnt base xfsprogs dosfstools linux-zen linux-firmware
+fi
 
 
 ###FSTAB
