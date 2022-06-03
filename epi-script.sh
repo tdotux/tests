@@ -319,6 +319,107 @@ echo -e "$(tput sgr0)\n\n"
 
 
 
+
+
+###SWAP FILE
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
+
+echo -e "### Swap ###"
+
+echo -e "\n"
+
+echo -e "Escolha o Tamanho do Arquivo de Swap"
+
+echo -e "\n"
+
+echo -e "Para Máquinas Até 8GB de RAM = 4GB DE SWAP"
+
+echo -e "\n"
+
+echo -e "Acima de 8GB de RAM = 2GB DE SWAP"
+
+echo -e "\n"
+
+echo -e "Digite o Número Correspondente a Quantidade de Swap"
+
+echo -e "\n\n"
+
+echo -e "2 - 2GB"
+
+echo -e "\n"
+
+echo -e "4 - 4GB"
+
+echo -e "\n\n"
+
+echo -ne "Escolha uma quantidade de SWAP : "
+
+read -n1 -s SWAP
+
+case $SWAP in
+
+"2")
+
+echo "2GB"
+sleep 2
+echo -e "$(tput sgr0)"
+
+fs=$(blkid -o value -s TYPE /dev/sda2)
+
+if [ "$fs" = "ext4" ];then
+
+fallocate -l 2G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && cp /etc/fstab /etc/fstab.bak && echo -e '/swapfile   none    swap    sw    0   0' | tee -a /etc/fstab
+
+elif [ "$fs" = "btrfs" ];then
+
+truncate -s 0 /swapfile && chattr +C /swapfile && btrfs property set /swapfile compression "" && fallocate -l 2G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && echo -e '/swapfile none swap defaults 0 0\n' | tee -a /etc/fstab
+
+elif [ "$fs" = "f2fs" ];then
+
+fallocate -l 2G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && cp /etc/fstab /etc/fstab.bak && echo -e '/swapfile   none    swap    sw    0   0' | tee -a /etc/fstab
+
+elif [ "$fs" = "xfs" ];then
+
+fallocate -l 2G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && cp /etc/fstab /etc/fstab.bak && echo -e '/swapfile   none    swap    sw    0   0' | tee -a /etc/fstab
+
+fi
+
+
+;;
+
+"4")
+
+echo "4GB"
+sleep 2
+echo -e "$(tput sgr0)"
+
+fs=$(blkid -o value -s TYPE /dev/sda2)
+
+if [ "$fs" = "ext4" ];then
+
+fallocate -l 4G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && cp /etc/fstab /etc/fstab.bak && echo -e '/swapfile   none    swap    sw    0   0' | tee -a /etc/fstab
+
+elif [ "$fs" = "btrfs" ];then
+
+truncate -s 0 /swapfile && chattr +C /swapfile && btrfs property set /swapfile compression "" && fallocate -l 4G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && echo -e '/swapfile none swap defaults 0 0\n' | tee -a /etc/fstab
+
+elif [ "$fs" = "f2fs" ];then
+
+fallocate -l 4G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && cp /etc/fstab /etc/fstab.bak && echo -e '/swapfile   none    swap    sw    0   0' | tee -a /etc/fstab
+
+elif [ "$fs" = "xfs" ];then
+
+fallocate -l 4G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && cp /etc/fstab /etc/fstab.bak && echo -e '/swapfile   none    swap    sw    0   0' | tee -a /etc/fstab
+
+fi
+
+esac
+
+
+
+
+
 ###PACOTES PADRÃO
 
 pacman -S xorg-server xorg-xinit xterm linux-zen-headers networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
@@ -480,100 +581,7 @@ xdg-user-dirs-update
 
 
 
-###SWAP FILE
 
-echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
-
-echo -e "Swap"
-
-echo -e "\n"
-
-echo -e "Escolha o Tamanho do Arquivo de Swap"
-
-echo -e "\n"
-
-echo -e "Para Máquinas Até 8GB de RAM = 4GB DE SWAP"
-
-echo -e "\n"
-
-echo -e "Acima de 8GB de RAM = 2GB DE SWAP"
-
-echo -e "\n"
-
-echo -e "Digite o Número Correspondente a Quantidade de Swap"
-
-echo -e "\n\n"
-
-echo -e "2 - 2GB"
-
-echo -e "\n"
-
-echo -e "4 - 4GB"
-
-echo -e "\n\n"
-
-echo -ne "Escolha uma quantidade de SWAP : "
-
-read -n1 -s SWAP
-
-case $SWAP in
-
-"2")
-
-echo "2GB"
-sleep 2
-echo -e "$(tput sgr0)"
-
-fs=$(blkid -o value -s TYPE /dev/sda2)
-
-if [ "$fs" = "ext4" ];then
-
-fallocate -l 2G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && cp /etc/fstab /etc/fstab.bak && echo -e '/swapfile   none    swap    sw    0   0' | tee -a /etc/fstab
-
-elif [ "$fs" = "btrfs" ];then
-
-truncate -s 0 /swapfile && chattr +C /swapfile && btrfs property set /swapfile compression "" && fallocate -l 2G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && echo -e '/swapfile none swap defaults 0 0\n' | tee -a /etc/fstab
-
-elif [ "$fs" = "f2fs" ];then
-
-fallocate -l 2G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && cp /etc/fstab /etc/fstab.bak && echo -e '/swapfile   none    swap    sw    0   0' | tee -a /etc/fstab
-
-elif [ "$fs" = "xfs" ];then
-
-fallocate -l 2G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && cp /etc/fstab /etc/fstab.bak && echo -e '/swapfile   none    swap    sw    0   0' | tee -a /etc/fstab
-
-fi
-
-
-;;
-
-"4")
-
-echo "4GB"
-sleep 2
-echo -e "$(tput sgr0)"
-
-fs=$(blkid -o value -s TYPE /dev/sda2)
-
-if [ "$fs" = "ext4" ];then
-
-fallocate -l 4G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && cp /etc/fstab /etc/fstab.bak && echo -e '/swapfile   none    swap    sw    0   0' | tee -a /etc/fstab
-
-elif [ "$fs" = "btrfs" ];then
-
-truncate -s 0 /swapfile && chattr +C /swapfile && btrfs property set /swapfile compression "" && fallocate -l 4G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && echo -e '/swapfile none swap defaults 0 0\n' | tee -a /etc/fstab
-
-elif [ "$fs" = "f2fs" ];then
-
-fallocate -l 4G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && cp /etc/fstab /etc/fstab.bak && echo -e '/swapfile   none    swap    sw    0   0' | tee -a /etc/fstab
-
-elif [ "$fs" = "xfs" ];then
-
-fallocate -l 4G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && cp /etc/fstab /etc/fstab.bak && echo -e '/swapfile   none    swap    sw    0   0' | tee -a /etc/fstab
-
-fi
-
-esac
 
 echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
