@@ -21,11 +21,13 @@ if [ -d "$PASTA_EFI" ];then
 echo -e "Sistema EFI"
 parted /dev/sda mklabel gpt -s
 
+echo -e "\n"
+
 echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "#### Sistema de Arquivos ####"
 
-echo -e "\n"
+echo -e "\n\n"
 
 echo -e "1 - Ext4"
 
@@ -41,7 +43,7 @@ echo -e "\n"
 
 echo -e "4 - XFS"
 
-echo -e "\n"
+echo -e "\n\n"
 
 echo -ne "Escolha um Sistema de Arquivos : "
 
