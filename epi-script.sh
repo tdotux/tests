@@ -623,6 +623,8 @@ echo -e "$(tput sgr0)\n\n"
 
 
 
+
+
 ###USER DIRS UPDATE
 
 xdg-user-dirs-update
