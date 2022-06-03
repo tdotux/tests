@@ -1,19 +1,21 @@
 #!/usr/bin/env sh
 
 
-###SINCRONIZAR RELOGIO COM A INTERNET
+#####SINCRONIZAR RELOGIO COM A INTERNET#####
 
 timedatectl set-ntp true
 
 
 
-###UTILITARIOS BASICOS
+###UTILITARIOS BASICOS#####
 
 pacman -S dosfstools nano wget --noconfirm
 
 
 
-###DETECTAR UEFI OU LEGACY
+
+
+###DETECTAR UEFI OU LEGACY#####
 
 PASTA_EFI=/sys/firmware/efi
 
@@ -203,35 +205,317 @@ echo -e "$(tput sgr0)\n\n"
 
 
 
-###PACSTRAP
 
+
+##### PACSTRAP #####
+
+
+
+### EXT4 ###
 
 if [  $( pacman -Q | grep -c 'e2fsprogs' ) = 1 ]; then
+
+echo -e "Kernel"
+
+echo -e "\n\n"
+
+echo -e "1 - Stable (Padrão)"
+
+echo -e "\n"
+
+echo -e "2 - Zen (Otimizado Para o Dia a Dia)"
+
+echo -e "\n"
+
+echo -e "3 - LTS (Longo Tempo de Suporte) "
+
+echo -e "\n"
+
+echo -e "4 - Hardened (Focado em Segurança) "
+
+echo -e "\n"
+
+echo -ne "Escolha um Kernel : "
+
+read -n1 -s KERNEL
+
+case $KERNEL in
+
+"1")
+echo -e "Padrão"
+
+sleep 2
+
+pacstrap /mnt base e2fsprogs dosfstools linux linux-firmware
+
+;;
+
+"2")
+
+echo -e "Zen"
+
+sleep 2
+
 pacstrap /mnt base e2fsprogs dosfstools linux-zen linux-firmware
+
+
+;;
+
+"3")
+
+echo -e "LTS"
+
+sleep 2
+
+pacstrap /mnt base e2fsprogs dosfstools linux-lts linux-firmware
+
+
+;;
+
+"4")
+
+echo -e "Hardened"
+
+sleep 2
+
+pacstrap /mnt base e2fsprogs dosfstools linux-hardened linux-firmware
+
 fi
 
+
+
+
+
+### BTRFS ###
 
 
 if [  $( pacman -Q | grep -c 'btrfs-progs' ) = 1 ]; then
+
+echo -e "Kernel"
+
+echo -e "\n\n"
+
+echo -e "1 - Stable (Padrão)"
+
+echo -e "\n"
+
+echo -e "2 - Zen (Otimizado Para o Dia a Dia)"
+
+echo -e "\n"
+
+echo -e "3 - LTS (Longo Tempo de Suporte) "
+
+echo -e "\n"
+
+echo -e "4 - Hardened (Focado em Segurança) "
+
+echo -e "\n"
+
+echo -ne "Escolha um Kernel : "
+
+read -n1 -s KERNEL
+
+case $KERNEL in
+
+"1")
+echo -e "Padrão"
+
+sleep 2
+
+pacstrap /mnt base btrfs-progs dosfstools linux linux-firmware
+
+;;
+
+"2")
+
+echo -e "Zen"
+
+sleep 2
+
 pacstrap /mnt base btrfs-progs dosfstools linux-zen linux-firmware
+
+
+;;
+
+"3")
+
+echo -e "LTS"
+
+sleep 2
+
+pacstrap /mnt base btrfs-progs dosfstools linux-lts linux-firmware
+
+
+;;
+
+"4")
+
+echo -e "Hardened"
+
+sleep 2
+
+pacstrap /mnt base btrfs-progs dosfstools linux-hardened linux-firmware
+
 fi
 
 
+
+
+### F2FS ###
 
 if [  $( pacman -Q | grep -c 'f2fs-tools' ) = 1 ]; then
+
+echo -e "Kernel"
+
+echo -e "\n\n"
+
+echo -e "1 - Stable (Padrão)"
+
+echo -e "\n"
+
+echo -e "2 - Zen (Otimizado Para o Dia a Dia)"
+
+echo -e "\n"
+
+echo -e "3 - LTS (Longo Tempo de Suporte) "
+
+echo -e "\n"
+
+echo -e "4 - Hardened (Focado em Segurança) "
+
+echo -e "\n"
+
+echo -ne "Escolha um Kernel : "
+
+read -n1 -s KERNEL
+
+case $KERNEL in
+
+"1")
+echo -e "Padrão"
+
+sleep 2
+
+pacstrap /mnt base f2fs-tools dosfstools linux linux-firmware
+
+;;
+
+"2")
+
+echo -e "Zen"
+
+sleep 2
+
 pacstrap /mnt base f2fs-tools dosfstools linux-zen linux-firmware
+
+
+;;
+
+"3")
+
+echo -e "LTS"
+
+sleep 2
+
+pacstrap /mnt base f2fs-tools dosfstools linux-lts linux-firmware
+
+
+;;
+
+"4")
+
+echo -e "Hardened"
+
+sleep 2
+
+pacstrap /mnt base f2fs-tools dosfstools linux-hardened linux-firmware
+
 fi
 
 
+
+
+
+### XFS ###
 
 if [  $( pacman -Q | grep -c 'xfsprogs' ) = 1 ]; then
+
+echo -e "Kernel"
+
+echo -e "\n\n"
+
+echo -e "1 - Stable (Padrão)"
+
+echo -e "\n"
+
+echo -e "2 - Zen (Otimizado Para o Dia a Dia)"
+
+echo -e "\n"
+
+echo -e "3 - LTS (Longo Tempo de Suporte) "
+
+echo -e "\n"
+
+echo -e "4 - Hardened (Focado em Segurança) "
+
+echo -e "\n"
+
+echo -ne "Escolha um Kernel : "
+
+read -n1 -s KERNEL
+
+case $KERNEL in
+
+"1")
+echo -e "Padrão"
+
+sleep 2
+
+pacstrap /mnt base xfsprogs dosfstools linux linux-firmware
+
+;;
+
+"2")
+
+echo -e "Zen"
+
+sleep 2
+
 pacstrap /mnt base xfsprogs dosfstools linux-zen linux-firmware
+
+
+;;
+
+"3")
+
+echo -e "LTS"
+
+sleep 2
+
+pacstrap /mnt base xfsprogs dosfstools linux-lts linux-firmware
+
+
+;;
+
+"4")
+
+echo -e "Hardened"
+
+sleep 2
+
+pacstrap /mnt base xfsprogs dosfstools linux-hardened linux-firmware
+
 fi
+
+
+
 
 
 ###FSTAB
 
 genfstab -U /mnt > /mnt/etc/fstab
+
+
 
 
 
@@ -241,15 +525,21 @@ arch-chroot /mnt pacman -Syy git --noconfirm
 
 
 
+
+
 ###CLONAR O REPOSITORIO DENTRO DO CHROOT
 
 arch-chroot /mnt git clone http://github.com/tdotux/tests
 
 
 
+
+
 ###EXECUTAR O SCRIPT DE POS INSTALAÇÃO DENTRO DO CHROOT
 
 arch-chroot /mnt sh /tests/epi-script.sh
+
+
 
 
 
