@@ -54,7 +54,7 @@ case $ARQUIVOS in
 "1")
 echo "Ext4"
 sleep 2
-echo -e "$(tput sgr0)\n\n"
+echo -e "$(tput sgr0)"
 parted /dev/sda mkpart primary fat32 1MiB 301MiB -s
 parted /dev/sda set 1 esp on
 parted /dev/sda mkpart primary ext4 301MiB 100% -s
@@ -70,7 +70,7 @@ mount /dev/sda1 /mnt/boot/efi
 "2")
 echo "Btrfs"
 sleep 2
-echo -e "$(tput sgr0)\n\n"
+echo -e "$(tput sgr0)"
 pacman -S btrfs-progs --noconfirm
 parted /dev/sda mkpart primary fat32 1MiB 301MiB -s
 parted /dev/sda set 1 esp on
@@ -87,7 +87,7 @@ mount /dev/sda1 /mnt/boot/efi
 "3")
 echo "F2FS"
 sleep 2
-echo -e "$(tput sgr0)\n\n"
+echo -e "$(tput sgr0)"
 pacman -S f2fs-tools --noconfirm
 parted /dev/sda mkpart primary fat32 1MiB 301MiB -s
 parted /dev/sda set 1 esp on
@@ -104,7 +104,7 @@ mount /dev/sda1 /mnt/boot/efi
 "4")
 echo "XFS"
 sleep 2
-echo -e "$(tput sgr0)\n\n"
+echo -e "$(tput sgr0)"
 pacman -S xfsprogs --noconfirm
 parted /dev/sda mkpart primary fat32 1MiB 301MiB -s
 parted /dev/sda set 1 esp on
@@ -178,7 +178,7 @@ mount /dev/sda1 /mnt
 "3")
 echo "F2FS"
 sleep 2
-echo -e "$(tput sgr0)\n\n"
+echo -e "$(tput sgr0)"
 pacman -S f2fs-tools --noconfirm
 parted /dev/sda mkpart primary f2fs 1MiB 100% -s
 parted /dev/sda set 1 boot on
@@ -190,7 +190,7 @@ mount /dev/sda1 /mnt
 "4")
 echo "XFS"
 sleep 2
-echo -e "$(tput sgr0)\n\n"
+echo -e "$(tput sgr0)"
 pacman -S xfsprogs --noconfirm
 parted /dev/sda mkpart primary xfs 1MiB 100% -s
 parted /dev/sda set 1 boot on
@@ -201,7 +201,7 @@ esac
 
 fi
 
-echo -e "$(tput sgr0)\n\n"
+echo -e "$(tput sgr0)"
 
 
 
@@ -214,6 +214,8 @@ echo -e "$(tput sgr0)\n\n"
 ### EXT4 ###
 
 if [  $( pacman -Q | grep -c 'e2fsprogs' ) = 1 ]; then
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "Kernel"
 
@@ -244,6 +246,8 @@ case $KERNEL in
 "1")
 echo -e "Padrão"
 
+echo -e "$(tput sgr0)"
+
 sleep 2
 
 pacstrap /mnt base e2fsprogs dosfstools linux linux-firmware
@@ -253,6 +257,8 @@ pacstrap /mnt base e2fsprogs dosfstools linux linux-firmware
 "2")
 
 echo -e "Zen"
+
+echo -e "$(tput sgr0)"
 
 sleep 2
 
@@ -265,6 +271,8 @@ pacstrap /mnt base e2fsprogs dosfstools linux-zen linux-firmware
 
 echo -e "LTS"
 
+echo -e "$(tput sgr0)"
+
 sleep 2
 
 pacstrap /mnt base e2fsprogs dosfstools linux-lts linux-firmware
@@ -275,6 +283,8 @@ pacstrap /mnt base e2fsprogs dosfstools linux-lts linux-firmware
 "4")
 
 echo -e "Hardened"
+
+echo -e "$(tput sgr0)"
 
 sleep 2
 
@@ -293,6 +303,8 @@ fi
 
 if [  $( pacman -Q | grep -c 'btrfs-progs' ) = 1 ]; then
 
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
+
 echo -e "Kernel"
 
 echo -e "\n\n"
@@ -322,6 +334,8 @@ case $KERNEL in
 "1")
 echo -e "Padrão"
 
+echo -e "$(tput sgr0)"
+
 sleep 2
 
 pacstrap /mnt base btrfs-progs dosfstools linux linux-firmware
@@ -331,6 +345,8 @@ pacstrap /mnt base btrfs-progs dosfstools linux linux-firmware
 "2")
 
 echo -e "Zen"
+
+echo -e "$(tput sgr0)"
 
 sleep 2
 
@@ -343,6 +359,8 @@ pacstrap /mnt base btrfs-progs dosfstools linux-zen linux-firmware
 
 echo -e "LTS"
 
+echo -e "$(tput sgr0)"
+
 sleep 2
 
 pacstrap /mnt base btrfs-progs dosfstools linux-lts linux-firmware
@@ -353,6 +371,8 @@ pacstrap /mnt base btrfs-progs dosfstools linux-lts linux-firmware
 "4")
 
 echo -e "Hardened"
+
+echo -e "$(tput sgr0)"
 
 sleep 2
 
@@ -369,6 +389,8 @@ fi
 
 if [  $( pacman -Q | grep -c 'f2fs-tools' ) = 1 ]; then
 
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
+
 echo -e "Kernel"
 
 echo -e "\n\n"
@@ -398,6 +420,8 @@ case $KERNEL in
 "1")
 echo -e "Padrão"
 
+echo -e "$(tput sgr0)"
+
 sleep 2
 
 pacstrap /mnt base f2fs-tools dosfstools linux linux-firmware
@@ -407,6 +431,8 @@ pacstrap /mnt base f2fs-tools dosfstools linux linux-firmware
 "2")
 
 echo -e "Zen"
+
+echo -e "$(tput sgr0)"
 
 sleep 2
 
@@ -419,6 +445,8 @@ pacstrap /mnt base f2fs-tools dosfstools linux-zen linux-firmware
 
 echo -e "LTS"
 
+echo -e "$(tput sgr0)"
+
 sleep 2
 
 pacstrap /mnt base f2fs-tools dosfstools linux-lts linux-firmware
@@ -429,6 +457,8 @@ pacstrap /mnt base f2fs-tools dosfstools linux-lts linux-firmware
 "4")
 
 echo -e "Hardened"
+
+echo -e "$(tput sgr0)"
 
 sleep 2
 
@@ -446,6 +476,8 @@ fi
 
 if [  $( pacman -Q | grep -c 'xfsprogs' ) = 1 ]; then
 
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
+
 echo -e "Kernel"
 
 echo -e "\n\n"
@@ -475,6 +507,8 @@ case $KERNEL in
 "1")
 echo -e "Padrão"
 
+echo -e "$(tput sgr0)"
+
 sleep 2
 
 pacstrap /mnt base xfsprogs dosfstools linux linux-firmware
@@ -484,6 +518,8 @@ pacstrap /mnt base xfsprogs dosfstools linux linux-firmware
 "2")
 
 echo -e "Zen"
+
+echo -e "$(tput sgr0)"
 
 sleep 2
 
@@ -496,6 +532,8 @@ pacstrap /mnt base xfsprogs dosfstools linux-zen linux-firmware
 
 echo -e "LTS"
 
+echo -e "$(tput sgr0)"
+
 sleep 2
 
 pacstrap /mnt base xfsprogs dosfstools linux-lts linux-firmware
@@ -506,6 +544,8 @@ pacstrap /mnt base xfsprogs dosfstools linux-lts linux-firmware
 "4")
 
 echo -e "Hardened"
+
+echo -e "$(tput sgr0)"
 
 sleep 2
 
