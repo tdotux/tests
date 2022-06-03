@@ -280,6 +280,8 @@ sleep 2
 
 pacstrap /mnt base e2fsprogs dosfstools linux-hardened linux-firmware
 
+esac
+
 fi
 
 
@@ -356,6 +358,8 @@ sleep 2
 
 pacstrap /mnt base btrfs-progs dosfstools linux-hardened linux-firmware
 
+esac
+
 fi
 
 
@@ -429,6 +433,8 @@ echo -e "Hardened"
 sleep 2
 
 pacstrap /mnt base f2fs-tools dosfstools linux-hardened linux-firmware
+
+esac
 
 fi
 
@@ -504,6 +510,8 @@ echo -e "Hardened"
 sleep 2
 
 pacstrap /mnt base xfsprogs dosfstools linux-hardened linux-firmware
+
+esac
 
 fi
 
