@@ -418,14 +418,6 @@ esac
 
 
 
-
-
-###PACOTES PADRÃO
-
-pacman -S xorg-server xorg-xinit xterm linux-zen-headers networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
-
-
-
 ###INTERFACE GRÁFICA
 
 echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
@@ -466,6 +458,13 @@ case $DE in
 echo "Budge"
 sleep 2
 echo -e "$(tput sgr0)\n\n"
+
+##Pacotes Padrão
+
+pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
+
+##Interface e DM
+
 pacman -S budgie-desktop gnome-terminal gedit gnome-calculator gnome-calendar gnome-system-monitor nautilus network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
 systemctl enable lightdm NetworkManager
 
@@ -477,6 +476,13 @@ echo "Cinnamon"
 
 sleep 2
 echo -e "$(tput sgr0)\n\n"
+
+##Pacotes Padrão
+
+pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
+
+##Interface e DM
+
 pacman -S cinnamon network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
 systemctl enable lightdm NetworkManager
 
@@ -488,6 +494,13 @@ echo "Deepin"
 
 sleep 2
 echo -e "$(tput sgr0)\n\n"
+
+##Pacotes Padrão
+
+pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
+
+##Interface e DM
+
 pacman -S deepin network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
 systemctl enable lightdm NetworkManager
 
@@ -499,6 +512,13 @@ echo "Gnome"
 
 sleep 2
 echo -e "$(tput sgr0)\n\n"
+
+##Pacotes Padrão
+
+pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
+
+##Interface e DM
+
 pacman -S gnome gnome-tweaks network-manager-applet gdm --noconfirm
 systemctl enable gdm NetworkManager
 
@@ -510,6 +530,13 @@ echo "KDE Plasma (X11)"
 
 sleep 2
 echo -e "$(tput sgr0)\n\n"
+
+##Pacotes Padrão
+
+pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
+
+##Interface e DM
+
 pacman -S plasma konsole sddm dolphin spectacle kcalc kwrite gwenview plasma-nm plasma-pa --noconfirm
 systemctl enable sddm NetworkManager
 
@@ -521,6 +548,13 @@ echo "KDE Plasma (Wayland)"
 
 sleep 2
 echo -e "$(tput sgr0)\n\n"
+
+##Pacotes Padrão
+
+pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
+
+##Interface e DM
+
 pacman -S plasma konsole sddm dolphin spectacle kcalc kwrite gwenview plasma-nm plasma-pa plasma-wayland-session --noconfirm
 systemctl enable sddm NetworkManager
 
@@ -532,6 +566,13 @@ echo "LXDE"
 
 sleep 2
 echo -e "$(tput sgr0)\n\n"
+
+##Pacotes Padrão
+
+pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
+
+##Interface e DM
+
 pacman -S lxde-gtk3 lxtask network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
 systemctl enable lightdm NetworkManager
 
@@ -543,6 +584,13 @@ echo "LXQT"
 
 sleep 2
 echo -e "$(tput sgr0)\n\n"
+
+##Pacotes Padrão
+
+pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
+
+##Interface e DM
+
 pacman -S lxqt lxtask network-manager-applet sddm --noconfirm
 systemctl enable sddm NetworkManager
 
@@ -554,6 +602,13 @@ echo "MATE"
 
 sleep 2
 echo -e "$(tput sgr0)\n\n"
+
+##Pacotes Padrão
+
+pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
+
+##Interface e DM
+
 pacman -S mate mate-extra network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
 systemctl enable lightdm NetworkManager
 
@@ -565,6 +620,13 @@ echo "XFCE"
 
 sleep 2
 echo -e "$(tput sgr0)\n\n"
+
+##Pacotes Padrão
+
+pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
+
+##Interface e DM
+
 pacman -S xfce4 xfce4-screenshooter xfce4-pulseaudio-plugin xfce4-whiskermenu-plugin xarchiver lxtask ristretto mousepad galculator thunar-archive-plugin network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
 systemctl enable lightdm NetworkManager
 
