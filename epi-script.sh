@@ -502,13 +502,15 @@ echo -e "\n"
 
 echo -e "Digite o Número Correspondente a Quantidade de Swap"
 
-echo -e "\n"
+echo -e "\n\n"
 
 echo -e "2 - 2GB"
 
+echo -e "\n"
+
 echo -e "4 - 4GB"
 
-echo -e "\n"
+echo -e "\n\n"
 
 echo -ne "Escolha uma quantidade de SWAP : "
 
