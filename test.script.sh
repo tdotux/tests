@@ -199,6 +199,49 @@ echo -e "$(tput sgr0)"
 
 
 
+###USERNAME
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
+
+echo -e "Nome de Usuário (Username)"
+
+echo -e "\n"
+
+read -p "Digite o Nome de Usuário : " USERNAME
+
+echo -e "$(tput sgr0)"
+
+
+
+###SENHA DO USUARIO
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
+
+echo -e "Senha do Usuário"
+
+echo -e "\n"
+
+read -p "Digite a Senha de Usuário : " USERPASSWORD
+
+echo -e "$(tput sgr0)\n\n"
+
+
+
+
+
+###SENHA DE ROOT
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
+
+echo -e "Senha de Root"
+
+echo -e "\n"
+
+read -p "Digite a Senha de Root : " ROOTPASSWORD
+
+echo -e "$(tput sgr0)\n\n"
+
+
 
 
 ###PACSTRAP E KERNEL
@@ -284,35 +327,105 @@ esac
 genfstab -U /mnt > /mnt/etc/fstab
 
 
-
-
-### VARIAVEIS ###
-
-read -p "Digite o Hostname : " HOSTNAME
-
-read -p "Digite o Nome de Usuário : " USERNAME
-
-read -p "Digite a Senha de Usuário : " PASSWDUSER
+##### CHROOT #####
 
 
 
+###AJUSTAR HORA AUTOMATICAMENTE
+
+arch-chroot /mnt timedatectl set-ntp true
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-###SINCRONIZAR REPOSITORIOS DENTRO DO CHROOT
+###SINCRONIZAR REPOSITORIOS
 
 arch-chroot /mnt pacman -Syy git --noconfirm
+
+
+###UTILITARIOS BASICOS
+
+arch-chroot /mnt pacman -Sy nano wget pacman-contrib reflector sudo grub --noconfirm
+
+
+
+###MIRRORS
+
+cp /mnt/etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist.bak && curl -s "https://archlinux.org/mirrorlist/?country=BR&use_mirror_status=on" | sed -e 's/^#Server/Server/' -e '/^#/d' | rankmirrors -n 5 - | tee /mnt/etc/pacman.d/mirrorlist && sed -i '/br.mirror.archlinux-br.org/d' /mnt/etc/pacman.d/mirrorlist
+
+
+
+
+###PARALLEL DOWNLOADS
+
+cp /mnt/etc/pacman.conf /mnt/etc/pacman.conf.bak && sed -i '37c\ParallelDownloads = 16' /mnt/etc/pacman.conf && arch-chroot /mnt pacman -Syyyuuu --noconfirm
+
+
+
+
+###MULTILIB
+
+sed -i '93c\[multilib]' /mnt/etc/pacman.conf && sed -i '94c\Include = /etc/pacman.d/mirrorlist' /mnt/etc/pacman.conf && arch-chroot /mnt pacman -Syyyuu --noconfirm
+
+
+
+
+###FUSO HORARIO
+
+ln -sf /mnt/usr/share/zoneinfo/America/Sao_Paulo /mnt/etc/localtime && arch-chroot /mnt hwclock --systohc
+
+
+
+
+###LOCALE
+
+mv /mnt/etc/locale.gen /mnt/etc/locale.gen.bak && echo -e 'pt_BR.UTF-8 UTF-8' | tee /mnt/etc/locale.gen && arch-chroot locale-gen && echo -e 'LANG=pt_BR.UTF-8' | tee /mnt/etc/locale.conf
+
+
+
+
+
+### NOME DE USUARIO
+
+
+arch-chroot /mnt useradd -m $USERNAME
+
+
+
+
+### SENHA DE USUARIO
+
+
+echo -e "$USERPASSWORD\n$USERPASSWORD" | passwd $USERNAME
+
+
+
+### SENHA DE ROOT
+
+
+echo -e "$ROOTPASSWORD\n$ROOTPASSWORD" | passwd
+
+
+
+
+###GRUPOS
+
+groupadd -r autologin && groupadd -r sudo
+
+usermod -G autologin,sudo,wheel,lp $USERNAME
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
