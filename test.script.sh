@@ -409,9 +409,11 @@ echo -e "$ROOTPASSWORD\n$ROOTPASSWORD" | passwd
 
 ###GRUPOS
 
-groupadd -r autologin && groupadd -r sudo
+arch-chroot /mnt groupadd -r autologin
 
-usermod -G autologin,sudo,wheel,lp $USERNAME
+arch-chroot /mnt archgroupadd -r sudo
+
+arch-chroot /mnt usermod -G autologin,sudo,wheel,lp $USERNAME
 
 
 
