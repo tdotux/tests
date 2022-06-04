@@ -344,13 +344,13 @@ arch-chroot /mnt pacman -Syy git --noconfirm
 
 ###UTILITARIOS BASICOS
 
-arch-chroot /mnt pacman -Sy nano wget pacman-contrib reflector sudo grub --noconfirm
+#arch-chroot /mnt pacman -Sy nano wget pacman-contrib reflector sudo grub --noconfirm
 
 
 
 ###MIRRORS
 
-cp /mnt/etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist.bak && curl -s "https://archlinux.org/mirrorlist/?country=BR&use_mirror_status=on" | sed -e 's/^#Server/Server/' -e '/^#/d' | rankmirrors -n 5 - | tee /mnt/etc/pacman.d/mirrorlist && sed -i '/br.mirror.archlinux-br.org/d' /mnt/etc/pacman.d/mirrorlist
+#cp /mnt/etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist.bak && curl -s "https://archlinux.org/mirrorlist/?country=BR&use_mirror_status=on" | sed -e 's/^#Server/Server/' -e '/^#/d' | rankmirrors -n 5 - | tee /mnt/etc/pacman.d/mirrorlist && sed -i '/br.mirror.archlinux-br.org/d' /mnt/etc/pacman.d/mirrorlist
 
 
 
@@ -411,7 +411,7 @@ echo -e "$ROOTPASSWORD\n$ROOTPASSWORD" | passwd
 
 arch-chroot /mnt groupadd -r autologin
 
-arch-chroot /mnt archgroupadd -r sudo
+arch-chroot /mnt groupadd -r sudo
 
 arch-chroot /mnt usermod -G autologin,sudo,wheel,lp $USERNAME
 
