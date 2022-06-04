@@ -418,6 +418,10 @@ arch-chroot /mnt usermod -G autologin,sudo,wheel,lp $USERNAME
 
 
 
+###WHEEL
+
+cp /mnt/etc/sudoers /mnt/etc/sudoers.bak && sed -i '82c\ %wheel ALL=(ALL:ALL) ALL' /mnt/etc/sudoers
+
 
 
 
