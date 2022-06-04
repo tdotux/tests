@@ -426,7 +426,426 @@ cp /mnt/etc/sudoers /mnt/etc/sudoers.bak && sed -i '82c\ %wheel ALL=(ALL:ALL) AL
 
 
 
+###DRIVER DE VIDEO
 
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
+
+echo -e "#### DRIVER DE VIDEO PRIMARIO ####"
+
+echo -e "\n"
+
+echo -e "1 - AMDGPU"
+
+echo -e "2 - ATI"
+
+echo -e "3 - Intel"
+
+echo -e "4 - Nouveau (Nvidia Open Source)"
+
+echo -e "5 - Nvidia (Proprietário)"
+
+echo -e "6 - VMWARE"
+
+echo -e "\n"
+
+echo -ne "Escolha um Driver Primário : "
+
+read -n1 -s PDRIVER
+
+case $PDRIVER in
+
+"1")
+
+echo "AMDGPU"
+sleep 2
+echo -e "$(tput sgr0)\n\n"
+arch-chroot /mnt pacman -S xf86-video-amdgpu --noconfirm
+
+;;
+
+"2")
+
+echo "ATI"
+
+sleep 2
+echo -e "$(tput sgr0)\n\n"
+arch-chroot /mnt pacman -S xf86-video-ati --noconfirm
+
+;;
+
+
+"3")
+
+echo "INTEL"
+
+sleep 2
+echo -e "$(tput sgr0)\n\n"
+arch-chroot /mnt pacman -S xf86-video-intel --noconfirm
+
+;;
+
+"4")
+
+echo "Nouveau"
+
+sleep 2
+echo -e "$(tput sgr0)\n\n"
+arch-chroot /mnt pacman -S xf86-video-nouveau --noconfirm
+
+;;
+
+"5")
+
+echo "Nvidia"
+
+sleep 2
+echo -e "$(tput sgr0)\n\n"
+arch-chroot /mnt pacman -S xf86-video-nvidia --noconfirm
+
+;;
+
+"6")
+
+echo "VMWARE"
+
+sleep 2
+echo -e "$(tput sgr0)\n\n"
+arch-chroot /mnt pacman -S xf86-video-vmware --noconfirm
+
+esac
+
+echo -e "$(tput sgr0)\n\n"
+
+
+
+### DRIVER DE VIDEO SECUNDARIO ###
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
+
+echo -e "#### DRIVER DE VIDEO SECUNDARIO ####"
+
+echo -e "\n"
+
+echo -e "1 - AMDGPU"
+
+echo -e "2 - ATI"
+
+echo -e "3 - Intel"
+
+echo -e "4 - Nouveau (Nvidia Open Source)"
+
+echo -e "5 - Nvidia (Proprietário)"
+
+echo -e "\n\n"
+
+echo -e "Pressione Enter para pular esta etapa"
+
+echo -e "\n"
+
+echo -ne "Escolha um Driver Secundário : "
+
+read -n1 -s SDRIVER
+
+case $SDRIVER in
+
+"1")
+
+echo "AMDGPU"
+sleep 2
+echo -e "$(tput sgr0)\n\n"
+arch-chroot /mnt pacman -S xf86-video-amdgpu --noconfirm
+
+;;
+
+"2")
+
+echo "ATI"
+
+sleep 2
+echo -e "$(tput sgr0)\n\n"
+arch-chroot /mnt pacman -S xf86-video-ati --noconfirm
+
+;;
+
+
+"3")
+
+echo "INTEL"
+
+sleep 2
+echo -e "$(tput sgr0)\n\n"
+arch-chroot /mnt pacman -S xf86-video-intel --noconfirm
+
+;;
+
+"4")
+
+echo "Nouveau"
+
+sleep 2
+echo -e "$(tput sgr0)\n\n"
+arch-chroot /mnt pacman -S xf86-video-nouveau --noconfirm
+
+;;
+
+"5")
+
+echo "Nvidia"
+
+sleep 2
+echo -e "$(tput sgr0)\n\n"
+arch-chroot /mnt pacman -S xf86-video-nvidia --noconfirm
+
+esac
+
+echo -e "$(tput sgr0)\n\n"
+
+
+
+
+
+###INTERFACE GRÁFICA
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
+
+echo -e "#### INTERFACE GRAFICA (DE) ####"
+
+echo -e "\n"
+
+echo -e "1 - Budgie"
+
+echo -e "2 - Cinnamon"
+
+echo -e "3 - Deepin"
+
+echo -e "4 - GNOME"
+
+echo -e "5 - KDE Plasma (X11)"
+
+echo -e "6 - KDE Plasma (Wayland)"
+
+echo -e "7 - LXDE"
+
+echo -e "8 - LXQt"
+
+echo -e "9 - MATE"
+
+echo -e "0 - XFCE"
+
+echo -e "\n"
+
+echo -ne "Escolha uma DE : "
+read -n1 -s DE
+
+case $DE in
+
+"1")
+
+echo "Budge"
+sleep 2
+echo -e "$(tput sgr0)\n\n"
+
+##Pacotes Padrão
+
+arch-chroot /mnt pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
+
+##Interface e DM
+
+arch-chroot /mnt pacman -S budgie-desktop gnome-terminal gedit gnome-calculator gnome-calendar gnome-system-monitor nautilus network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
+systemctl enable lightdm NetworkManager
+
+;;
+
+"2")
+
+echo "Cinnamon"
+
+sleep 2
+echo -e "$(tput sgr0)\n\n"
+
+##Pacotes Padrão
+
+arch-chroot /mnt pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
+
+##Interface e DM
+
+arch-chroot /mnt pacman -S cinnamon network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
+systemctl enable lightdm NetworkManager
+
+;;
+
+"3")
+
+echo "Deepin"
+
+sleep 2
+echo -e "$(tput sgr0)\n\n"
+
+##Pacotes Padrão
+
+arch-chroot /mnt pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
+
+##Interface e DM
+
+arch-chroot /mnt pacman -S deepin network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
+systemctl enable lightdm NetworkManager
+
+;;
+
+"4")
+
+echo "Gnome"
+
+sleep 2
+echo -e "$(tput sgr0)\n\n"
+
+##Pacotes Padrão
+
+arch-chroot /mnt pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
+
+##Interface e DM
+
+arch-chroot /mnt pacman -S gnome gnome-tweaks network-manager-applet gdm --noconfirm
+systemctl enable gdm NetworkManager
+
+;;
+
+"5")
+
+echo "KDE Plasma (X11)"
+
+sleep 2
+echo -e "$(tput sgr0)\n\n"
+
+##Pacotes Padrão
+
+arch-chroot /mnt pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
+
+##Interface e DM
+
+arch-chroot /mnt pacman -S plasma konsole sddm dolphin spectacle kcalc kwrite gwenview plasma-nm plasma-pa --noconfirm
+systemctl enable sddm NetworkManager
+
+;;
+
+"6")
+
+echo "KDE Plasma (Wayland)"
+
+sleep 2
+echo -e "$(tput sgr0)\n\n"
+
+##Pacotes Padrão
+
+arch-chroot /mnt pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
+
+##Interface e DM
+
+arch-chroot /mnt pacman -S plasma konsole sddm dolphin spectacle kcalc kwrite gwenview plasma-nm plasma-pa plasma-wayland-session --noconfirm
+systemctl enable sddm NetworkManager
+
+;;
+
+"7")
+
+echo "LXDE"
+
+sleep 2
+echo -e "$(tput sgr0)\n\n"
+
+##Pacotes Padrão
+
+arch-chroot /mnt pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
+
+##Interface e DM
+
+arch-chroot /mnt pacman -S lxde-gtk3 lxtask network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
+systemctl enable lightdm NetworkManager
+
+;;
+
+"8")
+
+echo "LXQT"
+
+sleep 2
+echo -e "$(tput sgr0)\n\n"
+
+##Pacotes Padrão
+
+arch-chroot /mnt pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
+
+##Interface e DM
+
+arch-chroot /mnt pacman -S lxqt lxtask network-manager-applet sddm --noconfirm
+systemctl enable sddm NetworkManager
+
+;;
+
+"9")
+
+echo "MATE"
+
+sleep 2
+echo -e "$(tput sgr0)\n\n"
+
+##Pacotes Padrão
+
+arch-chroot /mnt pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
+
+##Interface e DM
+
+arch-chroot /mnt pacman -S mate mate-extra network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
+systemctl enable lightdm NetworkManager
+
+;;
+
+"0")
+
+echo "XFCE"
+
+sleep 2
+echo -e "$(tput sgr0)\n\n"
+
+##Pacotes Padrão
+
+arch-chroot /mnt pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
+
+##Interface e DM
+
+arch-chroot /mnt pacman -S xfce4 xfce4-screenshooter xfce4-pulseaudio-plugin xfce4-whiskermenu-plugin xarchiver lxtask ristretto mousepad galculator thunar-archive-plugin network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
+systemctl enable lightdm NetworkManager
+
+esac
+
+
+echo -e "$(tput sgr0)\n\n"
+
+
+
+
+
+###USER DIRS UPDATE
+
+arch-chroot /mnt xdg-user-dirs-update
+
+
+
+
+
+###GRUB
+
+PASTA_EFI=/sys/firmware/efi
+if [ ! -d "$PASTA_EFI" ];then
+echo -e "Sistema Legacy"
+arch-chroot /mnt grub-install --target=i386-pc /dev/sda --force && grub-mkconfig -o /boot/grub/grub.cfg
+
+else
+echo -e "Sistema EFI"
+pacman -S efibootmgr --noconfirm
+arch-chroot /mnt grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=Arch --removable && grub-mkconfig -o /boot/grub/grub.cfg
+
+fi
 
 
 
@@ -440,10 +859,6 @@ cp /mnt/etc/sudoers /mnt/etc/sudoers.bak && sed -i '82c\ %wheel ALL=(ALL:ALL) AL
 arch-chroot /mnt git clone http://github.com/tdotux/tests
 
 
-
-###EXECUTAR O SCRIPT DE POS INSTALAÇÃO DENTRO DO CHROOT
-
-arch-chroot /mnt sh /tests/epi-script.sh
 
 
 
