@@ -1,75 +1,58 @@
 #!/usr/bin/env sh
 
 
-##### CHROOT #####
+
+###USERNAME
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
+
+echo -e "Nome de Usuário (Username)"
+
+echo -e "\n"
+
+echo -ne "Digite o Nome do Usuário : "
+
+read USERNAME
+
+arch-chroot /mnt useradd -m $USERNAME
+
+echo -e "$(tput sgr0)"
 
 
 
-###AJUSTAR HORA AUTOMATICAMENTE
+###USER PASSWORD
 
-arch-chroot /mnt timedatectl set-ntp true
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
+echo -e "Senha do Usuário"
 
+echo -e "\n"
 
-###SINCRONIZAR REPOSITORIOS
+echo -ne "Digite a Senha do Usuário : "
 
-arch-chroot /mnt pacman -Syy git --noconfirm
+read USERPASSWORD
 
+arch-chroot /mnt echo -e '$USERPASSWORD\n$USERPASSWORD' | passwd $USERNAME
 
-###UTILITARIOS BASICOS
-
-arch-chroot /mnt pacman -Sy nano wget pacman-contrib reflector sudo grub --noconfirm
-
-
-
-###MIRRORS
-
-#cp /mnt/etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist.bak && curl -s "https://archlinux.org/mirrorlist/?country=BR&use_mirror_status=on" | sed -e 's/^#Server/Server/' -e '/^#/d' | rankmirrors -n 5 - | tee /mnt/etc/pacman.d/mirrorlist && sed -i '/br.mirror.archlinux-br.org/d' /mnt/etc/pacman.d/mirrorlist
+echo -e "$(tput sgr0)"
 
 
 
+###ROOT PASSWORD
 
-###PARALLEL DOWNLOADS
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
-cp /mnt/etc/pacman.conf /mnt/etc/pacman.conf.bak && sed -i '37c\ParallelDownloads = 16' /mnt/etc/pacman.conf && arch-chroot /mnt pacman -Syyyuuu --noconfirm
+echo -e "Senha de Root (Administrador)"
 
+echo -e "\n"
 
+echo -ne "Digite a Senha de Root : "
 
+read ROOTPASSWORD
 
-###MULTILIB
+arch-chroot /mnt echo -e '$ROOTPASSWORD\n$ROOTPASSWORD' | passwd
 
-sed -i '93c\[multilib]' /mnt/etc/pacman.conf && sed -i '94c\Include = /etc/pacman.d/mirrorlist' /mnt/etc/pacman.conf && arch-chroot /mnt pacman -Syyyuu --noconfirm
-
-
-
-
-###FUSO HORARIO
-
-ln -sf /mnt/usr/share/zoneinfo/America/Sao_Paulo /mnt/etc/localtime && arch-chroot /mnt hwclock --systohc
+echo -e "$(tput sgr0)"
 
 
 
-
-###LOCALE
-
-mv /mnt/etc/locale.gen /mnt/etc/locale.gen.bak && echo -e 'pt_BR.UTF-8 UTF-8' | tee /mnt/etc/locale.gen && arch-chroot /mnt locale-gen && echo -e 'LANG=pt_BR.UTF-8' | tee /mnt/etc/locale.conf
-
-
-
-
-
-
-###GRUPOS
-
-arch-chroot /mnt groupadd -r autologin
-
-arch-chroot /mnt groupadd -r sudo
-
-arch-chroot /mnt usermod -G autologin,sudo,wheel,lp $USERNAME
-
-
-
-
-###WHEEL
-
-cp /mnt/etc/sudoers /mnt/etc/sudoers.bak && sed -i '82c\ %wheel ALL=(ALL:ALL) ALL' /mnt/etc/sudoers
