@@ -647,10 +647,11 @@ pacman -S xf86-video-vmware --noconfirm
 
 echo -e "$(tput sgr0)\n\n"
 
+fi
 
 
 
-###SET-SECOND-VIDEO-DRIVER
+###SET-SECONDARY-VIDEO-DRIVER
 
 
 
@@ -708,6 +709,7 @@ echo -e "$(tput sgr0)\n\n"
 
 pacman -S xf86-video-nvidia --noconfirm
 
+fi
 
 
 
@@ -780,10 +782,7 @@ fi
 
 
 
-
-
-
-###SET-DE
+###SET-DESKTOP-ENVIRONMENT
 
 
 
@@ -994,3 +993,4 @@ grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=Arch 
 fi
 
 
+echo -e "Instalação Concluída!!!!!"
