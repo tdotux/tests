@@ -4,6 +4,8 @@
 
 ###USERNAME
 
+arch-chroot /mnt <<EOL
+
 echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
 echo -e "Nome de Usuário (Username)"
@@ -36,7 +38,7 @@ arch-chroot /mnt echo -e '$USERPASSWORD\n$USERPASSWORD' | passwd $USERNAME
 
 echo -e "$(tput sgr0)"
 
-
+EOL
 
 ###ROOT PASSWORD
 
