@@ -806,7 +806,7 @@ systemctl enable lightdm NetworkManager
 
 
 
-if [ "$DE" = "2" ];then
+elif [ "$DE" = "2" ];then
 
 echo "Cinnamon"
 
@@ -824,7 +824,7 @@ systemctl enable lightdm NetworkManager
 
 
 
-if [ "$DE" = "3" ];then
+elif [ "$DE" = "3" ];then
 
 echo "Deepin"
 
@@ -842,7 +842,7 @@ systemctl enable lightdm NetworkManager
 
 
 
-if [ "$DE" = "4" ];then
+elif [ "$DE" = "4" ];then
 
 echo "Gnome"
 
@@ -858,7 +858,7 @@ pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip u
 pacman -S gnome gnome-tweaks network-manager-applet gdm --noconfirm
 systemctl enable gdm NetworkManager
 
-if [ "$DE" = "5" ];then
+elif [ "$DE" = "5" ];then
 
 echo "KDE Plasma (X11)"
 
@@ -876,7 +876,7 @@ pacman -S plasma konsole sddm dolphin spectacle kcalc kwrite gwenview plasma-nm 
 systemctl enable sddm NetworkManager
 
 
-if [ "$DE" = "6" ];then
+elif [ "$DE" = "6" ];then
 
 echo "KDE Plasma (Wayland)"
 
@@ -893,7 +893,7 @@ pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip u
 pacman -S plasma konsole sddm dolphin spectacle kcalc kwrite gwenview plasma-nm plasma-pa plasma-wayland-session --noconfirm
 systemctl enable sddm NetworkManager
 
-if [ "$DE" = "7" ];then
+elif [ "$DE" = "7" ];then
 
 echo "LXDE"
 
@@ -910,7 +910,7 @@ pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip u
 pacman -S lxde-gtk3 lxtask network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
 systemctl enable lightdm NetworkManager
 
-if [ "$DE" = "8" ];then
+elif [ "$DE" = "8" ];then
 
 echo "LXQT"
 
@@ -926,7 +926,7 @@ pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip u
 pacman -S lxqt lxtask network-manager-applet sddm --noconfirm
 systemctl enable sddm NetworkManager
 
-if [ "$DE" = "9" ];then
+elif [ "$DE" = "9" ];then
 
 echo "MATE"
 
@@ -945,7 +945,7 @@ systemctl enable lightdm NetworkManager
 
 
 
-if [ "$DE" = "10" ];then
+elif [ "$DE" = "10" ];then
 
 echo "XFCE"
 
@@ -962,7 +962,7 @@ pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip u
 pacman -S xfce4 xfce4-screenshooter xfce4-pulseaudio-plugin xfce4-whiskermenu-plugin xarchiver lxtask ristretto mousepad galculator thunar-archive-plugin network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
 systemctl enable lightdm NetworkManager
 
-esac
+fi
 
 
 echo -e "$(tput sgr0)\n\n"
