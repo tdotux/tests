@@ -395,14 +395,14 @@ arch-chroot /mnt useradd -m $USERNAME
 ### SENHA DE USUARIO
 
 
-echo -e "$USERPASSWORD\n$USERPASSWORD" | passwd $USERNAME
+echo -e "$USERPASSWORD\n$USERPASSWORD" | arch-chroot /mnt passwd $USERNAME
 
 
 
 ### SENHA DE ROOT
 
 
-echo -e "$ROOTPASSWORD\n$ROOTPASSWORD" | passwd
+echo -e "$ROOTPASSWORD\n$ROOTPASSWORD" | arch-chroot /mnt passwd
 
 
 
