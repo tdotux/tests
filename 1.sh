@@ -208,6 +208,4 @@ fi
 
 fi
 
-done
-
 echo -e "$(tput sgr0)"
