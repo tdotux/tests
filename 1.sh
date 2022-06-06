@@ -48,7 +48,10 @@ echo -ne "Escolha um Sistema de Arquivos : "
 
 #read -n1 -s ARQUIVOS
 
-read -p ARQUIVOS
+#read -p ARQUIVOS
+
+read ARQUIVOS
+
 
 if [ "$ARQUIVOS" = "1" ];then
 
