@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env sh
 
 ###USERNAME
 
@@ -26,3 +26,10 @@ echo -e "\n"
 read -p "Digite a Senha de Usuário : " USERPASSWORD
 
 echo -e "$USERPASSWORD\n$USERPASSWORD" | arch-chroot /mnt passwd $USERNAME
+
+
+
+### SENHA DE ROOT
+
+
+echo -e "$ROOTPASSWORD\n$ROOTPASSWORD" | arch-chroot /mnt passwd
