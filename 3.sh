@@ -25,4 +25,4 @@ echo -e "\n"
 
 read -p "Digite a Senha de Usuário : " USERPASSWORD
 
-echo -e "$USERPASSWORD\n$USERPASSWORD" | arch-chroot passwd $USERNAME
+echo -e "$USERPASSWORD\n$USERPASSWORD" | arch-chroot /mnt passwd $USERNAME
