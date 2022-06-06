@@ -32,4 +32,13 @@ echo -e "$USERPASSWORD\n$USERPASSWORD" | arch-chroot /mnt passwd $USERNAME
 ### SENHA DE ROOT
 
 
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
+
+echo -e "Senha de Root (Administrador)"
+
+echo -e "\n"
+
+read -p "Digite a Senha de Root : " ROOTPASSWORD
+
 echo -e "$ROOTPASSWORD\n$ROOTPASSWORD" | arch-chroot /mnt passwd
