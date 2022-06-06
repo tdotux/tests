@@ -5,19 +5,19 @@
 ###USERNAME
 
 
-arch-chroot /mnt bash "echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)""
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
 
-arch-chroot /mnt bash "echo -e 'Nome de Usuário (Username)'"
+echo -e 'Nome de Usuário (Username)'
 
-arch-chroot /mnt bash "echo -e '\n'"
+echo -e '\n'
 
-arch-chroot /mnt bash 'echo -ne "Digite o Nome do Usuário : "'
+echo -ne "Digite o Nome do Usuário : "'
 
-arch-chroot /mnt bash "read USERNAME"
+read USERNAME
 
-arch-chroot /mnt bash "arch-chroot /mnt useradd -m $USERNAME"
+arch-chroot /mnt bash "useradd -m $USERNAME"
 
-arch-chroot /mnt bash "echo -e '$(tput sgr0)'"
+echo -e '$(tput sgr0)'
 
 
 
