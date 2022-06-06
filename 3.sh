@@ -11,7 +11,7 @@ echo -e 'Nome de Usuário (Username)'
 
 echo -e '\n'
 
-echo -ne "Digite o Nome do Usuário : "'
+echo -ne 'Digite o Nome do Usuário : "
 
 read USERNAME
 
