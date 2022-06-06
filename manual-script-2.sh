@@ -142,9 +142,6 @@ echo -e "\n\n"
 
 echo -ne "Escolha um Sistema de Arquivos : "
 
-
-#read -n1 -s ARQUIVOS
-
 read -p ARQUIVOS
 
 
@@ -546,14 +543,14 @@ sed -i '93c\[multilib]' /mnt/etc/pacman.conf && sed -i '94c\Include = /etc/pacma
 
 ###FUSO HORARIO
 
-ln -sf /mnt/usr/share/zoneinfo/America/Sao_Paulo /mnt/etc/localtime && arch-chroot /mnt hwclock --systohc
+arch-chroot /mnt ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime && arch-chroot /mnt hwclock --systohc
 
 
 
 
 ###LOCALE
 
-mv /mnt/etc/locale.gen /mnt/etc/locale.gen.bak && echo -e 'pt_BR.UTF-8 UTF-8' | tee /mnt/etc/locale.gen && arch-chroot /mnt locale-gen && echo -e 'LANG=pt_BR.UTF-8' | tee /mnt/etc/locale.conf
+arch-chroot /mnt mv /etc/locale.gen /etc/locale.gen.bak && echo -e 'pt_BR.UTF-8 UTF-8' | arch-chroot /mnt tee /etc/locale.gen && arch-chroot /mnt locale-gen && echo -e 'LANG=pt_BR.UTF-8' | arch-chroot /mnt tee /etc/locale.conf
 
 
 
@@ -571,7 +568,7 @@ arch-chroot /mnt usermod -G autologin,sudo,wheel,lp $USERNAME
 
 ###WHEEL
 
-cp /mnt/etc/sudoers /mnt/etc/sudoers.bak && sed -i '82c\ %wheel ALL=(ALL:ALL) ALL' /mnt/etc/sudoers
+arch-chroot /mnt cp /etc/sudoers /etc/sudoers.bak && arch-chroot /mnt sed -i '82c\ %wheel ALL=(ALL:ALL) ALL' /etc/sudoers
 
 
 ###SET-VIDEO-DRIVER
@@ -622,6 +619,8 @@ echo -e "$(tput sgr0)\n\n"
 
 arch-chroot /mnt pacman -S xf86-video-nouveau --noconfirm
 
+
+
 elif [ "$PDRIVER" = "5" ];then
 
 echo "Nvidia (Proprietário)"
@@ -631,6 +630,7 @@ sleep 2
 echo -e "$(tput sgr0)\n\n"
 
 arch-chroot /mnt pacman -S xf86-video-nvidia --noconfirm
+
 
 
 elif [ "$PDRIVER" = "6" ];then
