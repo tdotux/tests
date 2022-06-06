@@ -314,7 +314,7 @@ echo -e "Pressione Enter para pular esta etapa"
 
 echo -e "\n"
 
-read -p "Escolha um Driver Primário : " SDRVIER
+read -p "Escolha um Driver Secundário : " SDRVIER
 
 echo -e "$(tput sgr0)"
 
