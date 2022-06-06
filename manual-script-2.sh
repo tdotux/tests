@@ -423,8 +423,6 @@ echo -e "\n\n"
 
 read -p "Escolha um Kernel : " KERNEL
 
-echo -e "$(tput sgr0)"
-
 
 
 if [ "$KERNEL" = "1" ];then
