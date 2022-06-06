@@ -193,7 +193,7 @@ mv /mnt/etc/locale.gen /mnt/etc/locale.gen.bak && echo -e 'pt_BR.UTF-8 UTF-8' | 
 ### NOME DE USUARIO
 
 
-arch-chroot /mnt useradd -m $USERNAME
+arch-chroot /mnt "useradd -m $USERNAME"
 
 
 
