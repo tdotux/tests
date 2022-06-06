@@ -206,4 +206,8 @@ mkdir /mnt/boot/efi
 mount /dev/sda1 /mnt/boot/efi
 fi
 
+fi
+
+done
+
 echo -e "$(tput sgr0)"
