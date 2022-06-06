@@ -201,14 +201,14 @@ arch-chroot /mnt useradd -m $USERNAME
 ### SENHA DE USUARIO
 
 
-arch-chroot /mnt echo -e "$USERPASSWORD\n$USERPASSWORD" | passwd $USERNAME
+arch-chroot /mnt "echo -e '$USERPASSWORD\n$USERPASSWORD' | passwd $USERNAME"
 
 
 
 ### SENHA DE ROOT
 
 
-arch-chroot /mnt echo -e "$ROOTPASSWORD\n$ROOTPASSWORD" | passwd
+arch-chroot /mnt "echo -e '$ROOTPASSWORD\n$ROOTPASSWORD' | passwd"
 
 
 
