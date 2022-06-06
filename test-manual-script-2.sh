@@ -994,9 +994,3 @@ grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=Arch 
 fi
 
 
-
-echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
-
-echo -e "INSTALAÇÃO CONCLUÍDA!!!!!!"
-
-done
