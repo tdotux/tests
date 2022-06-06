@@ -588,7 +588,7 @@ sleep 2
 
 echo -e "$(tput sgr0)"
 
-pacman -S xf86-video-amdgpu --noconfirm
+arch-chroot /mnt pacman -S xf86-video-amdgpu --noconfirm
 
 
 elif [ "$PDRIVER" = "2" ];then
@@ -599,7 +599,7 @@ sleep 2
 
 echo -e "$(tput sgr0)\n\n"
 
-pacman -S xf86-video-ati --noconfirm
+arch-chroot /mnt pacman -S xf86-video-ati --noconfirm
 
 
 elif [ "$PDRIVER" = "3" ];then
@@ -610,7 +610,7 @@ sleep 2
 
 echo -e "$(tput sgr0)\n\n"
 
-pacman -S xf86-video-intel --noconfirm
+arch-chroot /mnt pacman -S xf86-video-intel --noconfirm
 
 
 
@@ -622,7 +622,7 @@ sleep 2
 
 echo -e "$(tput sgr0)\n\n"
 
-pacman -S xf86-video-nouveau --noconfirm
+arch-chroot /mnt pacman -S xf86-video-nouveau --noconfirm
 
 elif [ "$PDRIVER" = "5" ];then
 
@@ -632,7 +632,7 @@ sleep 2
 
 echo -e "$(tput sgr0)\n\n"
 
-pacman -S xf86-video-nvidia --noconfirm
+arch-chroot /mnt pacman -S xf86-video-nvidia --noconfirm
 
 
 elif [ "$PDRIVER" = "6" ];then
@@ -643,7 +643,7 @@ sleep 2
 
 echo -e "$(tput sgr0)\n\n"
 
-pacman -S xf86-video-vmware --noconfirm
+arch-chroot /mnt pacman -S xf86-video-vmware --noconfirm
 
 echo -e "$(tput sgr0)\n\n"
 
@@ -663,7 +663,7 @@ sleep 2
 
 echo -e "$(tput sgr0)"
 
-pacman -S xf86-video-amdgpu --noconfirm
+arch-chroot /mnt pacman -S xf86-video-amdgpu --noconfirm
 
 
 elif [ "$SPDRIVER" = "2" ];then
@@ -674,7 +674,7 @@ sleep 2
 
 echo -e "$(tput sgr0)\n\n"
 
-pacman -S xf86-video-ati --noconfirm
+arch-chroot /mnt pacman -S xf86-video-ati --noconfirm
 
 
 elif [ "$SPDRIVER" = "3" ];then
@@ -685,7 +685,7 @@ sleep 2
 
 echo -e "$(tput sgr0)\n\n"
 
-pacman -S xf86-video-intel --noconfirm
+arch-chroot /mnt pacman -S xf86-video-intel --noconfirm
 
 
 
@@ -697,7 +697,7 @@ sleep 2
 
 echo -e "$(tput sgr0)\n\n"
 
-pacman -S xf86-video-nouveau --noconfirm
+arch-chroot /mnt pacman -S xf86-video-nouveau --noconfirm
 
 elif [ "$SPDRIVER" = "5" ];then
 
@@ -707,7 +707,7 @@ sleep 2
 
 echo -e "$(tput sgr0)\n\n"
 
-pacman -S xf86-video-nvidia --noconfirm
+arch-chroot /mnt pacman -S xf86-video-nvidia --noconfirm
 
 fi
 
@@ -728,19 +728,19 @@ fs=$(blkid -o value -s TYPE /dev/sda2)
 
 if [ "$fs" = "ext4" ];then
 
-fallocate -l 2G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && cp /etc/fstab /etc/fstab.bak && echo -e '/swapfile   none    swap    sw    0   0' | tee -a /etc/fstab
+arch-chroot /mnt fallocate -l 2G /swapfile && arch-chroot /mnt chmod 600 /swapfile && arch-chroot /mnt mkswap /swapfile && arch-chroot /mnt swapon /swapfile && cp /mnt/etc/fstab /mnt/etc/fstab.bak && echo -e '/swapfile   none    swap    sw    0   0' | tee -a /mnt/etc/fstab
 
 elif [ "$fs" = "btrfs" ];then
 
-truncate -s 0 /swapfile && chattr +C /swapfile && btrfs property set /swapfile compression "" && fallocate -l 2G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && echo -e '/swapfile none swap defaults 0 0\n' | tee -a /etc/fstab
+truncate -s 0 /mnt/swapfile && chattr +C /mnt/swapfile && btrfs property set /mnt/swapfile compression "" && arch-chroot /mnt fallocate -l 2G /swapfile && arch-chroot /mnt chmod 600 /swapfile && arch-chroot /mnt mkswap /swapfile && arch-chroot /mnt swapon /swapfile && cp /mnt/etc/fstab /mnt/etc/fstab.bak && echo -e '/swapfile   none    swap    sw    0   0' | tee -a /mnt/etc/fstab
 
 elif [ "$fs" = "f2fs" ];then
 
-fallocate -l 2G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && cp /etc/fstab /etc/fstab.bak && echo -e '/swapfile   none    swap    sw    0   0' | tee -a /etc/fstab
+arch-chroot /mnt fallocate -l 2G /swapfile && arch-chroot /mnt chmod 600 /swapfile && arch-chroot /mnt mkswap /swapfile && arch-chroot /mnt swapon /swapfile && cp /mnt/etc/fstab /mnt/etc/fstab.bak && echo -e '/swapfile   none    swap    sw    0   0' | tee -a /mnt/etc/fstab
 
 elif [ "$fs" = "xfs" ];then
 
-fallocate -l 2G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && cp /etc/fstab /etc/fstab.bak && echo -e '/swapfile   none    swap    sw    0   0' | tee -a /etc/fstab
+arch-chroot /mnt fallocate -l 2G /swapfile && arch-chroot /mnt chmod 600 /swapfile && arch-chroot /mnt mkswap /swapfile && arch-chroot /mnt swapon /swapfile && cp /mnt/etc/fstab /mnt/etc/fstab.bak && echo -e '/swapfile   none    swap    sw    0   0' | tee -a /mnt/etc/fstab
 
 fi
 
@@ -760,19 +760,19 @@ fs=$(blkid -o value -s TYPE /dev/sda2)
 
 if [ "$fs" = "ext4" ];then
 
-fallocate -l 4G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && cp /etc/fstab /etc/fstab.bak && echo -e '/swapfile   none    swap    sw    0   0' | tee -a /etc/fstab
+arch-chroot /mnt fallocate -l 4G /swapfile && arch-chroot /mnt chmod 600 /swapfile && arch-chroot /mnt mkswap /swapfile && arch-chroot /mnt swapon /swapfile && cp /mnt/etc/fstab /mnt/etc/fstab.bak && echo -e '/swapfile   none    swap    sw    0   0' | tee -a /mnt/etc/fstab
 
 elif [ "$fs" = "btrfs" ];then
 
-truncate -s 0 /swapfile && chattr +C /swapfile && btrfs property set /swapfile compression "" && fallocate -l 4G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && echo -e '/swapfile none swap defaults 0 0\n' | tee -a /etc/fstab
+truncate -s 0 /mnt/swapfile && chattr +C /mnt/swapfile && btrfs property set /mnt/swapfile compression "" && arch-chroot /mnt fallocate -l 4G /swapfile && arch-chroot /mnt chmod 600 /swapfile && arch-chroot /mnt mkswap /swapfile && arch-chroot /mnt swapon /swapfile && cp /mnt/etc/fstab /mnt/etc/fstab.bak && echo -e '/swapfile   none    swap    sw    0   0' | tee -a /mnt/etc/fstab
 
 elif [ "$fs" = "f2fs" ];then
 
-fallocate -l 4G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && cp /etc/fstab /etc/fstab.bak && echo -e '/swapfile   none    swap    sw    0   0' | tee -a /etc/fstab
+arch-chroot /mnt fallocate -l 4G /swapfile && arch-chroot /mnt chmod 600 /swapfile && arch-chroot /mnt mkswap /swapfile && arch-chroot /mnt swapon /swapfile && cp /mnt/etc/fstab /mnt/etc/fstab.bak && echo -e '/swapfile   none    swap    sw    0   0' | tee -a /mnt/etc/fstab
 
 elif [ "$fs" = "xfs" ];then
 
-fallocate -l 4G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && cp /etc/fstab /etc/fstab.bak && echo -e '/swapfile   none    swap    sw    0   0' | tee -a /etc/fstab
+arch-chroot /mnt fallocate -l 4G /swapfile && arch-chroot /mnt chmod 600 /swapfile && arch-chroot /mnt mkswap /swapfile && arch-chroot /mnt swapon /swapfile && cp /mnt/etc/fstab /mnt/etc/fstab.bak && echo -e '/swapfile   none    swap    sw    0   0' | tee -a /mnt/etc/fstab
 
 fi
 
@@ -796,12 +796,12 @@ echo -e "$(tput sgr0)\n\n"
 
 ##Pacotes Padrão
 
-pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
+arch-chroot /mnt pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
 
 ##Interface e DM
 
-pacman -S budgie-desktop gnome-terminal gedit gnome-calculator gnome-calendar gnome-system-monitor nautilus network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
-systemctl enable lightdm NetworkManager
+arch-chroot /mnt pacman -S budgie-desktop gnome-terminal gedit gnome-calculator gnome-calendar gnome-system-monitor nautilus network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
+arch-chroot /mnt systemctl enable lightdm NetworkManager
 
 
 
@@ -814,12 +814,12 @@ echo -e "$(tput sgr0)\n\n"
 
 ##Pacotes Padrão
 
-pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
+arch-chroot /mnt pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
 
 ##Interface e DM
 
-pacman -S cinnamon network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
-systemctl enable lightdm NetworkManager
+arch-chroot /mnt pacman -S cinnamon network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
+arch-chroot /mnt systemctl enable lightdm NetworkManager
 
 
 
@@ -832,12 +832,12 @@ echo -e "$(tput sgr0)\n\n"
 
 ##Pacotes Padrão
 
-pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
+arch-chroot /mnt pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
 
 ##Interface e DM
 
-pacman -S deepin network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
-systemctl enable lightdm NetworkManager
+arch-chroot /mnt pacman -S deepin network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
+arch-chroot /mnt systemctl enable lightdm NetworkManager
 
 
 
@@ -850,12 +850,12 @@ echo -e "$(tput sgr0)\n\n"
 
 ##Pacotes Padrão
 
-pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
+arch-chroot /mnt pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
 
 ##Interface e DM
 
-pacman -S gnome gnome-tweaks network-manager-applet gdm --noconfirm
-systemctl enable gdm NetworkManager
+arch-chroot /mnt pacman -S gnome gnome-tweaks network-manager-applet gdm --noconfirm
+arch-chroot /mnt systemctl enable gdm NetworkManager
 
 elif [ "$DE" = "5" ];then
 
@@ -867,12 +867,12 @@ echo -e "$(tput sgr0)\n\n"
 
 ##Pacotes Padrão
 
-pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
+arch-chroot /mnt pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
 
 ##Interface e DM
 
-pacman -S plasma konsole sddm dolphin spectacle kcalc kwrite gwenview plasma-nm plasma-pa --noconfirm
-systemctl enable sddm NetworkManager
+arch-chroot /mnt pacman -S plasma konsole sddm dolphin spectacle kcalc kwrite gwenview plasma-nm plasma-pa --noconfirm
+arch-chroot /mnt systemctl enable sddm NetworkManager
 
 
 elif [ "$DE" = "6" ];then
@@ -885,12 +885,12 @@ echo -e "$(tput sgr0)\n\n"
 
 ##Pacotes Padrão
 
-pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
+arch-chroot /mnt pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
 
 ##Interface e DM
 
-pacman -S plasma konsole sddm dolphin spectacle kcalc kwrite gwenview plasma-nm plasma-pa plasma-wayland-session --noconfirm
-systemctl enable sddm NetworkManager
+arch-chroot /mnt pacman -S plasma konsole sddm dolphin spectacle kcalc kwrite gwenview plasma-nm plasma-pa plasma-wayland-session --noconfirm
+arch-chroot /mnt systemctl enable sddm NetworkManager
 
 elif [ "$DE" = "7" ];then
 
@@ -902,12 +902,12 @@ echo -e "$(tput sgr0)\n\n"
 
 ##Pacotes Padrão
 
-pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
+arch-chroot /mnt pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
 
 ##Interface e DM
 
-pacman -S lxde-gtk3 lxtask network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
-systemctl enable lightdm NetworkManager
+arch-chroot /mnt pacman -S lxde-gtk3 lxtask network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
+arch-chroot /mnt systemctl enable lightdm NetworkManager
 
 elif [ "$DE" = "8" ];then
 
@@ -918,12 +918,12 @@ echo -e "$(tput sgr0)\n\n"
 
 ##Pacotes Padrão
 
-pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
+arch-chroot /mnt pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
 
 ##Interface e DM
 
-pacman -S lxqt lxtask network-manager-applet sddm --noconfirm
-systemctl enable sddm NetworkManager
+arch-chroot /mnt pacman -S lxqt lxtask network-manager-applet sddm --noconfirm
+arch-chroot /mnt systemctl enable sddm NetworkManager
 
 elif [ "$DE" = "9" ];then
 
@@ -935,12 +935,12 @@ echo -e "$(tput sgr0)\n\n"
 
 ##Pacotes Padrão
 
-pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
+arch-chroot /mnt pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
 
 ##Interface e DM
 
-pacman -S mate mate-extra network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
-systemctl enable lightdm NetworkManager
+arch-chroot /mnt pacman -S mate mate-extra network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
+arch-chroot /mnt systemctl enable lightdm NetworkManager
 
 
 
@@ -954,12 +954,12 @@ echo -e "$(tput sgr0)\n\n"
 
 ##Pacotes Padrão
 
-pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
+arch-chroot /mnt pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip bzip2 zip unzip unrar p7zip pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber xdg-user-dirs gnome-disk-utility neofetch --noconfirm
 
 ##Interface e DM
 
-pacman -S xfce4 xfce4-screenshooter xfce4-pulseaudio-plugin xfce4-whiskermenu-plugin xarchiver lxtask ristretto mousepad galculator thunar-archive-plugin network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
-systemctl enable lightdm NetworkManager
+arch-chroot /mnt pacman -S xfce4 xfce4-screenshooter xfce4-pulseaudio-plugin xfce4-whiskermenu-plugin xarchiver lxtask ristretto mousepad galculator thunar-archive-plugin network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
+arch-chroot /mnt systemctl enable lightdm NetworkManager
 
 fi
 
@@ -972,7 +972,7 @@ echo -e "$(tput sgr0)\n\n"
 
 ###USER DIRS UPDATE
 
-xdg-user-dirs-update
+arch-chroot /mnt xdg-user-dirs-update
 
 
 
@@ -983,12 +983,12 @@ xdg-user-dirs-update
 PASTA_EFI=/sys/firmware/efi
 if [ ! -d "$PASTA_EFI" ];then
 echo -e "Sistema Legacy"
-grub-install --target=i386-pc /dev/sda --force && grub-mkconfig -o /boot/grub/grub.cfg
+grub-install --target=i386-pc /dev/sda --force && grub-mkconfig -o mnt/boot/grub/grub.cfg
 
 else
 echo -e "Sistema EFI"
 pacman -S efibootmgr --noconfirm
-grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=Arch --removable && grub-mkconfig -o /boot/grub/grub.cfg
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=Arch --removable && grub-mkconfig -o /mnt/boot/grub/grub.cfg
 
 fi
 
