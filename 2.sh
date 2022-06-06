@@ -10,7 +10,7 @@ echo -e "\n"
 
 echo -ne "Digite o Nome do Usuário : "
 
-read -n1 -s USERNAME
+read USERNAME
 
 echo -e "$(tput sgr0)"
 
@@ -26,7 +26,7 @@ echo -e "\n"
 
 echo -ne "Digite a Senha do Usuário : "
 
-read -n1 -s USERPASSWORD
+read USERPASSWORD
 
 echo -e "$(tput sgr0)"
 
@@ -42,7 +42,7 @@ echo -e "\n"
 
 echo -ne "Digite a Senha de Root : "
 
-read -n1 -s ROOTPASSWORD
+read ROOTPASSWORD
 
 echo -e "$(tput sgr0)"
 
@@ -74,7 +74,7 @@ echo -e "\n\n"
 
 echo -ne "Escolha um Kernel : "
 
-read -n1 -s KERNEL
+read KERNEL
 
 
 
