@@ -217,6 +217,20 @@ echo -e "$(tput sgr0)"
 
 
 
+###HOSTNAME
+
+echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
+
+echo -e "Hostname (Nome do PC)"
+
+echo -e "\n"
+
+read -p "Digite o Hostname : " HOSTNAME
+
+echo -e "$(tput sgr0)"
+
+
+
 
 ###USERNAME
 
@@ -502,8 +516,16 @@ echo -e "$ROOTPASSWORD\n$ROOTPASSWORD" | arch-chroot /mnt passwd
 
 
 
+### SET-HOSTNAME-AND-CONFIGURE-HOSTS
 
-##### CHROOT #####
+arch-chroot /mnt echo "$HOSTNAME" > /etc/hostname
+
+echo -e "127.0.0.1 localhost.localdomain localhost\n::1 localhost.localdomain localhost\n127.0.1.1 $HOSTNAME.localdomain $HOSTNAME" | arch-chroot /mnt tee /etc/hosts
+
+
+
+
+##### INSIDE CHROOT #####
 
 
 
