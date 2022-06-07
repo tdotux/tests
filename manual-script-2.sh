@@ -142,6 +142,9 @@ echo -e "\n\n"
 
 echo -ne "Escolha um Sistema de Arquivos : "
 
+
+#read -n1 -s ARQUIVOS
+
 read -p ARQUIVOS
 
 
@@ -279,7 +282,7 @@ echo -e "6 - VMWARE"
 
 echo -e "\n"
 
-read -p "Escolha um Driver Primário : " PDRVIER
+read -p "Escolha um Driver Primário : " PDRIVER
 
 echo -e "$(tput sgr0)"
 
@@ -311,7 +314,8 @@ echo -e "Pressione Enter para pular esta etapa"
 
 echo -e "\n"
 
-read -p "Escolha um Driver Secundário : " SDRVIER
+read -p "Escolha um Driver Secundário : " SDRIVER
+
 
 echo -e "$(tput sgr0)"
 
@@ -543,14 +547,14 @@ sed -i '93c\[multilib]' /mnt/etc/pacman.conf && sed -i '94c\Include = /etc/pacma
 
 ###FUSO HORARIO
 
-arch-chroot /mnt ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime && arch-chroot /mnt hwclock --systohc
+ln -sf /mnt/usr/share/zoneinfo/America/Sao_Paulo /mnt/etc/localtime && arch-chroot /mnt hwclock --systohc
 
 
 
 
 ###LOCALE
 
-arch-chroot /mnt mv /etc/locale.gen /etc/locale.gen.bak && echo -e 'pt_BR.UTF-8 UTF-8' | arch-chroot /mnt tee /etc/locale.gen && arch-chroot /mnt locale-gen && echo -e 'LANG=pt_BR.UTF-8' | arch-chroot /mnt tee /etc/locale.conf
+mv /mnt/etc/locale.gen /mnt/etc/locale.gen.bak && echo -e 'pt_BR.UTF-8 UTF-8' | tee /mnt/etc/locale.gen && arch-chroot /mnt locale-gen && echo -e 'LANG=pt_BR.UTF-8' | tee /mnt/etc/locale.conf
 
 
 
@@ -568,10 +572,10 @@ arch-chroot /mnt usermod -G autologin,sudo,wheel,lp $USERNAME
 
 ###WHEEL
 
-arch-chroot /mnt cp /etc/sudoers /etc/sudoers.bak && arch-chroot /mnt sed -i '82c\ %wheel ALL=(ALL:ALL) ALL' /etc/sudoers
+cp /mnt/etc/sudoers /mnt/etc/sudoers.bak && sed -i '82c\ %wheel ALL=(ALL:ALL) ALL' /mnt/etc/sudoers
 
 
-###SET-VIDEO-DRIVER
+###SET-PRIMARY-VIDEO-DRIVER
 
 
 
@@ -619,8 +623,6 @@ echo -e "$(tput sgr0)\n\n"
 
 arch-chroot /mnt pacman -S xf86-video-nouveau --noconfirm
 
-
-
 elif [ "$PDRIVER" = "5" ];then
 
 echo "Nvidia (Proprietário)"
@@ -630,7 +632,6 @@ sleep 2
 echo -e "$(tput sgr0)\n\n"
 
 arch-chroot /mnt pacman -S xf86-video-nvidia --noconfirm
-
 
 
 elif [ "$PDRIVER" = "6" ];then
@@ -653,7 +654,7 @@ fi
 
 
 
-if [ "SPDRIVER" = "1" ];then
+if [ "$SDRIVER" = "1" ];then
 
 echo "AMDGPU"
 
@@ -664,7 +665,7 @@ echo -e "$(tput sgr0)"
 arch-chroot /mnt pacman -S xf86-video-amdgpu --noconfirm
 
 
-elif [ "$SPDRIVER" = "2" ];then
+elif [ "$SDRIVER" = "2" ];then
 
 echo "ATI"
 
@@ -675,7 +676,7 @@ echo -e "$(tput sgr0)\n\n"
 arch-chroot /mnt pacman -S xf86-video-ati --noconfirm
 
 
-elif [ "$SPDRIVER" = "3" ];then
+elif [ "$SDRIVER" = "3" ];then
 
 echo "Intel"
 
@@ -687,7 +688,7 @@ arch-chroot /mnt pacman -S xf86-video-intel --noconfirm
 
 
 
-elif [ "$SPDRIVER" = "4" ];then
+elif [ "$SDRIVER" = "4" ];then
 
 echo "Nvidia (Open Source)"
 
@@ -697,7 +698,7 @@ echo -e "$(tput sgr0)\n\n"
 
 arch-chroot /mnt pacman -S xf86-video-nouveau --noconfirm
 
-elif [ "$SPDRIVER" = "5" ];then
+elif [ "$SDRIVER" = "5" ];then
 
 echo "Nvidia (Proprietário)"
 
