@@ -258,9 +258,9 @@ echo -e "\n"
 
 #read -s USERPASSWORD
 
-read -sp "USERPASSWORD: "; echo
+read -sp "Digite a Senha do Usuário: "; echo
 
-echo $REPLY
+echo $USERPASSWORD
 
 echo -e "$(tput sgr0)"
 
@@ -278,9 +278,9 @@ echo -e "\n"
 
 #read -s ROOTPASSWORD
 
-read -sp "ROOTPASSWORD: "; echo
+read -sp "Digite a Senha de Root: "; echo
 
-echo $REPLY
+echo $ROOTPASSWORD
 
 echo -e "$(tput sgr0)"
 
