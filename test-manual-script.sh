@@ -324,7 +324,9 @@ echo -e "Senha do Usuário"
 
 echo -e "\n"
 
-read -sp "Digite a Senha de Usuário : " USERPASSWORD
+read -s Senha
+
+#read -sp "Digite a Senha de Usuário : " USERPASSWORD
 
 echo -e "$USERPASSWORD\n$USERPASSWORD" | arch-chroot /mnt passwd $USERNAME
 
@@ -340,7 +342,9 @@ echo -e "Senha de Root (Administrador)"
 
 echo -e "\n"
 
-read -sp "Digite a Senha de Root : " ROOTPASSWORD
+#read -sp "Digite a Senha de Root : " ROOTPASSWORD
+
+read -s Senha
 
 echo -e "$ROOTPASSWORD\n$ROOTPASSWORD" | arch-chroot /mnt passwd
 
