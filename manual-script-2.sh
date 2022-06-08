@@ -254,7 +254,9 @@ echo -e "Senha do Usuário"
 
 echo -e "\n"
 
-read -p "Digite a Senha de Usuário : " USERPASSWORD
+#read -p "Digite a Senha de Usuário : " USERPASSWORD
+
+read -s Senha
 
 echo -e "$(tput sgr0)"
 
@@ -268,7 +270,9 @@ echo -e "Senha de Root (Administrador)"
 
 echo -e "\n"
 
-read -p "Digite a Senha de Root : " ROOTPASSWORD
+#read -p "Digite a Senha de Root : " ROOTPASSWORD
+
+read -s Senha
 
 echo -e "$(tput sgr0)"
 
