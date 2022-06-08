@@ -51,8 +51,9 @@ read ARQUIVOS
 
 if [ "$ARQUIVOS" = "1" ];then
 
+
+echo -e "\n"
 echo "Ext4"
-sleep 2
 echo -e "$(tput sgr0)"
 parted /dev/sda mkpart primary fat32 1MiB 301MiB -s
 parted /dev/sda set 1 esp on
@@ -68,8 +69,8 @@ mount /dev/sda1 /mnt/boot/efi
 
 elif [ "$ARQUIVOS" = "2" ];then
 
+echo -e "\n"
 echo "Btrfs"
-sleep 2
 echo -e "$(tput sgr0)"
 parted /dev/sda mkpart primary fat32 1MiB 301MiB -s
 parted /dev/sda set 1 esp on
@@ -83,8 +84,8 @@ mount /dev/sda1 /mnt/boot/efi
 
 elif [ "$ARQUIVOS" = "3" ];then
 
+echo -e "\n"
 echo "F2FS"
-sleep 2
 echo -e "$(tput sgr0)"
 parted /dev/sda mkpart primary fat32 1MiB 301MiB -s
 parted /dev/sda set 1 esp on
@@ -98,8 +99,8 @@ mount /dev/sda1 /mnt/boot/efi
 
 elif [ "$ARQUIVOS" = "4" ];then
 
+echo -e "\n"
 echo "XFS"
-sleep 2
 echo -e "$(tput sgr0)"
 parted /dev/sda mkpart primary fat32 1MiB 301MiB -s
 parted /dev/sda set 1 esp on
@@ -150,8 +151,9 @@ read -p ARQUIVOS
 
 if [ "$ARQUIVOS" = "1" ];then
 
+
+echo -e "\n"
 echo "Ext4"
-sleep 2
 echo -e "$(tput sgr0)"
 parted /dev/sda mkpart primary fat32 1MiB 301MiB -s
 parted /dev/sda set 1 esp on
@@ -167,8 +169,8 @@ mount /dev/sda1 /mnt/boot/efi
 
 elif [ "$ARQUIVOS" = "2" ];then
 
+echo -e "\n"
 echo "Btrfs"
-sleep 2
 echo -e "$(tput sgr0)"
 parted /dev/sda mkpart primary fat32 1MiB 301MiB -s
 parted /dev/sda set 1 esp on
@@ -182,8 +184,8 @@ mount /dev/sda1 /mnt/boot/efi
 
 elif [ "$ARQUIVOS" = "3" ];then
 
+echo -e "\n"
 echo "F2FS"
-sleep 2
 echo -e "$(tput sgr0)"
 parted /dev/sda mkpart primary fat32 1MiB 301MiB -s
 parted /dev/sda set 1 esp on
@@ -197,8 +199,8 @@ mount /dev/sda1 /mnt/boot/efi
 
 elif [ "$ARQUIVOS" = "4" ];then
 
+echo -e "\n"
 echo "XFS"
-sleep 2
 echo -e "$(tput sgr0)"
 parted /dev/sda mkpart primary fat32 1MiB 301MiB -s
 parted /dev/sda set 1 esp on
@@ -254,19 +256,16 @@ echo -e "Senha do Usuário"
 
 echo -e "\n"
 
-#read -p "Digite a Senha de Usuário : " USERPASSWORD
-
-#read -s USERPASSWORD
-
-
 stty -echo
+
 printf "Digite a Senha de Usuário: "
+
 read USERPASSWORD
+
 stty echo
 
-
-
 echo -e "$(tput sgr0)"
+
 
 
 
@@ -279,8 +278,11 @@ echo -e "Senha de Root (Administrador)"
 echo -e "\n"
 
 stty -echo
+
 printf "Digite a Senha de Root: "
+
 read ROOTPASSWORD
+
 stty echo
 
 echo -e "$(tput sgr0)"
@@ -457,8 +459,6 @@ if [ "$KERNEL" = "1" ];then
 
 echo "Stable"
 
-sleep 2
-
 echo -e "$(tput sgr0)"
 
 pacstrap /mnt base btrfs-progs dosfstools e2fsprogs f2fs-tools dosfstools xfsprogs linux linux-firmware
@@ -468,8 +468,6 @@ pacstrap /mnt base btrfs-progs dosfstools e2fsprogs f2fs-tools dosfstools xfspro
 elif [ "$KERNEL" = "2" ];then
 
 echo "Zen"
-
-sleep 2
 
 echo -e "$(tput sgr0)"
 
@@ -481,8 +479,6 @@ elif [ "$KERNEL" = "3" ];then
 
 echo "LTS"
 
-sleep 2
-
 echo -e "$(tput sgr0)"
 
 pacstrap /mnt base btrfs-progs dosfstools e2fsprogs f2fs-tools dosfstools xfsprogs linux-lts linux-firmware
@@ -492,8 +488,6 @@ pacstrap /mnt base btrfs-progs dosfstools e2fsprogs f2fs-tools dosfstools xfspro
 elif [ "$KERNEL" = "4" ];then
 
 echo "Hardened"
-
-sleep 2
 
 echo -e "$(tput sgr0)"
 
@@ -618,8 +612,6 @@ if [ "$PDRIVER" = "1" ];then
 
 echo "AMDGPU"
 
-sleep 2
-
 echo -e "$(tput sgr0)"
 
 arch-chroot /mnt pacman -S xf86-video-amdgpu --noconfirm
@@ -629,8 +621,6 @@ elif [ "$PDRIVER" = "2" ];then
 
 echo "ATI"
 
-sleep 2
-
 echo -e "$(tput sgr0)\n\n"
 
 arch-chroot /mnt pacman -S xf86-video-ati --noconfirm
@@ -639,8 +629,6 @@ arch-chroot /mnt pacman -S xf86-video-ati --noconfirm
 elif [ "$PDRIVER" = "3" ];then
 
 echo "Intel"
-
-sleep 2
 
 echo -e "$(tput sgr0)\n\n"
 
@@ -652,8 +640,6 @@ elif [ "$PDRIVER" = "4" ];then
 
 echo "Nvidia (Open Source)"
 
-sleep 2
-
 echo -e "$(tput sgr0)\n\n"
 
 arch-chroot /mnt pacman -S xf86-video-nouveau --noconfirm
@@ -661,8 +647,6 @@ arch-chroot /mnt pacman -S xf86-video-nouveau --noconfirm
 elif [ "$PDRIVER" = "5" ];then
 
 echo "Nvidia (Proprietário)"
-
-sleep 2
 
 echo -e "$(tput sgr0)\n\n"
 
@@ -672,8 +656,6 @@ arch-chroot /mnt pacman -S xf86-video-nvidia --noconfirm
 elif [ "$PDRIVER" = "6" ];then
 
 echo "VMWARE"
-
-sleep 2
 
 echo -e "$(tput sgr0)\n\n"
 
@@ -693,8 +675,6 @@ if [ "$SDRIVER" = "1" ];then
 
 echo "AMDGPU"
 
-sleep 2
-
 echo -e "$(tput sgr0)"
 
 arch-chroot /mnt pacman -S xf86-video-amdgpu --noconfirm
@@ -704,8 +684,6 @@ elif [ "$SDRIVER" = "2" ];then
 
 echo "ATI"
 
-sleep 2
-
 echo -e "$(tput sgr0)\n\n"
 
 arch-chroot /mnt pacman -S xf86-video-ati --noconfirm
@@ -714,8 +692,6 @@ arch-chroot /mnt pacman -S xf86-video-ati --noconfirm
 elif [ "$SDRIVER" = "3" ];then
 
 echo "Intel"
-
-sleep 2
 
 echo -e "$(tput sgr0)\n\n"
 
@@ -727,8 +703,6 @@ elif [ "$SDRIVER" = "4" ];then
 
 echo "Nvidia (Open Source)"
 
-sleep 2
-
 echo -e "$(tput sgr0)\n\n"
 
 arch-chroot /mnt pacman -S xf86-video-nouveau --noconfirm
@@ -736,8 +710,6 @@ arch-chroot /mnt pacman -S xf86-video-nouveau --noconfirm
 elif [ "$SDRIVER" = "5" ];then
 
 echo "Nvidia (Proprietário)"
-
-sleep 2
 
 echo -e "$(tput sgr0)\n\n"
 
@@ -753,8 +725,6 @@ fi
 if [ "$SWAP" = "2" ];then
 
 echo "2GB"
-
-sleep 2
 
 echo -e "$(tput sgr0)"
 
@@ -785,8 +755,6 @@ fi
 if [ "$SWAP" = "4" ];then
 
 echo "4GB"
-
-sleep 2
 
 echo -e "$(tput sgr0)"
 
@@ -824,8 +792,6 @@ if [ "$DE" = "1" ];then
 
 echo "Budge"
 
-sleep 2
-
 echo -e "$(tput sgr0)\n\n"
 
 ##Pacotes Padrão
@@ -843,7 +809,6 @@ elif [ "$DE" = "2" ];then
 
 echo "Cinnamon"
 
-sleep 2
 echo -e "$(tput sgr0)\n\n"
 
 ##Pacotes Padrão
@@ -861,7 +826,6 @@ elif [ "$DE" = "3" ];then
 
 echo "Deepin"
 
-sleep 2
 echo -e "$(tput sgr0)\n\n"
 
 ##Pacotes Padrão
@@ -879,7 +843,6 @@ elif [ "$DE" = "4" ];then
 
 echo "Gnome"
 
-sleep 2
 echo -e "$(tput sgr0)\n\n"
 
 ##Pacotes Padrão
@@ -894,8 +857,6 @@ arch-chroot /mnt systemctl enable gdm NetworkManager
 elif [ "$DE" = "5" ];then
 
 echo "KDE Plasma (X11)"
-
-sleep 2
 
 echo -e "$(tput sgr0)\n\n"
 
@@ -913,8 +874,6 @@ elif [ "$DE" = "6" ];then
 
 echo "KDE Plasma (Wayland)"
 
-sleep 2
-
 echo -e "$(tput sgr0)\n\n"
 
 ##Pacotes Padrão
@@ -929,8 +888,6 @@ arch-chroot /mnt systemctl enable sddm NetworkManager
 elif [ "$DE" = "7" ];then
 
 echo "LXDE"
-
-sleep 2
 
 echo -e "$(tput sgr0)\n\n"
 
@@ -947,7 +904,6 @@ elif [ "$DE" = "8" ];then
 
 echo "LXQT"
 
-sleep 2
 echo -e "$(tput sgr0)\n\n"
 
 ##Pacotes Padrão
@@ -962,8 +918,6 @@ arch-chroot /mnt systemctl enable sddm NetworkManager
 elif [ "$DE" = "9" ];then
 
 echo "MATE"
-
-sleep 2
 
 echo -e "$(tput sgr0)\n\n"
 
@@ -981,8 +935,6 @@ arch-chroot /mnt systemctl enable lightdm NetworkManager
 elif [ "$DE" = "10" ];then
 
 echo "XFCE"
-
-sleep 2
 
 echo -e "$(tput sgr0)\n\n"
 
