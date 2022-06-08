@@ -260,11 +260,9 @@ echo -e "\n"
 
 
 stty -echo
-printf "Senha: "
+printf "Digite a Senha de Usuário: "
 read USERPASSWORD
 stty echo
-printf "\n"
-printf $USERPASSWORD
 
 
 
@@ -281,12 +279,9 @@ echo -e "Senha de Root (Administrador)"
 echo -e "\n"
 
 stty -echo
-printf "Senha: "
+printf "Digite a Senha de Root: "
 read ROOTPASSWORD
 stty echo
-printf "\n"
-printf $ROOTPASSWORD
-
 
 echo -e "$(tput sgr0)"
 
