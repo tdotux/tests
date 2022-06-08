@@ -554,7 +554,7 @@ echo -e "$ROOTPASSWORD\n$ROOTPASSWORD" | arch-chroot /mnt passwd
 
 ### SET-HOSTNAME-AND-CONFIGURE-HOSTS
 
-arch-chroot /mnt echo "$HOSTNAME" > /etc/hostname
+arch-chroot /mnt echo -e "$HOSTNAME" | tee /etc/hostname
 
 echo -e "127.0.0.1 localhost.localdomain localhost\n::1 localhost.localdomain localhost\n127.0.1.1 $HOSTNAME.localdomain $HOSTNAME" | arch-chroot /mnt tee /etc/hosts
 
