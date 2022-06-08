@@ -258,9 +258,15 @@ echo -e "\n"
 
 #read -s USERPASSWORD
 
-read -sp "Digite a Senha do Usuário: "; echo
 
-echo $USERPASSWORD
+stty -echo
+printf "Senha: "
+read USERPASSWORD
+stty echo
+printf "\n"
+printf $USERPASSWORD
+
+
 
 echo -e "$(tput sgr0)"
 
@@ -274,13 +280,13 @@ echo -e "Senha de Root (Administrador)"
 
 echo -e "\n"
 
-#read -p "Digite a Senha de Root : " ROOTPASSWORD
+stty -echo
+printf "Senha: "
+read ROOTPASSWORD
+stty echo
+printf "\n"
+printf $ROOTPASSWORD
 
-#read -s ROOTPASSWORD
-
-read -sp "Digite a Senha de Root: "; echo
-
-echo $ROOTPASSWORD
 
 echo -e "$(tput sgr0)"
 
