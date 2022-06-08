@@ -44,9 +44,8 @@ echo -e "4 - XFS"
 
 echo -e "\n\n"
 
-echo -ne "Escolha um Sistema de Arquivos : "
+echo -ne "Escolha um Sistema de Arquivos : " ; read ARQUIVOS
 
-read ARQUIVOS
 
 
 if [ "$ARQUIVOS" = "1" ];then
@@ -141,9 +140,6 @@ echo -e "4 - XFS"
 echo -e "\n\n"
 
 echo -ne "Escolha um Sistema de Arquivos : "
-
-
-#read -n1 -s ARQUIVOS
 
 read -p ARQUIVOS
 
@@ -328,7 +324,7 @@ echo -e "Senha do Usuário"
 
 echo -e "\n"
 
-read -p "Digite a Senha de Usuário : " USERPASSWORD
+read -sp "Digite a Senha de Usuário : " USERPASSWORD
 
 echo -e "$USERPASSWORD\n$USERPASSWORD" | arch-chroot /mnt passwd $USERNAME
 
@@ -344,7 +340,7 @@ echo -e "Senha de Root (Administrador)"
 
 echo -e "\n"
 
-read -p "Digite a Senha de Root : " ROOTPASSWORD
+read -sp "Digite a Senha de Root : " ROOTPASSWORD
 
 echo -e "$ROOTPASSWORD\n$ROOTPASSWORD" | arch-chroot /mnt passwd
 
