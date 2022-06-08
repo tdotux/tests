@@ -233,6 +233,9 @@ echo -e "$(tput sgr0)"
 
 
 
+echo -e "\n\n\n"
+
+
 
 ###USERNAME
 
@@ -245,6 +248,10 @@ echo -e "\n"
 read -p "Digite o Nome de Usuário : " USERNAME
 
 echo -e "$(tput sgr0)"
+
+
+
+echo -e "\n\n\n"
 
 
 
@@ -268,6 +275,9 @@ echo -e "$(tput sgr0)"
 
 
 
+echo -e "\n\n\n"
+
+
 
 ### SENHA DE ROOT
 
@@ -286,6 +296,10 @@ read ROOTPASSWORD
 stty echo
 
 echo -e "$(tput sgr0)"
+
+
+
+echo -e "\n\n\n"
 
 
 
@@ -316,6 +330,8 @@ read -p "Escolha um Driver Primário : " PDRIVER
 echo -e "$(tput sgr0)"
 
 
+
+echo -e "\n\n\n"
 
 
 
@@ -348,6 +364,9 @@ read -p "Escolha um Driver Secundário : " SDRIVER
 
 echo -e "$(tput sgr0)"
 
+
+
+echo -e "\n\n\n"
 
 
 
@@ -389,6 +408,9 @@ echo -e "$(tput sgr0)"
 
 
 
+echo -e "\n\n\n"
+
+
 
 ###INTERFACE GRÁFICA
 
@@ -426,6 +448,9 @@ echo -e "$(tput sgr0)"
 
 
 
+echo -e "\n\n\n"
+
+
 
 ###PACSTRAP E KERNEL
 
@@ -452,6 +477,10 @@ echo -e "4 - Hardened (Focado em Segurança)"
 echo -e "\n\n"
 
 read -p "Escolha um Kernel : " KERNEL
+
+
+
+echo -e "\n\n\n"
 
 
 
