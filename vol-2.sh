@@ -26,13 +26,13 @@ printf '\x1bc';
 PS3=$'\nSelecione um Sistema de Arquivos: ';
 echo -e '### Sistema de Arquivos ### '
 select filesystem in {EXT4,BTRFS,F2FS,XFS};do
-	case $filesystem in
-	EXT4|BTRFS|F2FS|XFS)
-	parted /dev/sda mkpart primary fat32 1MiB 301MiB -s
-    parted /dev/sda set 1 esp on
-    parted /dev/sda mkpart primary ${filesystem,,} 301MiB 100% -s
-    *) echo -e "\e[1;38mErro\e[m\nEscolha uma Opção válida.";continue;;
-	esac
+case $filesystem in
+EXT4|BTRFS|F2FS|XFS)
+parted /dev/sda mkpart primary fat32 1MiB 301MiB -s
+parted /dev/sda set 1 esp on
+parted /dev/sda mkpart primary ${filesystem,,} 301MiB 100% -s
+*) echo -e "\e[1;38mErro\e[m\nEscolha uma Opção válida.";continue;;
+esac
 break;
 done
 
@@ -62,11 +62,11 @@ printf '\x1bc';
 PS3=$'\nSelecione um Driver de Vídeo: ';
 echo -e '### Driver de Vídeo ### '
 select drive in {AMDGPU,ATI,INTEL,Nouveau,Nvidia,VMWARE};do
-	case $drive in
-	AMDGPU|ATI|INTEL|Nouveau|Nvidia|VMWARE)
-	sudo pacman -S xf86-video-${drive,,} ;;
-	*) echo -e "\e[1;38mErro\e[m\nEscolha uma Opção válida.";continue;;
-	esac
+case $drive in
+AMDGPU|ATI|INTEL|Nouveau|Nvidia|VMWARE)
+sudo pacman -S xf86-video-${drive,,} ;;
+*) echo -e "\e[1;38mErro\e[m\nEscolha uma Opção válida.";continue;;
+esac
 break;
 done
 
