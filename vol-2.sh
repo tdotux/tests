@@ -23,16 +23,18 @@ select filesystem in {ext4,btrfs,F2fs,xfs};do
 	parted /dev/sda set 1 esp on
 	parted /dev/sda mkpart primary ${filesystem,,} 301MiB 100% -s
 	mkfs.${filesystem,,} -f /dev/sda2;;
-	mount /dev/sda2 /mnt
-	mkdir /mnt/boot/
-	mkdir /mnt/boot/efi
-	mount /dev/sda1 /mnt/boot/efi
 	
 	*) echo -e "\e[1;38mErro\e[m\nEscolha uma Opção válida.";continue;;
 	esac
 break;
 done 
 
+
+
+mount /dev/sda2 /mnt
+mkdir /mnt/boot/
+mkdir /mnt/boot/efi
+mount /dev/sda1 /mnt/boot/efi
 
 
 
