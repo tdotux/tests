@@ -4,12 +4,17 @@
 
 
 
+
 printf '\x1bc';
 PS3=$'\nSelecione uma opção: ';
 echo -e 'Escolha um Sistema de Arquivos: '
-select filesystem in {EXT4,BTRFS,F2FS,XFS};do
+select filesystem in {ext4,btrfs,F2fs,xfs};do
 	case $filesystem in
-	BTRFS|F2FS|XFS)
+	btrfs|f2fs|xfs)
+	
+	parted /dev/sda mkpart primary fat32 1MiB 301MiB -s
+	parted /dev/sda set 1 esp on
+	parted /dev/sda mkpart primary ${drive,,} 301MiB 100% -s
 	mkfs.${filesystem,,} -f /dev/sda2;;
 	*) echo -e "\e[1;38mErro\e[m\nEscolha uma Opção válida.";continue;;
 	esac
