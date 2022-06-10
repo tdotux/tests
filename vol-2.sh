@@ -3,12 +3,14 @@
 
 
 
-###UTILITARIOS BASICOS
+### UTILITARIOS BASICOS
 
 pacman -S dosfstools nano wget --noconfirm
 
 
 
+
+### SISTEMA DE ARQUIVOS
 
 
 printf '\x1bc';
@@ -38,21 +40,8 @@ mount /dev/sda1 /mnt/boot/efi
 
 
 
-#printf '\x1bc';
-#PS3=$'\nSelecione uma opção: ';
-#echo -e 'Escolha um Driver de Vídeo: '
-#select drive in {AMDGPU,ATI,INTEL,Nouveau,Nvidia,VMWARE};do
-#	case $drive in
-#	AMDGPU|ATI|INTEL|Nouveau|Nvidia|VMWARE)
-#	pacman -S xf86-video-${drive,,};;
-#	*) echo -e "\e[1;38mErro\e[m\nEscolha uma Opção válida.";continue;;
-#	esac
-#break;
-#done 
 
-
-
-
+### KERNEL
 
 
 printf '\x1bc';
@@ -69,4 +58,13 @@ done
 
 
 
-
+printf '\x1bc';
+PS3=$'\nSelecione uma opção: ';
+echo -e 'Escolha um Driver de Vídeo: '
+select drive in {amdgpu,ati,intel,nouveau,nvidia,vmware};do
+	case $drive in
+	amdgpu|ati|intel|nouveau|nvidia|vmware)
+	*) echo -e "\e[1;38mErro\e[m\nEscolha uma Opção válida.";continue;;
+	esac
+break;
+done 
