@@ -7,7 +7,7 @@
 printf '\x1bc';
 PS3=$'\nSelecione uma opção: ';
 echo -e 'Escolha um Sistema de Arquivos: '
-select filesystem in {EXT4|BTRFS|F2FS|XFS};do
+select filesystem in {EXT4,BTRFS,F2FS,XFS};do
 	case $filesystem in
 	BTRFS|F2FS|XFS)
 	mkfs.${filesystem,,} -f /dev/sda2;;
