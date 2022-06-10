@@ -56,31 +56,4 @@ mount /dev/sda1 /mnt/boot/efi
 
 
 
-### Driver de Video
 
-printf '\x1bc';
-PS3=$'\nSelecione um Driver de Vídeo: ';
-echo -e '### Driver de Vídeo ### '
-select drive in {AMDGPU,ATI,INTEL,Nouveau,Nvidia,VMWARE};do
-case $drive in
-AMDGPU|ATI|INTEL|Nouveau|Nvidia|VMWARE)
-sudo pacman -S xf86-video-${drive,,} ;;
-*) echo -e "\e[1;38mErro\e[m\nEscolha uma Opção válida.";continue;;
-esac
-break;
-done
-
-
-### KERNEL
-
-printf '\x1bc';
-PS3=$'\nSelecione um Kernel: ';
-echo -e '### Kernel ### '
-select kernel in {STABLE,ZEN,LTS,HARDENED};do
-	case $kernel in
-	STABLE|ZEN|LTS|HARDENED)
-	pacstrap /mnt base btrfs-progs dosfstools e2fsprogs f2fs-tools dosfstools xfsprogs linux-firmware ${kernel,,} ;;
-	*) echo -e "\e[1;38mErro\e[m\nEscolha uma Opção válida.";continue;;
-	esac
-break;
-done
