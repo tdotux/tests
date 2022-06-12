@@ -64,7 +64,7 @@ echo -e 'Escolha um Driver de Vídeo: '
 select drive in {amdgpu,ati,intel,nouveau,nvidia,vmware};do
 	case $drive in
 	amdgpu|ati|intel|nouveau|nvidia|vmware)
-	echo "${filesystem,,}"
+	echo "${drive,,}"
 	*) echo -e "\e[1;38mErro\e[m\nEscolha uma Opção válida.";continue;;
 	esac
 break;
