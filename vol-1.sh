@@ -23,8 +23,12 @@ select filesystem in {ext4,btrfs,F2fs,xfs};do
 	parted /dev/sda mklabel gpt -s
 	parted /dev/sda mkpart primary fat32 1MiB 301MiB -s
 	parted /dev/sda set 1 esp on
-	parted /dev/sda mkpart primary ${filesystem,,} 301MiB 100% -s
-	mkfs.${filesystem,,} -f /dev/sda2;;
+	parted /dev/sda mkpart primary btrfs 301MiB 100% -s
+	mkfs.btrfs -f /dev/sda2
+
+	
+	#parted /dev/sda mkpart primary ${filesystem,,} 301MiB 100% -s
+	#mkfs.${filesystem,,} -f /dev/sda2;;
 	
 	*) echo -e "\e[1;38mErro\e[m\nEscolha uma Opção válida.";continue;;
 	esac
