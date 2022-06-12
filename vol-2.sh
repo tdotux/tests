@@ -166,6 +166,29 @@ done
 genfstab -U /mnt > /mnt/etc/fstab
 
 
+
+###### INSIDE CHROOT
+
+
+
+###AJUSTAR HORA AUTOMATICAMENTE
+
+arch-chroot /mnt timedatectl set-ntp true
+
+
+
+###SINCRONIZAR REPOSITORIOS
+
+arch-chroot /mnt pacman -Syy git --noconfirm
+
+
+###UTILITARIOS BASICOS
+
+arch-chroot /mnt pacman -Sy nano wget pacman-contrib reflector sudo grub --noconfirm
+
+
+
+
 ###ADD-USER
 
 
@@ -467,7 +490,6 @@ else
 echo -e "Sistema EFI"
 pacman -S efibootmgr --noconfirm
 arch-chroot /mnt grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=Arch --removable && arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
-
 fi
 
 
