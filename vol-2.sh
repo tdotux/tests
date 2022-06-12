@@ -58,14 +58,14 @@ done
 
 
 
-printf '\x1bc';
-PS3=$'\nSelecione uma opção: ';
-echo -e 'Escolha um Driver de Vídeo: '
-select drive in {amdgpu,ati,intel,nouveau,nvidia,vmware};do
-	case $drive in
-	amdgpu|ati|intel|nouveau|nvidia|vmware)
-	echo -e "${filesystem,,}"
-	*) echo -e "\e[1;38mErro\e[m\nEscolha uma Opção válida.";continue;;
-	esac
-break;
-done 
+#printf '\x1bc';
+#PS3=$'\nSelecione uma opção: ';
+#echo -e 'Escolha um Driver de Vídeo: '
+#select drive in {amdgpu,ati,intel,nouveau,nvidia,vmware};do
+#	case $drive in
+#	amdgpu|ati|intel|nouveau|nvidia|vmware)
+#	echo -e "${filesystem,,}"
+#	*) echo -e "\e[1;38mErro\e[m\nEscolha uma Opção válida.";continue;;
+#	esac
+#break;
+#done 
