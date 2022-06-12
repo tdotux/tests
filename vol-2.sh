@@ -61,10 +61,10 @@ done
 printf '\x1bc';
 PS3=$'\nSelecione uma opção: ';
 echo -e 'Escolha um Driver de Vídeo: '
-select drive in {amdgpu,ati,intel,nouveau,nvidia,vmware};do
+select drive in {AMDGPU,ATI,INTEL,Nouveau,Nvidia,VMWARE};do
 	case $drive in
-	amdgpu|ati|intel|nouveau|nvidia|vmware)
-	echo "${drive,,}"
+	AMDGPU|ATI|INTEL|Nouveau|Nvidia|VMWARE)
+	echo -e "Opção: ${drive,,}\nOK";;
 	*) echo -e "\e[1;38mErro\e[m\nEscolha uma Opção válida.";continue;;
 	esac
 break;
