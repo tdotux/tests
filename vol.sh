@@ -322,7 +322,7 @@ arch-chroot /mnt pacman -S xf86-video-${drive,,}
 
 
 
-if [ "$DE" = "1" ];then
+if [ "$DE" = "Budgie" ];then
 
 echo "Budge"
 
@@ -339,7 +339,7 @@ arch-chroot /mnt systemctl enable lightdm NetworkManager
 
 
 
-elif [ "$DE" = "2" ];then
+elif [ "$DE" = "Cinnamon" ];then
 
 echo "Cinnamon"
 
@@ -356,7 +356,7 @@ arch-chroot /mnt systemctl enable lightdm NetworkManager
 
 
 
-elif [ "$DE" = "3" ];then
+elif [ "$DE" = "Deepin" ];then
 
 echo "Deepin"
 
@@ -373,7 +373,7 @@ arch-chroot /mnt systemctl enable lightdm NetworkManager
 
 
 
-elif [ "$DE" = "4" ];then
+elif [ "$DE" = "Gnome" ];then
 
 echo "Gnome"
 
@@ -388,7 +388,7 @@ arch-chroot /mnt pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip 
 arch-chroot /mnt pacman -S gnome gnome-tweaks network-manager-applet gdm --noconfirm
 arch-chroot /mnt systemctl enable gdm NetworkManager
 
-elif [ "$DE" = "5" ];then
+elif [ "$DE" = "KDE Plasma (X11)" ];then
 
 echo "KDE Plasma (X11)"
 
@@ -404,7 +404,7 @@ arch-chroot /mnt pacman -S plasma konsole sddm dolphin spectacle kcalc kwrite gw
 arch-chroot /mnt systemctl enable sddm NetworkManager
 
 
-elif [ "$DE" = "6" ];then
+elif [ "$DE" = "KDE Plasma (Wayland)" ];then
 
 echo "KDE Plasma (Wayland)"
 
@@ -419,7 +419,7 @@ arch-chroot /mnt pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip 
 arch-chroot /mnt pacman -S plasma konsole sddm dolphin spectacle kcalc kwrite gwenview plasma-nm plasma-pa plasma-wayland-session --noconfirm
 arch-chroot /mnt systemctl enable sddm NetworkManager
 
-elif [ "$DE" = "7" ];then
+elif [ "$DE" = "LXDE" ];then
 
 echo "LXDE"
 
@@ -434,7 +434,7 @@ arch-chroot /mnt pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip 
 arch-chroot /mnt pacman -S lxde-gtk3 lxtask network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
 arch-chroot /mnt systemctl enable lightdm NetworkManager
 
-elif [ "$DE" = "8" ];then
+elif [ "$DE" = "LXQT" ];then
 
 echo "LXQT"
 
@@ -449,7 +449,7 @@ arch-chroot /mnt pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip 
 arch-chroot /mnt pacman -S lxqt lxtask network-manager-applet sddm --noconfirm
 arch-chroot /mnt systemctl enable sddm NetworkManager
 
-elif [ "$DE" = "9" ];then
+elif [ "$DE" = "MATE" ];then
 
 echo "MATE"
 
@@ -467,7 +467,7 @@ arch-chroot /mnt systemctl enable lightdm NetworkManager
 
 
 
-elif [ "$DE" = "10" ];then
+elif [ "$DE" = "XFCE" ];then
 
 echo "XFCE"
 
