@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 
 
+
 ### UTILITARIOS BASICOS
 
 pacman -S dosfstools nano wget --noconfirm
@@ -65,8 +66,8 @@ done
 printf '\x1bc';
 PS3=$'\nSelecione uma opção: ';
 echo -e 'Escolha uma Interface Grafica: '
-select de in {Budgie,Cinnamon,Deepin,Gnome,Plasma-X11,Plasma-Wayland,LXDE,LXQT,MATE,XFCE};do
-	case $de in
+select DE in {Budgie,Cinnamon,Deepin,Gnome,Plasma-X11,Plasma-Wayland,LXDE,LXQT,MATE,XFCE};do
+	case $DE in
 	Budgie|Cinnamon|Deepin|Gnome|Plasma-X11|Plasma-Wayland|LXDE|LXQT|MATE|XFCE)
 	echo -e "${de,,}\nOK";;
 	*) echo -e "\e[1;38mErro\e[m\nEscolha uma Opção válida.";continue;;
@@ -404,7 +405,7 @@ arch-chroot /mnt pacman -S plasma konsole sddm dolphin spectacle kcalc kwrite gw
 arch-chroot /mnt systemctl enable sddm NetworkManager
 
 
-elif [ "$DE" = "Plasma_Wayland" ];then
+elif [ "$DE" = "Plasma-Wayland" ];then
 
 echo "Plasma-Wayland"
 
