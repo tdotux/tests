@@ -314,7 +314,7 @@ cp /mnt/etc/sudoers /mnt/etc/sudoers.bak && sed -i '82c\ %wheel ALL=(ALL:ALL) AL
 
 ###SET-PRIMARY-VIDEO-DRIVER
 
-arch-chroot /mnt pacman -S xf86-video-${drive,,}
+arch-chroot /mnt pacman -S xf86-video-${drive,,} --noconfirm
 
 
 
