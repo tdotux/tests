@@ -65,10 +65,10 @@ done
 printf '\x1bc';
 PS3=$'\nSelecione uma opção: ';
 echo -e 'Escolha uma Interface Grafica: '
-select de in {Budgie,Cinnamon,Deepin,Gnome,KDE Plasma (X11),KDE Plasma (Wayland),LXDE,LXQT,Mate,XFCE};do
-	case $drive in
-	Budgie|Cinnamon|Deepin|Gnome|KDE Plasma (X11)|KDE Plasma (Wayland)|LXDE|LXQT|Mate|XFCE)
-	echo -e "${drive,,}\nOK";;
+select de in {Budgie,Cinnamon,Deepin,Gnome,KDE Plasma (X11),KDE Plasma (Wayland),LXDE,LXQT,MATE,XFCE};do
+	case $de in
+	Budgie|Cinnamon|Deepin|Gnome|KDE Plasma (X11)|KDE Plasma (Wayland)|LXDE|LXQT|MATE|XFCE)
+	echo -e "${de,,}\nOK";;
 	*) echo -e "\e[1;38mErro\e[m\nEscolha uma Opção válida.";continue;;
 	esac
 break;
