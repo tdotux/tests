@@ -65,9 +65,9 @@ done
 printf '\x1bc';
 PS3=$'\nSelecione uma opção: ';
 echo -e 'Escolha uma Interface Grafica: '
-select de in {Budgie,Cinnamon,Deepin,Gnome,KDE Plasma_X11,Plasma_Wayland,LXDE,LXQT,MATE,XFCE};do
+select de in {Budgie,Cinnamon,Deepin,Gnome,Plasma-X11,Plasma-Wayland,LXDE,LXQT,MATE,XFCE};do
 	case $de in
-	Budgie|Cinnamon|Deepin|Gnome|Plasma_X11|Plasma_Wayland|LXDE|LXQT|MATE|XFCE)
+	Budgie|Cinnamon|Deepin|Gnome|Plasma-X11|Plasma-Wayland|LXDE|LXQT|MATE|XFCE)
 	echo -e "${de,,}\nOK";;
 	*) echo -e "\e[1;38mErro\e[m\nEscolha uma Opção válida.";continue;;
 	esac
@@ -388,9 +388,9 @@ arch-chroot /mnt pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip 
 arch-chroot /mnt pacman -S gnome gnome-tweaks network-manager-applet gdm --noconfirm
 arch-chroot /mnt systemctl enable gdm NetworkManager
 
-elif [ "$DE" = "KDE Plasma_X11" ];then
+elif [ "$DE" = "Plasma-X11" ];then
 
-echo "Plasma_X11"
+echo "Plasma-X11"
 
 echo -e "$(tput sgr0)\n\n"
 
@@ -406,7 +406,7 @@ arch-chroot /mnt systemctl enable sddm NetworkManager
 
 elif [ "$DE" = "Plasma_Wayland" ];then
 
-echo "Plasma_Wayland"
+echo "Plasma-Wayland"
 
 echo -e "$(tput sgr0)\n\n"
 
