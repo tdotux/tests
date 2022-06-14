@@ -251,7 +251,7 @@ arch-chroot /mnt timedatectl set-ntp true
 
 ###FUSO HORÁRIO
 
-arch-chroot /mnt ln -sf /usr/share/zoneinfo/America/Sao_Paulo arch-chroot /mnt /etc/localtime
+arch-chroot /mnt /bin/bash -c "ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime"
 
 
 
