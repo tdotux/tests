@@ -65,9 +65,9 @@ done
 printf '\x1bc';
 PS3=$'\nSelecione uma opção: ';
 echo -e 'Escolha uma Interface Grafica: '
-select de in {Budgie,Cinnamon,Deepin,Gnome,KDE Plasma X11,KDE Plasma Wayland,LXDE,LXQT,MATE,XFCE};do
+select de in {Budgie,Cinnamon,Deepin,Gnome,KDE Plasma_X11,Plasma_Wayland,LXDE,LXQT,MATE,XFCE};do
 	case $de in
-	Budgie|Cinnamon|Deepin|Gnome|KDE Plasma X11|KDE Plasma Wayland|LXDE|LXQT|MATE|XFCE)
+	Budgie|Cinnamon|Deepin|Gnome|Plasma_X11|Plasma_Wayland|LXDE|LXQT|MATE|XFCE)
 	echo -e "${de,,}\nOK";;
 	*) echo -e "\e[1;38mErro\e[m\nEscolha uma Opção válida.";continue;;
 	esac
@@ -388,9 +388,9 @@ arch-chroot /mnt pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip 
 arch-chroot /mnt pacman -S gnome gnome-tweaks network-manager-applet gdm --noconfirm
 arch-chroot /mnt systemctl enable gdm NetworkManager
 
-elif [ "$DE" = "KDE Plasma X11" ];then
+elif [ "$DE" = "KDE Plasma_X11" ];then
 
-echo "KDE Plasma X11"
+echo "Plasma_X11"
 
 echo -e "$(tput sgr0)\n\n"
 
@@ -404,9 +404,9 @@ arch-chroot /mnt pacman -S plasma konsole sddm dolphin spectacle kcalc kwrite gw
 arch-chroot /mnt systemctl enable sddm NetworkManager
 
 
-elif [ "$DE" = "KDE Plasma Wayland" ];then
+elif [ "$DE" = "Plasma_Wayland" ];then
 
-echo "KDE Plasma Wayland"
+echo "Plasma_Wayland"
 
 echo -e "$(tput sgr0)\n\n"
 
