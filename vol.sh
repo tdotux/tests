@@ -57,6 +57,25 @@ done
 
 
 
+
+
+### INTERFACE GRAFICA (DE)
+
+
+printf '\x1bc';
+PS3=$'\nSelecione uma opção: ';
+echo -e 'Escolha uma Interface Grafica: '
+select de in {Budgie,Cinnamon,Deepin,Gnome,KDE Plasma (X11),KDE Plasma (Wayland),LXDE,LXQT,Mate,XFCE};do
+	case $drive in
+	Budgie|Cinnamon|Deepin|Gnome|KDE Plasma (X11)|KDE Plasma (Wayland)|LXDE|LXQT|Mate|XFCE)
+	echo -e "${drive,,}\nOK";;
+	*) echo -e "\e[1;38mErro\e[m\nEscolha uma Opção válida.";continue;;
+	esac
+break;
+done
+
+
+
 ###HOSTNAME
 
 echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
@@ -143,6 +162,7 @@ echo -e "\n\n\n"
 
 
 
+
 ### KERNEL
 
 
@@ -158,45 +178,6 @@ select kernel in {linux,linux-zen,linux-lts,linux-harneded};do
 break;
 done
 
-
-
-###INTERFACE GRÁFICA
-
-echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
-
-echo -e "#### INTERFACE GRAFICA (DE) ####"
-
-echo -e "\n"
-
-echo -e "1 - Budgie"
-
-echo -e "2 - Cinnamon"
-
-echo -e "3 - Deepin"
-
-echo -e "4 - GNOME"
-
-echo -e "5 - KDE Plasma (X11)"
-
-echo -e "6 - KDE Plasma (Wayland)"
-
-echo -e "7 - LXDE"
-
-echo -e "8 - LXQt"
-
-echo -e "9 - MATE"
-
-echo -e "10 - XFCE"
-
-echo -e "\n"
-
-read -p "Escolha uma Interface Gráfica : " DE
-
-echo -e "$(tput sgr0)"
-
-
-
-echo -e "\n\n\n"
 
 
 ###FSTAB
