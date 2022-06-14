@@ -442,6 +442,7 @@ arch-chroot /mnt pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip 
 ##Interface e DM
 
 arch-chroot /mnt pacman -S mate mate-extra network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
+
 arch-chroot /mnt systemctl enable lightdm NetworkManager
 
 
@@ -459,6 +460,7 @@ arch-chroot /mnt pacman -S xorg-server xorg-xinit xterm networkmanager tar gzip 
 ##Interface e DM
 
 arch-chroot /mnt pacman -S xfce4 xfce4-screenshooter xfce4-pulseaudio-plugin xfce4-whiskermenu-plugin xarchiver lxtask ristretto mousepad galculator thunar-archive-plugin network-manager-applet lightdm lightdm-gtk-greeter --noconfirm
+
 arch-chroot /mnt systemctl enable lightdm NetworkManager
 
 fi
