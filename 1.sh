@@ -15,6 +15,7 @@ mkfs.fat -F32 /dev/sda1
 
 
 
+
 ### SISTEMA DE ARQUIVOS
 
 
