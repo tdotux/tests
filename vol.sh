@@ -295,10 +295,10 @@ sed -i '93c\[multilib]' /mnt/etc/pacman.conf && sed -i '94c\Include = /etc/pacma
 
 ###FUSO HORARIO
 
-arch-chroot /mnt "ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime" && arch-chroot /mnt "hwclock --systohc"
+arch-chroot /mnt ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime && arch-chroot /mnt hwclock --systohc
 
 
-arch-chroot /mnt "timedatectl set-timezone America/Sao_Paulo"
+arch-chroot /mnt timedatectl set-timezone America/Sao_Paulo
 
 
 
@@ -311,11 +311,11 @@ mv /mnt/etc/locale.gen /mnt/etc/locale.gen.bak && echo -e 'pt_BR.UTF-8 UTF-8' | 
 
 ###GRUPOS
 
-arch-chroot /mnt "groupadd -r autologin"
+arch-chroot /mnt groupadd -r autologin
 
-arch-chroot /mnt "groupadd -r sudo"
+arch-chroot /mnt groupadd -r sudo
 
-arch-chroot /mnt "usermod -G autologin,sudo,wheel,lp $USERNAME"
+arch-chroot /mnt usermod -G autologin,sudo,wheel,lp $USERNAME
 
 
 
