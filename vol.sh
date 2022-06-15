@@ -253,6 +253,7 @@ arch-chroot /mnt timedatectl set-ntp true
 
 arch_chroot "ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime"
 arch_chroot "sed -i '/#NTP=/d' /etc/systemd/timesyncd.conf"
+
 arch_chroot "sed -i 's/#Fallback//' /etc/systemd/timesyncd.conf"
 arch_chroot "echo \"FallbackNTP=0.pool.ntp.org 1.pool.ntp.org 0.fr.pool.ntp.org\" >> /etc/systemd/timesyncd.conf"
 arch_chroot "systemctl enable systemd-timesyncd.service"
@@ -292,8 +293,10 @@ sed -i '93c\[multilib]' /mnt/etc/pacman.conf && sed -i '94c\Include = /etc/pacma
 
 ###FUSO HORARIO
 
-ln -sf /mnt/usr/share/zoneinfo/America/Sao_Paulo /mnt/etc/localtime && arch-chroot /mnt hwclock --systohc
+arch-chroot /mnt "ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime" && arch-chroot /mnt hwclock --systohc
 
+
+timedatectl set-timezone America/Sao_Paulo
 
 
 
