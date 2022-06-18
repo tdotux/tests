@@ -23,17 +23,22 @@ PS3=$'\nSelecione uma opção: ';
 echo -e 'Deseja criar uma partição /home separada? '
 
 select separatehome in {Sim,Não};do
-	case $separatehome in
+    case $separatehome in
+
+    Não)
+    echo -e "${separatehome,,}";;
+
 
     Sim)
-    select homedevice in "$devices"; do
-    parted ${homedevice,,} mkpart primary ${filesystem,,} 1MiB 100% -s;;
+
+    echo -e "${separatehome,,}";;
 
 
-	Não)
-	echo -e "${separatehome,,}";;
-
-	*) echo -e "\e[1;38mErro\e[m\nEscolha uma Opção válida.";continue;;
-	esac
+    *) echo -e "\e[1;38mErro\e[m\nEscolha uma Opção válida.";continue;;
+    esac
 break;
 done
+
+
+#select homedevice in "$devices"; do
+#    parted ${homedevice,,} mkpart primary ${filesystem,,} 1MiB 100% -s;;
