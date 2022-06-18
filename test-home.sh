@@ -26,9 +26,8 @@ select separatehome in {Sim,Não};do
 	case $separatehome in
 
 	Sim)
-    select homedevice in "$devices";
+    select homedevice in "$devices"; do
     select fshome in "$filesystem"; do
-
     parted ${homedevice,,} mkpart primary ${fshome,,} 1MiB 100% -s
     done
 
