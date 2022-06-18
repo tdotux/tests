@@ -171,7 +171,7 @@ printf '\x1bc';
 
 echo "Digite e Repita a Senha de Usuário"
 
-passwd $USERNAME
+arch-chroot /mnt passwd $USERNAME
 
 
 ##### ROOT PASSWORD
@@ -180,7 +180,7 @@ printf '\x1bc';
 
 echo "Digite e Repita a Senha de ROOT"
 
-passwd
+arch-chroot /mnt passwd
 
 
 
