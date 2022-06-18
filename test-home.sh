@@ -30,10 +30,7 @@ select separatehome in {Sim,Não};do
 
 
     Sim)
-    if [ "$separatehome" = "sim" ];then
-    select homedevice in "$devices"; do
-    parted ${homedevice,,} mkpart primary ${filesystem,,} 1MiB 100% -s
-    fi ;;
+    echo -e "${separatehome,,}";;
 
     *) echo -e "\e[1;38mErro\e[m\nEscolha uma Opção válida.";continue;;
     esac
@@ -41,4 +38,10 @@ break;
 done
 
 
+if [ "$separatehome" = "sim" ];then
 
+printf '\x1bc';
+PS3=$'\nSelecione uma dispositivo para a /home';
+select homedevice in "$devices"; do
+    echo -e "${homedevice,,}";;
+    done
