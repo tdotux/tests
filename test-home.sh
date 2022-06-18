@@ -27,8 +27,7 @@ select separatehome in {Sim,Não};do
 
 	Sim)
     select homedevice in "$devices"; do
-    select fshome in "$filesystem"; do
-    parted ${homedevice,,} mkpart primary ${fshome,,} 1MiB 100% -s
+    parted ${homedevice,,} mkpart primary ${filesystem,,} 1MiB 100% -s
 
 	Não)
 	echo -e "${separatehome,,}";;
