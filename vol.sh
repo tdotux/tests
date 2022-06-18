@@ -165,27 +165,6 @@ genfstab -U /mnt > /mnt/etc/fstab
 
 
 
-##### USER PASSWORD
-
-printf '\x1bc';
-
-echo "Digite e Repita a Senha de Usuário"
-
-arch-chroot /mnt passwd $USERNAME
-
-
-##### ROOT PASSWORD
-
-printf '\x1bc';
-
-echo "Digite e Repita a Senha de ROOT"
-
-arch-chroot /mnt passwd
-
-
-
-
-
 
 ###AJUSTAR HORA AUTOMATICAMENTE
 
@@ -523,6 +502,23 @@ pacman -S efibootmgr --noconfirm
 arch-chroot /mnt grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=Arch --removable && arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 fi
 
+
+##### USER PASSWORD
+
+printf '\x1bc';
+
+echo "Digite e Repita a Senha de Usuário"
+
+arch-chroot /mnt passwd $USERNAME
+
+
+##### ROOT PASSWORD
+
+printf '\x1bc';
+
+echo "Digite e Repita a Senha de ROOT"
+
+arch-chroot /mnt passwd
 
 
 echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
