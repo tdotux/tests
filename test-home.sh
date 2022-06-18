@@ -43,5 +43,5 @@ if [ "$separatehome" = "sim" ];then
 printf '\x1bc';
 PS3=$'\nSelecione uma dispositivo para a /home';
 select homedevice in "$devices"; do
-    echo -e "${homedevice,,}";;
+    echo -e "${homedevice,,}"
     done
