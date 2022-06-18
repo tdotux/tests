@@ -45,3 +45,4 @@ PS3=$'\nSelecione uma dispositivo para a /home';
 select homedevice in "$devices"; do
     echo -e "${homedevice,,}"
     done
+fi
