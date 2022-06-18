@@ -25,9 +25,10 @@ echo -e 'Deseja criar uma partição /home separada? '
 select separatehome in {Sim,Não};do
 	case $separatehome in
 
-	Sim)
+    Sim)
     select homedevice in "$devices"; do
-    parted ${homedevice,,} mkpart primary ${filesystem,,} 1MiB 100% -s
+    parted ${homedevice,,} mkpart primary ${filesystem,,} 1MiB 100% -s;;
+
 
 	Não)
 	echo -e "${separatehome,,}";;
