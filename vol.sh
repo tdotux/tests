@@ -40,29 +40,29 @@ echo -e "\n\n\n"
 
 ###SENHA DO USUARIO
 
-printf '\x1bc';
+#printf '\x1bc';
 
-stty -echo
+#stty -echo
 
-printf "Digite a Senha de Usuário: "
+#printf "Digite a Senha de Usuário: "
 
-read USERPASSWORD
+#read USERPASSWORD
 
-stty echo
+#stty echo
 
 
 
 ### SENHA DE ROOT
 
-printf '\x1bc';
+#printf '\x1bc';
 
-stty -echo
+#stty -echo
 
-printf "Digite a Senha de Root: "
+#printf "Digite a Senha de Root: "
 
-read ROOTPASSWORD
+#read ROOTPASSWORD
 
-stty echo
+#stty echo
 
 
 
@@ -162,6 +162,28 @@ genfstab -U /mnt > /mnt/etc/fstab
 
 
 ###### INSIDE CHROOT
+
+
+
+##### USER PASSWORD
+
+printf '\x1bc';
+
+echo "Digite e Repita a Senha de Usuário"
+
+passwd $USERNAME
+
+
+##### ROOT PASSWORD
+
+printf '\x1bc';
+
+echo "Digite e Repita a Senha de ROOT"
+
+passwd
+
+
+
 
 
 
