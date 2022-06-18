@@ -9,14 +9,6 @@ pacman -S dosfstools nano wget --noconfirm
 
 
 
-parted /dev/sda mklabel gpt -s
-parted /dev/sda mkpart primary fat32 1MiB 301MiB -s
-parted /dev/sda set 1 esp on
-mkfs.fat -F32 /dev/sda1
-
-
-
-
 ###HOSTNAME
 
 printf '\x1bc';
@@ -37,36 +29,16 @@ read -p "Digite o Nome de Usuário : " USERNAME
 echo -e "\n\n\n"
 
 
+###FORMATAÇÃO E PARTIÇÃO EFI
 
-###SENHA DO USUARIO
-
-#printf '\x1bc';
-
-#stty -echo
-
-#printf "Digite a Senha de Usuário: "
-
-#read USERPASSWORD
-
-#stty echo
+parted /dev/sda mklabel gpt -s
+parted /dev/sda mkpart primary fat32 1MiB 301MiB -s
+parted /dev/sda set 1 esp on
+mkfs.fat -F32 /dev/sda1
 
 
 
-### SENHA DE ROOT
-
-#printf '\x1bc';
-
-#stty -echo
-
-#printf "Digite a Senha de Root: "
-
-#read ROOTPASSWORD
-
-#stty echo
-
-
-
-###PARTIÇÃO EFI
+###PARTIÇÃO ROOT
 
 parted /dev/sda mkpart primary ${filesystem,,} 301MiB 100% -s
 
@@ -98,6 +70,7 @@ mount /dev/sda2 /mnt
 mkdir /mnt/boot/
 mkdir /mnt/boot/efi
 mount /dev/sda1 /mnt/boot/efi
+
 
 
 ### DRIVER DE VIDEO
