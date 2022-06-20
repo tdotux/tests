@@ -1,7 +1,5 @@
 #!/usr/bin/env sh
 
-#!/usr/bin/env sh
-
 
 
 ### UTILITARIOS BASICOS
@@ -51,7 +49,7 @@ mkfs.fat -F32 /dev/sda1
 
 ###PARTIÇÃO ROOT
 
-parted /dev/sda mkpart primary ${filesystem,,} 301MiB 100% -s
+parted /dev/sda mkpart primary $filesystem 301MiB 100% -s
 
 
 
@@ -164,7 +162,7 @@ arch-chroot /mnt pacman -Sy nano wget pacman-contrib reflector sudo grub --nocon
 ###ADD-USER
 
 
-arch-chroot /mnt useradd -m $USERNAME
+arch-chroot /mnt useradd -m $username
 
 echo -e "$(tput sgr0)"
 
@@ -172,13 +170,13 @@ echo -e "$(tput sgr0)"
 ###SET-USER-PASSWORD
 
 
-echo -e "$USERPASSWORD\n$USERPASSWORD" | arch-chroot /mnt passwd $USERNAME
+echo -e "$userpasswd\n$userpasswd" | arch-chroot /mnt passwd $username
 
 
 
 ### SET-ROOT-PASSWORD
 
-echo -e "$ROOTPASSWORD\n$ROOTPASSWORD" | arch-chroot /mnt passwd
+echo -e "$rootpassword\n$rootpassword" | arch-chroot /mnt passwd
 
 
 
