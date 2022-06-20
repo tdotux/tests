@@ -64,18 +64,19 @@ filesystem=$(whiptail --title "Sistema de Arquivos" --menu "Escolha um Sistema d
 "f2fs" " -  Otimizado para NAND" \
 "xfs" " -  Sei Lá Vey kkkk" 3>&1 1>&2 2>&3
 
-  case $filesystem in
+if [ "$filesystem" = "ext4" ];then	
+	mkfs.ext4 -F /dev/sda2;;
 	
-	ext4)
-	mkfs.${filesystem,,} -F /dev/sda2;;
+elif [ "$filesystem" = "btrfs" ];then	
+	mkfs.btrfs -f /dev/sda2;;	
+
+elif [ "$filesystem" = "f2fs" ];then	
+	mkfs.f2fs -f /dev/sda2;;	
 	
-	btrfs|f2fs|xfs)
-	mkfs.${filesystem,,} -f /dev/sda2;;
+elif [ "$filesystem" = "xfs" ];then	
+	mkfs.xfs -f /dev/sda2;;		
 	
-	*) echo -e "\e[1;38mErro\e[m\nEscolha uma Opção válida.";continue;;
-	esac
-break;
-done 
+fi	
 
 
 
