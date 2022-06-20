@@ -62,7 +62,7 @@ filesystem=$(whiptail --title "Sistema de Arquivos" --menu "Escolha um Sistema d
 "ext4" " -  Padrão" \
 "btrfs" " -  Novo" \
 "f2fs" " -  Otimizado para NAND" \
-"xfs" " -  Sei Lá Vey kkkk" 3>&1 1>&2 2>&3
+"xfs" " -  Sei Lá Vey kkkk" 3>&1 1>&2 2>&3)
 
 if [ "$filesystem" = "ext4" ];then	
 	mkfs.ext4 -F /dev/sda2;;
