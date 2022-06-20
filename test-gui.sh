@@ -184,3 +184,41 @@ echo -e "$rootpassword\n$rootpassword" | arch-chroot /mnt passwd
 
 
 
+### SET-HOSTNAME-AND-CONFIGURE-HOSTS
+
+echo -e "$hostname" > /mnt/etc/hostname
+
+echo -e "127.0.0.1 localhost.localdomain localhost\n::1 localhost.localdomain localhost\n127.0.1.1 $hostname.localdomain $hostname" | arch-chroot /mnt tee /etc/hosts
+
+
+
+
+##### INSIDE CHROOT #####
+
+
+
+###AJUSTAR HORA AUTOMATICAMENTE
+
+arch-chroot /mnt timedatectl set-ntp true
+
+
+###FUSO HORÁRIO
+
+arch_chroot "ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime"
+arch_chroot "sed -i '/#NTP=/d' /etc/systemd/timesyncd.conf"
+
+arch_chroot "sed -i 's/#Fallback//' /etc/systemd/timesyncd.conf"
+arch_chroot "echo \"FallbackNTP=0.pool.ntp.org 1.pool.ntp.org 0.fr.pool.ntp.org\" >> /etc/systemd/timesyncd.conf"
+arch_chroot "systemctl enable systemd-timesyncd.service"
+arch-chroot ""
+
+
+
+###SINCRONIZAR REPOSITORIOS
+
+arch-chroot /mnt pacman -Syy git --noconfirm
+
+
+###UTILITARIOS BASICOS
+
+arch-chroot /mnt pacman -Sy nano wget pacman-contrib reflector sudo grub --noconfirm
