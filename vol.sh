@@ -79,10 +79,10 @@ mount /dev/sda1 /mnt/boot/efi
 printf '\x1bc';
 PS3=$'\nSelecione uma opção: ';
 echo -e 'Escolha um Driver de Vídeo: '
-select drive in {AMDGPU,ATI,INTEL,Nouveau,Nvidia,VMWARE};do
-	case $drive in
+select driver in {AMDGPU,ATI,INTEL,Nouveau,Nvidia,VMWARE};do
+	case $driver in
 	AMDGPU|ATI|INTEL|Nouveau|Nvidia|VMWARE)
-	echo -e "${drive,,}\nOK";;
+	echo -e "${driver,,}\nOK";;
 	*) echo -e "\e[1;38mErro\e[m\nEscolha uma Opção válida.";continue;;
 	esac
 break;
@@ -274,9 +274,9 @@ cp /mnt/etc/sudoers /mnt/etc/sudoers.bak && sed -i '82c\ %wheel ALL=(ALL:ALL) AL
 
 
 
-###SET-PRIMARY-VIDEO-DRIVER
+###SET-VIDEO-DRIVER
 
-arch-chroot /mnt pacman -S xf86-video-${drive,,} --noconfirm
+arch-chroot /mnt pacman -S xf86-video-${driver,,} --noconfirm
 
 
 
