@@ -65,16 +65,16 @@ filesystem=$(whiptail --title "Sistema de Arquivos" --menu "Escolha um Sistema d
 "xfs" " -  Sei Lá Vey kkkk" 3>&1 1>&2 2>&3)
 
 if [ "$filesystem" = "ext4" ];then	
-	mkfs.ext4 -F /dev/sda2;;
+	mkfs.ext4 -F /dev/sda2
 	
 elif [ "$filesystem" = "btrfs" ];then	
-	mkfs.btrfs -f /dev/sda2;;	
+	mkfs.btrfs -f /dev/sda2
 
 elif [ "$filesystem" = "f2fs" ];then	
-	mkfs.f2fs -f /dev/sda2;;	
+	mkfs.f2fs -f /dev/sda2
 	
 elif [ "$filesystem" = "xfs" ];then	
-	mkfs.xfs -f /dev/sda2;;		
+	mkfs.xfs -f /dev/sda2
 	
 fi	
 
