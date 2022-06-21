@@ -85,17 +85,32 @@ mount /dev/sda1 /mnt/boot/efi
 
 
 
-### DRIVER DE VIDEO
+### DRIVER DE VIDEO PRIMÁRIO
 
 
-videodriver=$(whiptail --title "Driver de Vídeo" --checklist \
-"Selecione um ou mais Drivers de Vídeo:" 20 100 10 \
-"xf86-video-amdgpu" "Placas AMD Recentes " OFF \
-"xf86-video-ati" "Placas AMD Antigas " OFF \
-"xf86-video-intel" "Placas Intel " OFF \
-"xf86-video-nouveau" "Driver Nvidia de Código Aberto " OFF \
-"xf86-video-nvidia" "Driver Proprietário Nvidia " OFF \
-"xf86-video-vmware" "Driver para Máquinas Virtuais " OFF 3>&1 1>&2 2>&3)
+primaryvideodriver=$(whiptail --title "Driver de Vídeo Primário" --menu "Escolha um Driver de Vídeo Primário" 25 78 10 \
+"AMDGPU" " -  AMD Recentes - A Partir das RX" \
+"ATI" " -  AMD Antigas - Até as R9" \
+"INTEL" " -  Intel a partir das HD Graphics" \
+"NOUVEAU" " -  Nvidia Open Source" \
+"NVIDIA" " -  Nvidia Proprietário" \
+"VMWARE" " -  VMWARE e VIRTUALBOX" \
+"OUTROS" " -  PARA OUTROS DISPOSITIVOS" 3>&1 1>&2 2>&3)
+
+
+
+### DRIVER DE VIDEO SECUNDÁRIO
+
+
+secundaryvideodriver=$(whiptail --title "Driver de Vídeo Secundário" --menu "Escolha um Driver de Vídeo Secundário" 25 78 10 \
+"NENHUM" " -  Não instalar nenhum driver secundário" \
+"AMDGPU" " -  AMD Recentes - A Partir das RX" \
+"ATI" " -  AMD Antigas - Até as R9" \
+"INTEL" " -  Intel a partir das HD Graphics" \
+"NOUVEAU" " -  Nvidia Open Source" \
+"NVIDIA" " -  Nvidia Proprietário" \
+"VMWARE" " -  VMWARE e VIRTUALBOX" \
+"OUTROS" " -  PARA OUTROS DISPOSITIVOS" 3>&1 1>&2 2>&3)
 
 
 
@@ -281,9 +296,62 @@ cp /mnt/etc/sudoers /mnt/etc/sudoers.bak && sed -i '82c\ %wheel ALL=(ALL:ALL) AL
 
 
 
-###SET-VIDEO-DRIVER
+###SET-PRIMARY-VIDEO-DRIVER
 
-arch-chroot /mnt pacman -S $videodriver --noconfirm
+if [ "$primaryvideodriver" = "AMDGPU" ];then
+arch-chroot /mnt pacman -S xf86-video-amdgpu --noconfirm
+
+elif [ "$primaryvideodriver" = "ATI" ];then
+arch-chroot /mnt pacman -S xf86-video-ati --noconfirm
+
+elif [ "$primaryvideodriver" = "INTEL" ];then
+arch-chroot /mnt pacman -S xf86-video-intel --noconfirm
+
+elif [ "$primaryvideodriver" = "NOUVEAU" ];then
+arch-chroot /mnt pacman -S xf86-video-nouveau --noconfirm
+
+elif [ "$primaryvideodriver" = "NVIDIA" ];then
+arch-chroot /mnt pacman -S xf86-video-nvidia --noconfirm
+
+elif [ "$primaryvideodriver" = "VMWARE" ];then
+arch-chroot /mnt pacman -S xf86-video-vmware --noconfirm
+
+elif [ "$primaryvideodriver" = "OUTROS" ];then
+arch-chroot /mnt pacman -S xf86-video-dummy xf86-video-fbdev xf86-video-qxl xf86-video-vesa xf86-video-voodoo --noconfirm
+
+fi
+
+
+###SET-SECUNDARY-VIDEO-DRIVER
+
+
+
+if [ "$secundaryvideodriver" = "NENHUM" ];then
+echo "NENHUM"
+
+elif [ "$secundaryvideodriver" = "AMDGPU" ];then
+arch-chroot /mnt pacman -S xf86-video-amdgpu --noconfirm
+
+elif [ "$secundaryvideodriver" = "ATI" ];then
+arch-chroot /mnt pacman -S xf86-video-ati --noconfirm
+
+elif [ "$secundaryvideodriver" = "INTEL" ];then
+arch-chroot /mnt pacman -S xf86-video-intel --noconfirm
+
+elif [ "$secundaryvideodriver" = "NOUVEAU" ];then
+arch-chroot /mnt pacman -S xf86-video-nouveau --noconfirm
+
+elif [ "$secundaryvideodriver" = "NVIDIA" ];then
+arch-chroot /mnt pacman -S xf86-video-nvidia --noconfirm
+
+elif [ "$secundaryvideodriver" = "VMWARE" ];then
+arch-chroot /mnt pacman -S xf86-video-vmware --noconfirm
+
+elif [ "$secundaryvideodriver" = "OUTROS" ];then
+arch-chroot /mnt pacman -S xf86-video-dummy xf86-video-fbdev xf86-video-qxl xf86-video-vesa xf86-video-voodoo --noconfirm
+
+fi
+
 
 
 
