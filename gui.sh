@@ -284,7 +284,7 @@ arch-chroot /mnt groupadd -r autologin
 
 arch-chroot /mnt groupadd -r sudo
 
-arch-chroot /mnt usermod -G autologin,sudo,wheel,lp $USERNAME
+arch-chroot /mnt usermod -G autologin,sudo,wheel,lp $username
 
 
 
