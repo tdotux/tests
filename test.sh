@@ -8,6 +8,7 @@ devices_select=$(lsblk -nd --output NAME | grep 'sd\|hd\|vd\|nvme\|mmcblk')
 printf '\x1bc';
 PS3=$'\nSelecione uma opção: ';
 echo -e "Lista de Dispositivos:"
+echo -e "Nome - Tamanho - Tipo"
 echo -e "$devices_list"
 echo -e "\n"
 echo -e 'Escolha um Disco: '
