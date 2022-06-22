@@ -2,35 +2,18 @@
 
 
 
-### UTILITARIOS BASICOS
-
-pacman -S dosfstools nano wget --noconfirm
+###SELECIONAR DISCO PARA INSTALAR O SISTEMA
 
 
-
-
-###HOSTNAME
+devices_list=($(lsblk -d | awk '{print "/dev/" $1}' | grep 'sd\|hd\|vd\|nvme\|mmcblk'))
 
 printf '\x1bc';
-
-read -p "Digite o Hostname : " HOSTNAME
-
-
-
-
-###USERNAME
-
-printf '\x1bc';
-
-read -p "Digite o Nome de Usuário : " USERNAME
-
-
-
-echo -e "\n\n\n"
-
-
-
-
+PS3=$'\nSelecione uma opção: ';
+echo -e 'Escolha um Disco: '
+select installdisk in $devices_list; do
+echo "$installdisk";
+break
+done
 
 
 
@@ -64,10 +47,10 @@ if [ -d "$PASTA_EFI" ];then
 
 echo -e "Sistema EFI"
 
-parted /dev/sda mklabel gpt -s
-parted /dev/sda mkpart primary fat32 1MiB 301MiB -s
-parted /dev/sda set 1 esp on
-mkfs.fat -F32 /dev/sda1
+parted ${installdisk,,} mklabel gpt -s
+parted ${installdisk,,} mkpart primary fat32 1MiB 301MiB -s
+parted ${installdisk,,} set 1 esp on
+mkfs.fat -F32 ${installdisk,,}1
 
 if [ "$filesystem" = "ext4" ];then
 parted /dev/sda mkpart primary ext4 301MiB 100% -s
