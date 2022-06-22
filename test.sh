@@ -68,12 +68,19 @@ parted /dev/sda mklabel gpt -s
 parted /dev/sda mkpart primary fat32 1MiB 301MiB -s
 parted /dev/sda set 1 esp on
 mkfs.fat -F32 /dev/sda1
+
 if [ "$filesystem" = "ext4" ];then
 parted /dev/sda mkpart primary ext4 301MiB 100% -s
 mkfs.ext4 -F /dev/sda2
-elif (( "$filesystem" = "btrfs" || "$filesystem" = "f2fs" || "$filesystem" = "xfs"));then
-parted /dev/sda mkpart primary ${filesystem,,} 301MiB 100% -s
-mkfs.${filesystem,,} -f /dev/sda2
+elif [ "$filesystem" = "btrfs" ];then
+parted /dev/sda mkpart primary ext4 301MiB 100% -s
+mkfs.btrfs -f /dev/sda2
+elif [ "$filesystem" = "f2fs" ];then
+parted /dev/sda mkpart primary ext4 301MiB 100% -s
+mkfs.f2fs -f /dev/sda2
+elif [ "$filesystem" = "xfs" ];then
+parted /dev/sda mkpart primary ext4 301MiB 100% -s
+mkfs.xfs -f /dev/sda2
 fi
 
 mount /dev/sda2 /mnt
@@ -90,9 +97,17 @@ parted /dev/sda mklabel msdos -s
 parted /dev/sda mkpart primary ext4 1MiB 100% -s
 parted /dev/sda set 1 boot on
 if [ "$filesystem" = "ext4" ];then
+parted /dev/sda mkpart primary ext4 301MiB 100% -s
 mkfs.ext4 -F /dev/sda1
-elif [ "$filesystem" = "btrfs|f2fs|xfs" ];then
-mkfs.${filesystem,,} -f /dev/sda1
+elif [ "$filesystem" = "btrfs" ];then
+parted /dev/sda mkpart primary ext4 301MiB 100% -s
+mkfs.btrfs -f /dev/sda1
+elif [ "$filesystem" = "f2fs" ];then
+parted /dev/sda mkpart primary ext4 301MiB 100% -s
+mkfs.f2fs -f /dev/sda1
+elif [ "$filesystem" = "xfs" ];then
+parted /dev/sda mkpart primary ext4 301MiB 100% -s
+mkfs.xfs -f /dev/sda1
 fi
 
 fi
