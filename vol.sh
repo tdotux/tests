@@ -88,9 +88,9 @@ parted /dev/sda mklabel msdos -s
 parted /dev/sda mkpart primary ext4 1MiB 100% -s
 parted /dev/sda set 1 boot on
 if [ "$filesystem" = "ext4" ];then
-mkfs.ext4 -F /dev/sda1;;
+mkfs.ext4 -F /dev/sda1
 elif [ "$filesystem" = "btrfs|f2fs|xfs" ];then
-mkfs.${filesystem,,} -f /dev/sda1;;
+mkfs.${filesystem,,} -f /dev/sda1
 fi
 
 fi
