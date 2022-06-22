@@ -40,14 +40,14 @@ echo -e "\n\n\n"
 printf '\x1bc';
 PS3=$'\nSelecione uma opção: ';
 echo -e 'Escolha um Sistema de Arquivos: '
-select filesystem in {ext4,btrfs,F2fs,xfs};do
+select filesystem in {ext4,btrfs,f2fs,xfs};do
 	case $filesystem in
 	
 	ext4)
-	echo "ext4"
+	echo "ext4";;
 	
 	btrfs|f2fs|xfs)
-	echo "${filesystem,,}"
+	echo "${filesystem,,}";;
 		
 	*) echo -e "\e[1;38mErro\e[m\nEscolha uma Opção válida.";continue;;
 	esac
