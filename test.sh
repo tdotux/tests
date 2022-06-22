@@ -69,8 +69,10 @@ parted /dev/sda mkpart primary fat32 1MiB 301MiB -s
 parted /dev/sda set 1 esp on
 mkfs.fat -F32 /dev/sda1
 if [ "$filesystem" = "ext4" ];then
+parted /dev/sda mkpart primary ext4 301MiB 100% -s
 mkfs.ext4 -F /dev/sda2
 elif [ "$filesystem" = "btrfs|f2fs|xfs" ];then
+parted /dev/sda mkpart primary ${filesystem,,} 301MiB 100% -s
 mkfs.${filesystem,,} -f /dev/sda2
 fi
 
