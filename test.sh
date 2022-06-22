@@ -12,3 +12,4 @@ echo "$device";
 break
 
 done
+
