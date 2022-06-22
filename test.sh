@@ -71,7 +71,7 @@ mkfs.fat -F32 /dev/sda1
 if [ "$filesystem" = "ext4" ];then
 parted /dev/sda mkpart primary ext4 301MiB 100% -s
 mkfs.ext4 -F /dev/sda2
-elif [ "$filesystem" = "btrfs"] || [ "$filesystem" = "f2fs"] || [ "$filesystem" = "xfs"];then
+elif (( "$filesystem" = "btrfs" || "$filesystem" = "f2fs" || "$filesystem" = "xfs"));then
 parted /dev/sda mkpart primary ${filesystem,,} 301MiB 100% -s
 mkfs.${filesystem,,} -f /dev/sda2
 fi
