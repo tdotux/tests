@@ -10,7 +10,6 @@ PS3=$'\nSelecione uma opção: ';
 echo -e "Lista de Dispositivos:"
 echo -e "\n"
 echo -e "Nome - Tamanho - Tipo"
-echo -e "\n"
 echo -e "$devices_list"
 echo -e "\n"
 echo -e 'Escolha um Disco: '
