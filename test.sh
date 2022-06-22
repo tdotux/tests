@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-devices_list=$(lsblk -d | grep 'sd\|hd\|vd\|nvme\|mmcblk')
+devices_list=$(lsblk -nd --output NAME,SIZE | grep 'sd\|hd\|vd\|nvme\|mmcblk')
 
 
 printf '\x1bc';
