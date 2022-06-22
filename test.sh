@@ -1,8 +1,9 @@
 #!/bin/bash
 
-devices_list=($(lsblk -nd --output NAME,SIZE))
 
-devices_select=($(lsblk -d | grep 'sd\|hd\|vd\|nvme\|mmcblk'))
+devices_list=$(lsblk -nd --output NAME,SIZE)
+
+devices_select=$(lsblk -d | grep 'sd\|hd\|vd\|nvme\|mmcblk')
 
 printf '\x1bc';
 PS3=$'\nSelecione uma opção: ';
