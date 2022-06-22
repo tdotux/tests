@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-devices_list=($(lsblk -d | awk '{print "/dev/" $1}' | grep 'sd\|hd\|vd\|nvme\|mmcblk'))
+devices_list=($(lsblk -d | grep 'sd\|hd\|vd\|nvme\|mmcblk'))
 
 printf '\x1bc';
 PS3=$'\nSelecione uma opção: ';
