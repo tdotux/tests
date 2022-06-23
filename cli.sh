@@ -83,52 +83,93 @@ if [ -d "$PASTA_EFI" ];then
 
 echo -e "Sistema EFI"
 
-parted /dev/$installdisk mklabel gpt -s
-parted /dev/$installdisk mkpart primary fat32 1MiB 301MiB -s
-parted /dev/$installdisk set 1 esp on
+parted /dev/${installdisk,,} mklabel gpt -s
+parted /dev/${installdisk,,} mkpart primary fat32 1MiB 301MiB -s
+parted /dev/${installdisk,,} set 1 esp on
        if [  $(echo $installdisk | grep -c sd) = 1 ]; then
        echo "sda"
        mkfs.fat -F32 /dev/${installdisk,,}1
        elif [  $(echo $installdisk | grep -c nvme) = 1 ]; then
        echo "nvme"
-       mkfs.fat -F32 /dev/${installdisk,,}p1
+       mkfs.fat -F32 /dev/${installdisk,,}1
        fi
           
 	   ###PARTIÇÃO ROOT
            if [  $(echo $installdisk | grep -c sd) = 1 ]; then
            echo "sda"
                       if [ "$filesystem" = "ext4" ];then
-	              parted $installdisk mkpart primary ext4 301MiB 100% -s
-                      mkfs.ext4 -F $installdisk2
+	              parted /dev/${installdisk,,} mkpart primary ext4 301MiB 100% -s
+                      mkfs.ext4 -F /dev/${installdisk,,}2
+		      mount /dev/${installdisk,,}2 /mnt
+                      mkdir /mnt/boot/
+                      mkdir /mnt/boot/efi
+                      mount /dev/${installdisk,,}1 /mnt/boot/efi
+		      
                       elif [ "$filesystem" = "btrfs" ];then
-                      parted $installdisk mkpart primary ext4 301MiB 100% -s
-                      mkfs.btrfs -f $installdisk2
+                      parted /dev/${installdisk,,} mkpart primary ext4 301MiB 100% -s
+                      mkfs.btrfs -f /dev/${installdisk,,}
+		      mount /dev/${installdisk,,}2 /mnt
+                      mkdir /mnt/boot/
+                      mkdir /mnt/boot/efi
+                      mount /dev/${installdisk,,}1 /mnt/boot/efi
+		      
                       elif [ "$filesystem" = "f2fs" ];then
-                      parted $installdisk mkpart primary ext4 301MiB 100% -s
-                      mkfs.f2fs -f $installdisk2
+                      parted /dev/${installdisk,,} mkpart primary ext4 301MiB 100% -s
+                      mkfs.f2fs -f /dev/${installdisk,,}
+		      mount /dev/${installdisk,,}2 /mnt
+                      mkdir /mnt/boot/
+                      mkdir /mnt/boot/efi
+                      mount /dev/${installdisk,,}1 /mnt/boot/efi
+		      
                       elif [ "$filesystem" = "xfs" ];then
-                      parted $installdisk mkpart primary ext4 301MiB 100% -s
-                      mkfs.xfs -f $installdisk2
+                      parted /dev/${installdisk,,} mkpart primary ext4 301MiB 100% -s
+                      mkfs.xfs -f /dev/${installdisk,,}
+		      mount /dev/${installdisk,,}2 /mnt
+                      mkdir /mnt/boot/
+                      mkdir /mnt/boot/efi
+                      mount /dev/${installdisk,,}1 /mnt/boot/efi
+		      
                       fi
+		      
            elif [  $(echo $installdisk | grep -c nvme) = 1 ]; then
            echo "NVME"
 	              if [ "$filesystem" = "ext4" ];then
 	              parted /dev/${installdisk,,} mkpart primary ext4 301MiB 100% -s
                       mkfs.ext4 -F /dev/${installdisk,,}p2
+		      mount /dev/${installdisk,,}p2 /mnt
+                      mkdir /mnt/boot/
+                      mkdir /mnt/boot/efi
+                      mount /dev/${installdisk,,}p1 /mnt/boot/efi
+		      
                       elif [ "$filesystem" = "btrfs" ];then
                       parted /dev/${installdisk,,} mkpart primary btrfs 301MiB 100% -s
                       mkfs.btrfs -f /dev/${installdisk,,}p2
+		      mount /dev/${installdisk,,}p2 /mnt
+                      mkdir /mnt/boot/
+                      mkdir /mnt/boot/efi
+                      mount /dev/${installdisk,,}p1 /mnt/boot/efi
+		      
                       elif [ "$filesystem" = "f2fs" ];then
                       parted /dev/${installdisk,,} mkpart primary f2fs 301MiB 100% -s
                       mkfs.f2fs -f /dev/${installdisk,,}p2
+		      mount /dev/${installdisk,,}p2 /mnt
+                      mkdir /mnt/boot/
+                      mkdir /mnt/boot/efi
+                      mount /dev/${installdisk,,}p1 /mnt/boot/efi
+		      
                       elif [ "$filesystem" = "xfs" ];then
                       parted /dev/${installdisk,,} mkpart primary xfs 301MiB 100% -s
                       mkfs.xfs -f /dev/${installdisk,,}p2
+		      mount /dev/${installdisk,,}p2 /mnt
+                      mkdir /mnt/boot/
+                      mkdir /mnt/boot/efi
+                      mount /dev/${installdisk,,}p1 /mnt/boot/efi
+		      
                       fi
 	   	     	     
 	   fi
 
-fi	  
+fi
 
 
 
@@ -137,10 +178,10 @@ fi
 printf '\x1bc';
 PS3=$'\nSelecione uma opção: ';
 echo -e 'Escolha um Driver de Vídeo: '
-select driver in {AMDGPU,ATI,INTEL,Nouveau,Nvidia,VMWARE};do
-	case $driver in
+select videodriver in {AMDGPU,ATI,INTEL,Nouveau,Nvidia,VMWARE};do
+	case $videodriver in
 	AMDGPU|ATI|INTEL|Nouveau|Nvidia|VMWARE)
-	echo -e "${driver,,}\nOK";;
+	echo -e "${videodriver,,}\nOK";;
 	*) echo -e "\e[1;38mErro\e[m\nEscolha uma Opção válida.";continue;;
 	esac
 break;
@@ -192,6 +233,7 @@ genfstab -U /mnt > /mnt/etc/fstab
 
 
 
+
 ###### INSIDE CHROOT
 
 
@@ -221,18 +263,6 @@ arch-chroot /mnt pacman -Sy nano wget pacman-contrib reflector sudo grub --nocon
 arch-chroot /mnt useradd -m $USERNAME
 
 echo -e "$(tput sgr0)"
-
-
-###SET-USER-PASSWORD
-
-
-echo -e "$USERPASSWORD\n$USERPASSWORD" | arch-chroot /mnt passwd $USERNAME
-
-
-
-### SET-ROOT-PASSWORD
-
-echo -e "$ROOTPASSWORD\n$ROOTPASSWORD" | arch-chroot /mnt passwd
 
 
 
@@ -333,7 +363,7 @@ cp /mnt/etc/sudoers /mnt/etc/sudoers.bak && sed -i '82c\ %wheel ALL=(ALL:ALL) AL
 
 ###SET-VIDEO-DRIVER
 
-arch-chroot /mnt pacman -S xf86-video-${driver,,} --noconfirm
+arch-chroot /mnt pacman -S xf86-video-${videodriver,,} --noconfirm
 
 
 
