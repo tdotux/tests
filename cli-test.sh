@@ -91,7 +91,7 @@ parted /dev/${installdisk,,} set 1 esp on
        mkfs.fat -F32 /dev/${installdisk,,}1
        elif [  $(echo $installdisk | grep -c nvme) = 1 ]; then
        echo "nvme"
-       mkfs.fat -F32 /dev/${installdisk,,}1
+       mkfs.fat -F32 /dev/${installdisk,,}p1
        fi
           
 	   ###PARTIÇÃO ROOT
