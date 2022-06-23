@@ -91,7 +91,7 @@ parted /dev/${installdisk,,} set 1 esp on
        mkfs.fat -F32 /dev/${installdisk,,}1
        elif [  $(echo $installdisk | grep -c nvme) = 1 ]; then
        echo "nvme"
-       mkfs.fat -F32 /dev/${installdisk,,}p1
+       mkfs.fat -F32 /dev/${installdisk,,}1
        fi
           
 	   ###PARTIÇÃO ROOT
@@ -99,7 +99,7 @@ parted /dev/${installdisk,,} set 1 esp on
            echo "sda"
                       if [ "$filesystem" = "ext4" ];then
 	              parted /dev/${installdisk,,} mkpart primary ext4 301MiB 100% -s
-                      mkfs.ext4 -F /dev/${installdisk,,}1
+                      mkfs.ext4 -F /dev/${installdisk,,}2
 		      mount /dev/${installdisk,,}2 /mnt
                       mkdir /mnt/boot/
                       mkdir /mnt/boot/efi
@@ -124,6 +124,10 @@ parted /dev/${installdisk,,} set 1 esp on
                       elif [ "$filesystem" = "xfs" ];then
                       parted /dev/${installdisk,,} mkpart primary ext4 301MiB 100% -s
                       mkfs.xfs -f /dev/${installdisk,,}
+		      mount /dev/${installdisk,,}2 /mnt
+                      mkdir /mnt/boot/
+                      mkdir /mnt/boot/efi
+                      mount /dev/${installdisk,,}1 /mnt/boot/efi
 		      
                       fi
 		      
@@ -165,7 +169,7 @@ parted /dev/${installdisk,,} set 1 esp on
 	   	     	     
 	   fi
 
-fi	  
+fi
 
 
 
