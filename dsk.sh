@@ -67,7 +67,7 @@ parted /dev/${installdisk,,} set 1 esp on
            echo "sda"
                       if [ "$filesystem" = "ext4" ];then
 	              parted /dev/${installdisk,,} mkpart primary ext4 301MiB 100% -s
-                      mkfs.ext4 -F /dev/${installdisk,,}1
+                      mkfs.ext4 -F /dev/${installdisk,,}2
 		      mount /dev/${installdisk,,}2 /mnt
                       mkdir /mnt/boot/
                       mkdir /mnt/boot/efi
@@ -92,6 +92,10 @@ parted /dev/${installdisk,,} set 1 esp on
                       elif [ "$filesystem" = "xfs" ];then
                       parted /dev/${installdisk,,} mkpart primary ext4 301MiB 100% -s
                       mkfs.xfs -f /dev/${installdisk,,}
+		      mount /dev/${installdisk,,}2 /mnt
+                      mkdir /mnt/boot/
+                      mkdir /mnt/boot/efi
+                      mount /dev/${installdisk,,}1 /mnt/boot/efi
 		      
                       fi
 		      
