@@ -23,10 +23,6 @@ done
 
 ### SISTEMA DE ARQUIVOS
 
-
-
-
-
 printf '\x1bc';
 PS3=$'\nSelecione uma opção: ';
 echo -e 'Escolha um Sistema de Arquivos: '
@@ -46,6 +42,7 @@ done
 
 
 
+
 ###DETECTAR UEFI OU LEGACY
 
 PASTA_EFI=/sys/firmware/efi
@@ -57,47 +54,10 @@ echo -e "Sistema EFI"
 parted /dev/$installdisk mklabel gpt -s
 parted /dev/$installdisk mkpart primary fat32 1MiB 301MiB -s
 parted /dev/$installdisk set 1 esp on
-mkfs.fat -F32 /dev/$installdisk1
 
-if [ "$filesystem" = "ext4" ];then
-parted /dev/$installdisk mkpart primary ext4 301MiB 100% -s
-mkfs.ext4 -F /dev/$installdisk2
-elif [ "$filesystem" = "btrfs" ];then
-parted /dev/$installdisk mkpart primary ext4 301MiB 100% -s
-mkfs.btrfs -f $installdisk2
-elif [ "$filesystem" = "f2fs" ];then
-parted /dev/$installdisk mkpart primary ext4 301MiB 100% -s
-mkfs.f2fs -f /dev/$installdisk2
-elif [ "$filesystem" = "xfs" ];then
-parted /dev/$installdisk mkpart primary ext4 301MiB 100% -s
-mkfs.xfs -f /dev/$installdisk2
-fi
-
-mount /dev/$installdisk2 /mnt
-mkdir /mnt/boot/
-mkdir /mnt/boot/efi
-mount /dev/$installdisk1 /mnt/boot/efi
-
-else
-
-echo -e "Sistema Legacy"
-
-
-parted $installdisk mklabel msdos -s
-parted $installdisk mkpart primary ext4 1MiB 100% -s
-parted $installdisk set 1 boot on
-if [ "$filesystem" = "ext4" ];then
-parted $installdisk mkpart primary ext4 301MiB 100% -s
-mkfs.ext4 -F $installdisk1
-elif [ "$filesystem" = "btrfs" ];then
-parted $installdisk mkpart primary ext4 301MiB 100% -s
-mkfs.btrfs -f $installdisk1
-elif [ "$filesystem" = "f2fs" ];then
-parted $installdisk mkpart primary ext4 301MiB 100% -s
-mkfs.f2fs -f $installdisk1
-elif [ "$filesystem" = "xfs" ];then
-parted $installdisk mkpart primary ext4 301MiB 100% -s
-mkfs.xfs -f $installdisk1
-fi
-
-fi
+     if [  $(echo $installdisk | grep -c sd) = 1 ]; then
+     mkfs.fat -F32 /dev/$installdisk1
+     elif [  $(echo $installdisk | grep -c nvme) = 1 ]; then
+     mkfs.fat -F32 /dev/$installdiskp1
+     fi
+fi     
