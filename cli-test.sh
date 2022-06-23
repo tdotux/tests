@@ -286,8 +286,8 @@ arch-chroot /mnt timedatectl set-ntp true
 
 ###FUSO HORÁRIO
 
-arch-chroot "ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime"
-arch-chroot "sed -i '/#NTP=/d' /etc/systemd/timesyncd.conf"
+arch-chroot /mnt "ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime"
+arch-chroot /mnt "sed -i '/#NTP=/d' /etc/systemd/timesyncd.conf"
 
 arch-chroot /mnt "sed -i 's/#Fallback//' /etc/systemd/timesyncd.conf"
 arch-chroot /mnt "echo \"FallbackNTP=0.pool.ntp.org 1.pool.ntp.org 0.fr.pool.ntp.org\" >> /etc/systemd/timesyncd.conf"
@@ -540,6 +540,21 @@ echo -e "$(tput sgr0)\n\n"
 
 
 
+###GRUB
+
+PASTA_EFI=/sys/firmware/efi
+if [ ! -d "$PASTA_EFI" ];then
+echo -e "Sistema Legacy"
+arch-chroot /mnt grub-install --target=i386-pc /dev/sda --force && arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
+
+else
+echo -e "Sistema EFI"
+pacman -S efibootmgr --noconfirm
+arch-chroot /mnt grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=Arch --removable && arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
+fi
+
+
+
 
 ###USER DIRS UPDATE
 
@@ -554,6 +569,8 @@ printf '\x1bc';
 echo "Digite e Repita a Senha de Usuário"
 
 arch-chroot /mnt passwd $USERNAME
+
+
 
 
 ##### ROOT PASSWORD
