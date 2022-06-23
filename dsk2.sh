@@ -14,7 +14,7 @@ echo -e "$devices_list"
 echo -e "\n"
 echo -e 'Escolha um Disco para Instalar o Sistema: '
 select installdisk in $devices_select; do
-echo "$installdisk";
+echo "/dev/$installdisk";
 break
 
 done
