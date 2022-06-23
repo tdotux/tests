@@ -60,17 +60,17 @@ PS3=$'\nSelecione uma opção: ';
 echo -e 'Escolha um Sistema de Arquivos: '
 select filesystem in {ext4,btrfs,f2fs,xfs};do
 	case $filesystem in
-	
+
 	ext4)
 	echo "ext4";;
-	
+
 	btrfs|f2fs|xfs)
 	echo "${filesystem,,}";;
-		
+
 	*) echo -e "\e[1;38mErro\e[m\nEscolha uma Opção válida.";continue;;
 	esac
 break;
-done 
+done
 
 
 
@@ -93,7 +93,7 @@ parted /dev/${installdisk,,} set 1 esp on
        echo "nvme"
        mkfs.fat -F32 /dev/${installdisk,,}p1
        fi
-          
+
 	   ###PARTIÇÃO ROOT
            if [  $(echo $installdisk | grep -c sd) = 1 ]; then
            echo "sda"
@@ -104,7 +104,7 @@ parted /dev/${installdisk,,} set 1 esp on
                       mkdir /mnt/boot/
                       mkdir /mnt/boot/efi
                       mount /dev/${installdisk,,}1 /mnt/boot/efi
-		      
+
                       elif [ "$filesystem" = "btrfs" ];then
                       parted /dev/${installdisk,,} mkpart primary ext4 301MiB 100% -s
                       mkfs.btrfs -f /dev/${installdisk,,}
@@ -112,7 +112,7 @@ parted /dev/${installdisk,,} set 1 esp on
                       mkdir /mnt/boot/
                       mkdir /mnt/boot/efi
                       mount /dev/${installdisk,,}1 /mnt/boot/efi
-		      
+
                       elif [ "$filesystem" = "f2fs" ];then
                       parted /dev/${installdisk,,} mkpart primary ext4 301MiB 100% -s
                       mkfs.f2fs -f /dev/${installdisk,,}
@@ -120,7 +120,7 @@ parted /dev/${installdisk,,} set 1 esp on
                       mkdir /mnt/boot/
                       mkdir /mnt/boot/efi
                       mount /dev/${installdisk,,}1 /mnt/boot/efi
-		      
+
                       elif [ "$filesystem" = "xfs" ];then
                       parted /dev/${installdisk,,} mkpart primary ext4 301MiB 100% -s
                       mkfs.xfs -f /dev/${installdisk,,}
@@ -128,9 +128,9 @@ parted /dev/${installdisk,,} set 1 esp on
                       mkdir /mnt/boot/
                       mkdir /mnt/boot/efi
                       mount /dev/${installdisk,,}1 /mnt/boot/efi
-		      
+
                       fi
-		      
+
            elif [  $(echo $installdisk | grep -c nvme) = 1 ]; then
            echo "NVME"
 	              if [ "$filesystem" = "ext4" ];then
@@ -140,7 +140,7 @@ parted /dev/${installdisk,,} set 1 esp on
                       mkdir /mnt/boot/
                       mkdir /mnt/boot/efi
                       mount /dev/${installdisk,,}p1 /mnt/boot/efi
-		      
+
                       elif [ "$filesystem" = "btrfs" ];then
                       parted /dev/${installdisk,,} mkpart primary btrfs 301MiB 100% -s
                       mkfs.btrfs -f /dev/${installdisk,,}p2
@@ -148,7 +148,7 @@ parted /dev/${installdisk,,} set 1 esp on
                       mkdir /mnt/boot/
                       mkdir /mnt/boot/efi
                       mount /dev/${installdisk,,}p1 /mnt/boot/efi
-		      
+
                       elif [ "$filesystem" = "f2fs" ];then
                       parted /dev/${installdisk,,} mkpart primary f2fs 301MiB 100% -s
                       mkfs.f2fs -f /dev/${installdisk,,}p2
@@ -156,7 +156,7 @@ parted /dev/${installdisk,,} set 1 esp on
                       mkdir /mnt/boot/
                       mkdir /mnt/boot/efi
                       mount /dev/${installdisk,,}p1 /mnt/boot/efi
-		      
+
                       elif [ "$filesystem" = "xfs" ];then
                       parted /dev/${installdisk,,} mkpart primary xfs 301MiB 100% -s
                       mkfs.xfs -f /dev/${installdisk,,}p2
@@ -164,18 +164,22 @@ parted /dev/${installdisk,,} set 1 esp on
                       mkdir /mnt/boot/
                       mkdir /mnt/boot/efi
                       mount /dev/${installdisk,,}p1 /mnt/boot/efi
-		      
+
                       fi
-	   	     	     
+
 	   fi
 
 
-else
+fi
+
+
+
+if [ ! -d "$PASTA_EFI" ];then
 
 echo -e "Sistema Legacy"
 
 parted /dev/${installdisk,,} mklabel msdos -s
-          
+
 	   ###PARTIÇÃO ROOT
            if [  $(echo $installdisk | grep -c sd) = 1 ]; then
            echo "sda"
@@ -184,27 +188,27 @@ parted /dev/${installdisk,,} mklabel msdos -s
                       mkfs.ext4 -F /dev/${installdisk,,}1
 		      parted /dev/${installdisk,,} set 1 boot on
 		      mount /dev/${installdisk,,}1 /mnt
-		      
+
                       elif [ "$filesystem" = "btrfs" ];then
 	              parted /dev/${installdisk,,} mkpart primary ext4 1MiB 100% -s
                       mkfs.ext4 -f /dev/${installdisk,,}1
 		      parted /dev/${installdisk,,} set 1 boot on
 		      mount /dev/${installdisk,,}1 /mnt
-		      
+
                       if [ "$filesystem" = "f2fs" ];then
 	              parted /dev/${installdisk,,} mkpart primary f2fs 1MiB 100% -s
                       mkfs.ext4 -f /dev/${installdisk,,}1
 		      parted /dev/${installdisk,,} set 1 boot on
 		      mount /dev/${installdisk,,}1 /mnt
-		      
+
                       elif [ "$filesystem" = "xfs" ];then
 	              parted /dev/${installdisk,,} mkpart primary xfs 1MiB 100% -s
                       mkfs.ext4 -f /dev/${installdisk,,}1
 		      parted /dev/${installdisk,,} set 1 boot on
 		      mount /dev/${installdisk,,}1 /mnt
-		      
+
                       fi
-		      
+
            elif [  $(echo $installdisk | grep -c nvme) = 1 ]; then
            echo "NVME"
 	              if [ "$filesystem" = "ext4" ];then
@@ -212,30 +216,31 @@ parted /dev/${installdisk,,} mklabel msdos -s
                       mkfs.ext4 -F /dev/${installdisk,,}p2
 		      parted /dev/${installdisk,,} set 1 boot on
 		      mount /dev/${installdisk,,}p1 /mnt
-                      
-		      
+
+
                       elif [ "$filesystem" = "btrfs" ];then
 	              parted /dev/${installdisk,,} mkpart primary btrfs 1MiB 100% -s
                       mkfs.btrfs -f /dev/${installdisk,,}p2
 		      parted /dev/${installdisk,,} set 1 boot on
 		      mount /dev/${installdisk,,}p1 /mnt
-		      
+
                       elif [ "$filesystem" = "f2fs" ];then
 	              parted /dev/${installdisk,,} mkpart primary f2fs 1MiB 100% -s
                       mkfs.btrfs -f /dev/${installdisk,,}p2
 		      parted /dev/${installdisk,,} set 1 boot on
 		      mount /dev/${installdisk,,}p1 /mnt
-		      
+
                       elif [ "$filesystem" = "xfs" ];then
 	              parted /dev/${installdisk,,} mkpart primary xfs 1MiB 100% -s
                       mkfs.btrfs -f /dev/${installdisk,,}p2
 		      parted /dev/${installdisk,,} set 1 boot on
 		      mount /dev/${installdisk,,}p1 /mnt
-		      
-                      fi
-	   	     	     
-	   fi
 
+                      fi
+
+	          fi
+
+      fi
 fi
 
 
