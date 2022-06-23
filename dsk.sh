@@ -56,8 +56,10 @@ parted /dev/$installdisk mkpart primary fat32 1MiB 301MiB -s
 parted /dev/$installdisk set 1 esp on
 
      if [  $(echo $installdisk | grep -c sd) = 1 ]; then
-     mkfs.fat -F32 /dev/$installdisk1
+     echo "sda"
+     #mkfs.fat -F32 /dev/$installdisk1
      elif [  $(echo $installdisk | grep -c nvme) = 1 ]; then
-     mkfs.fat -F32 /dev/$installdiskp1
+     echo "nvme"
+     #mkfs.fat -F32 /dev/$installdiskp1
      fi
 fi     
