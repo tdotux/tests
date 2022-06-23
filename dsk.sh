@@ -57,9 +57,9 @@ parted /dev/$installdisk set 1 esp on
 
      if [  $(echo $installdisk | grep -c sd) = 1 ]; then
      echo "sda"
-     mkfs.fat -F32 /dev/$installdisk1
+     mkfs.fat -F32 /dev/${installdisk,,}
      elif [  $(echo $installdisk | grep -c nvme) = 1 ]; then
      echo "nvme"
-     mkfs.fat -F32 /dev/$installdiskp1
+     mkfs.fat -F32 /dev/${installdisk,,}
      fi
 fi     
