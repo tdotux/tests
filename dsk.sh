@@ -14,7 +14,7 @@ echo -e "$devices_list"
 echo -e "\n"
 echo -e 'Escolha um Disco para Instalar o Sistema: '
 select installdisk in $devices_select; do
-echo "$installdisk";
+echo "/dev/$installdisk";
 break
 
 done
@@ -54,29 +54,29 @@ if [ -d "$PASTA_EFI" ];then
 
 echo -e "Sistema EFI"
 
-parted $installdisk mklabel gpt -s
-parted $installdisk mkpart primary fat32 1MiB 301MiB -s
-parted $installdisk set 1 esp on
-mkfs.fat -F32 $installdisk1
+parted /dev/$installdisk mklabel gpt -s
+parted /dev/$installdisk mkpart primary fat32 1MiB 301MiB -s
+parted /dev/$installdisk set 1 esp on
+mkfs.fat -F32 /dev/$installdisk1
 
 if [ "$filesystem" = "ext4" ];then
-parted $installdisk mkpart primary ext4 301MiB 100% -s
-mkfs.ext4 -F $installdisk2
+parted /dev/$installdisk mkpart primary ext4 301MiB 100% -s
+mkfs.ext4 -F /dev/$installdisk2
 elif [ "$filesystem" = "btrfs" ];then
-parted $installdisk mkpart primary ext4 301MiB 100% -s
+parted /dev/$installdisk mkpart primary ext4 301MiB 100% -s
 mkfs.btrfs -f $installdisk2
 elif [ "$filesystem" = "f2fs" ];then
-parted $installdisk mkpart primary ext4 301MiB 100% -s
-mkfs.f2fs -f $installdisk2
+parted /dev/$installdisk mkpart primary ext4 301MiB 100% -s
+mkfs.f2fs -f /dev/$installdisk2
 elif [ "$filesystem" = "xfs" ];then
-parted $installdisk mkpart primary ext4 301MiB 100% -s
-mkfs.xfs -f $installdisk2
+parted /dev/$installdisk mkpart primary ext4 301MiB 100% -s
+mkfs.xfs -f /dev/$installdisk2
 fi
 
-mount $installdisk2 /mnt
+mount /dev/$installdisk2 /mnt
 mkdir /mnt/boot/
 mkdir /mnt/boot/efi
-mount $installdisk1 /mnt/boot/efi
+mount /dev/$installdisk1 /mnt/boot/efi
 
 else
 
