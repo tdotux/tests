@@ -91,7 +91,7 @@ parted /dev/${installdisk,,} set 1 esp on
        mkfs.fat -F32 /dev/${installdisk,,}1
        elif [  $(echo $installdisk | grep -c nvme) = 1 ]; then
        echo "nvme"
-       mkfs.fat -F32 /dev/${installdisk,,}1
+       mkfs.fat -F32 /dev/${installdisk,,}p1
        fi
           
 	   ###PARTIÇÃO ROOT
@@ -540,15 +540,6 @@ echo -e "$(tput sgr0)\n\n"
 
 
 
-
-###USER DIRS UPDATE
-
-arch-chroot /mnt xdg-user-dirs-update
-
-
-
-
-
 ###GRUB
 
 PASTA_EFI=/sys/firmware/efi
@@ -563,6 +554,14 @@ arch-chroot /mnt grub-install --target=x86_64-efi --efi-directory=/boot/efi --bo
 fi
 
 
+
+
+###USER DIRS UPDATE
+
+arch-chroot /mnt xdg-user-dirs-update
+
+
+
 ##### USER PASSWORD
 
 printf '\x1bc';
@@ -570,6 +569,8 @@ printf '\x1bc';
 echo "Digite e Repita a Senha de Usuário"
 
 arch-chroot /mnt passwd $USERNAME
+
+
 
 
 ##### ROOT PASSWORD
