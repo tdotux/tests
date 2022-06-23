@@ -46,7 +46,7 @@ echo -e "$devices_list"
 echo -e "\n"
 echo -e 'Escolha um Disco para Instalar o Sistema: '
 select installdisk in $devices_select; do
-echo "$installdisk";
+echo "/dev/$installdisk";
 break
 
 done
@@ -54,10 +54,6 @@ done
 
 
 ### SISTEMA DE ARQUIVOS
-
-
-
-
 
 printf '\x1bc';
 PS3=$'\nSelecione uma opção: ';
@@ -78,6 +74,7 @@ done
 
 
 
+
 ###DETECTAR UEFI OU LEGACY
 
 PASTA_EFI=/sys/firmware/efi
@@ -86,53 +83,52 @@ if [ -d "$PASTA_EFI" ];then
 
 echo -e "Sistema EFI"
 
-parted $installdisk mklabel gpt -s
-parted $installdisk mkpart primary fat32 1MiB 301MiB -s
-parted $installdisk set 1 esp on
-mkfs.fat -F32 $installdisk1
+parted /dev/$installdisk mklabel gpt -s
+parted /dev/$installdisk mkpart primary fat32 1MiB 301MiB -s
+parted /dev/$installdisk set 1 esp on
+       if [  $(echo $installdisk | grep -c sd) = 1 ]; then
+       echo "sda"
+       mkfs.fat -F32 /dev/${installdisk,,}1
+       elif [  $(echo $installdisk | grep -c nvme) = 1 ]; then
+       echo "nvme"
+       mkfs.fat -F32 /dev/${installdisk,,}p1
+       fi
+          
+	   ###PARTIÇÃO ROOT
+           if [  $(echo $installdisk | grep -c sd) = 1 ]; then
+           echo "sda"
+                      if [ "$filesystem" = "ext4" ];then
+	              parted $installdisk mkpart primary ext4 301MiB 100% -s
+                      mkfs.ext4 -F $installdisk2
+                      elif [ "$filesystem" = "btrfs" ];then
+                      parted $installdisk mkpart primary ext4 301MiB 100% -s
+                      mkfs.btrfs -f $installdisk2
+                      elif [ "$filesystem" = "f2fs" ];then
+                      parted $installdisk mkpart primary ext4 301MiB 100% -s
+                      mkfs.f2fs -f $installdisk2
+                      elif [ "$filesystem" = "xfs" ];then
+                      parted $installdisk mkpart primary ext4 301MiB 100% -s
+                      mkfs.xfs -f $installdisk2
+                      fi
+           elif [  $(echo $installdisk | grep -c nvme) = 1 ]; then
+           echo "NVME"
+	              if [ "$filesystem" = "ext4" ];then
+	              parted /dev/${installdisk,,} mkpart primary ext4 301MiB 100% -s
+                      mkfs.ext4 -F /dev/${installdisk,,}p2
+                      elif [ "$filesystem" = "btrfs" ];then
+                      parted /dev/${installdisk,,} mkpart primary btrfs 301MiB 100% -s
+                      mkfs.btrfs -f /dev/${installdisk,,}p2
+                      elif [ "$filesystem" = "f2fs" ];then
+                      parted /dev/${installdisk,,} mkpart primary f2fs 301MiB 100% -s
+                      mkfs.f2fs -f /dev/${installdisk,,}p2
+                      elif [ "$filesystem" = "xfs" ];then
+                      parted /dev/${installdisk,,} mkpart primary xfs 301MiB 100% -s
+                      mkfs.xfs -f /dev/${installdisk,,}p2
+                      fi
+	   	     	     
+	   fi
 
-if [ "$filesystem" = "ext4" ];then
-parted $installdisk mkpart primary ext4 301MiB 100% -s
-mkfs.ext4 -F $installdisk2
-elif [ "$filesystem" = "btrfs" ];then
-parted $installdisk mkpart primary ext4 301MiB 100% -s
-mkfs.btrfs -f $installdisk2
-elif [ "$filesystem" = "f2fs" ];then
-parted $installdisk mkpart primary ext4 301MiB 100% -s
-mkfs.f2fs -f $installdisk2
-elif [ "$filesystem" = "xfs" ];then
-parted $installdisk mkpart primary ext4 301MiB 100% -s
-mkfs.xfs -f $installdisk2
-fi
-
-mount $installdisk2 /mnt
-mkdir /mnt/boot/
-mkdir /mnt/boot/efi
-mount $installdisk1 /mnt/boot/efi
-
-else
-
-echo -e "Sistema Legacy"
-
-
-parted $installdisk mklabel msdos -s
-parted $installdisk mkpart primary ext4 1MiB 100% -s
-parted $installdisk set 1 boot on
-if [ "$filesystem" = "ext4" ];then
-parted $installdisk mkpart primary ext4 301MiB 100% -s
-mkfs.ext4 -F $installdisk1
-elif [ "$filesystem" = "btrfs" ];then
-parted $installdisk mkpart primary ext4 301MiB 100% -s
-mkfs.btrfs -f $installdisk1
-elif [ "$filesystem" = "f2fs" ];then
-parted $installdisk mkpart primary ext4 301MiB 100% -s
-mkfs.f2fs -f $installdisk1
-elif [ "$filesystem" = "xfs" ];then
-parted $installdisk mkpart primary ext4 301MiB 100% -s
-mkfs.xfs -f $installdisk1
-fi
-
-fi
+fi	  
 
 
 
