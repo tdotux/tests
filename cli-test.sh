@@ -249,8 +249,7 @@ fi
 
 printf '\x1bc';
 
-echo -e "\n"
-echo -e "SWAP"
+echo -e "##### SWAP #####"
 echo -e "\n"
 echo -e "Para Máquinas até 8GB de RAM - 4GB de SWAP"
 echo -e "\n"
