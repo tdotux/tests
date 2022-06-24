@@ -257,7 +257,7 @@ echo -e "Acima de 8GB de RAM - 2GB de SWAP"
 echo -e "\n"
 echo -e "Digite o NÚMERO correspondente a quantidade de SWAP em GB"
 echo -e "\n"
-echo -e "Exemplo: Para 4GB de SWAP - Digite 4"
+echo -e "Exemplo: Para 2GB de SWAP - Digite 2"
 echo -e "\n"
 
 read -p "SWAP em GB : " SWAP
