@@ -660,30 +660,3 @@ fi
 
 
 
-##### USER PASSWORD
-
-printf '\x1bc';
-
-echo "Digite e Repita a Senha de Usuário"
-
-arch-chroot /mnt passwd $USERNAME
-
-
-
-
-##### ROOT PASSWORD
-
-printf '\x1bc';
-
-echo "Digite e Repita a Senha de ROOT"
-
-arch-chroot /mnt passwd
-
-
-echo -e "$(tput bel)$(tput bold)$(tput setaf 7)$(tput setab 4)"
-
-
-echo -e "Instalação Concluída!!!!!"
-
-
-echo -e "$(tput sgr0)"
