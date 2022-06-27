@@ -75,6 +75,122 @@ done
 
 
 
+### HOME SEPARADA
+
+printf '\x1bc';
+PS3=$'\nSelecione uma opção: ';
+echo -e "/home separada?:"
+select separatehome in {SIM,NÃO};do
+echo "$separatehome";
+break
+done
+
+
+if [ "$separatehome" = "NÃO" ];then
+break
+
+else
+
+echo "Sim"
+
+printf '\x1bc';
+PS3=$'\nSelecione uma opção: ';
+echo -e "Lista de Dispositivos:"
+echo -e "\n"
+echo -e "Nome - Tam. - Tipo"
+echo -e "$devices_list"
+echo -e "\n"
+echo -e 'Escolha um Disco para /home: '
+select homedisk in $devices_select; do
+echo "/dev/$homedisk";
+break
+
+done
+
+fi
+
+
+
+printf '\x1bc';
+PS3=$'\nSelecione uma opção: ';
+echo -e "Formatar /home?:"
+select formathome in {SIM,NÃO};do
+echo "$formathome";
+break
+done
+
+
+if [ "$formathome" = "NÃO" ];then
+break
+
+else
+
+echo "Sim"
+
+if [  $(echo $installdisk | grep -c sd) = 1 ]; then
+echo "sda"
+
+        parted /dev/${homedisk,,} mklabel gpt -s
+        if [ "$filesystem" = "ext4" ];then
+                parted /dev/${homedisk,,} mkpart primary ext4 301MiB 100% -s
+                mkfs.ext4 -F /dev/${homedisk,,}1
+
+        elif [ "$filesystem" = "btrfs" ];then
+                parted /dev/${homedisk,,} mkpart primary btrfs 301MiB 100% -s
+                mkfs.btrfs -f /dev/${homedisk,,}1
+
+        elif [ "$filesystem" = "f2fs" ];then
+                parted /dev/${homedisk,,} mkpart primary f2fs 301MiB 100% -s
+                mkfs.f2fs -f /dev/${homedisk,,}1
+
+        elif [ "$filesystem" = "xfs" ];then
+                parted /dev/${homedisk,,} mkpart primary xfs 301MiB 100% -s
+                mkfs.xfs -f /dev/${homedisk,,}1
+
+        fi
+
+elif [  $(echo $installdisk | grep -c nvme) = 1 ]; then
+echo "NVME"
+        parted /dev/${homedisk,,} mklabel gpt -s
+        if [ "$filesystem" = "ext4" ];then
+                parted /dev/${homedisk,,} mkpart primary ext4 301MiB 100% -s
+                mkfs.ext4 -F /dev/${homedisk,,}p1
+
+        elif [ "$filesystem" = "btrfs" ];then
+                parted /dev/${homedisk,,} mkpart primary btrfs 301MiB 100% -s
+                mkfs.btrfs -f /dev/${homedisk,,}p1
+
+        elif [ "$filesystem" = "f2fs" ];then
+                parted /dev/${homedisk,,} mkpart primary f2fs 301MiB 100% -s
+                mkfs.f2fs -f /dev/${homedisk,,}p1
+
+        elif [ "$filesystem" = "xfs" ];then
+                parted /dev/${homedisk,,} mkpart primary xfs 301MiB 100% -s
+                mkfs.xfs -f /dev/${homedisk,,}p1
+fi
+
+
+### MONTAR /HOME
+
+if [ ! -d "/dev/$homedisk" ];then
+echo "Montando /home"
+
+        if [  $(echo $installdisk | grep -c sd) = 1 ]; then
+        echo "sda"
+        mount /dev/${homedisk,,}1 /mnt/home
+
+        elif [  $(echo $installdisk | grep -c nvme) = 1 ]; then
+        echo "NVME"
+        mount /dev/${homedisk,,}p1
+        fi
+else
+echo "/home separada: Não"
+
+fi
+
+
+
+
 ###DETECTAR UEFI OU LEGACY
 
 PASTA_EFI=/sys/firmware/efi
