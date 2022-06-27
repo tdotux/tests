@@ -132,7 +132,7 @@ else
 
 echo "Sim"
 
-if [  $(echo $installdisk | grep -c sd) = 1 ]; then
+if [  $(echo $homedisk | grep -c sd) = 1 ]; then
 echo "sda"
 
         parted /dev/${homedisk,,} mklabel gpt -s
@@ -157,7 +157,7 @@ echo "sda"
 
 elif [  $(echo $installdisk | grep -c nvme) = 1 ]; then
 echo "NVME"
-        parted /dev/${homedisk,,} mklabel gpt -s
+
         if [ "$filesystem" = "ext4" ];then
                 parted /dev/${homedisk,,} mkpart primary ext4 1MiB 100% -s
                 mkfs.ext4 -F /dev/${homedisk,,}p1
