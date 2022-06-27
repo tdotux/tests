@@ -413,6 +413,20 @@ done
 
 
 
+### MONTAR /HOME
+
+echo "Montando /home"
+
+        if [  $(echo $homedisk | grep -c sd) = 1 ]; then
+        echo "sda"
+        mkdir /mnt/home
+        mount /dev/${homedisk,,}1 /mnt/home
+
+        elif [  $(echo $homedisk | grep -c nvme) = 1 ]; then
+        echo "NVME"
+        mkdir /mnt/home
+        mount /dev/${homedisk,,}p1 /mnt/home
+        fi
 
 
 ### KERNEL
