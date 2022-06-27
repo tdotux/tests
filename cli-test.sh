@@ -135,19 +135,19 @@ echo "sda"
 
         parted /dev/${homedisk,,} mklabel gpt -s
         if [ "$filesystem" = "ext4" ];then
-                parted /dev/${homedisk,,} mkpart primary ext4 301MiB 100% -s
+                parted /dev/${homedisk,,} mkpart primary ext4 1MiB 100% -s
                 mkfs.ext4 -F /dev/${homedisk,,}1
 
         elif [ "$filesystem" = "btrfs" ];then
-                parted /dev/${homedisk,,} mkpart primary btrfs 301MiB 100% -s
+                parted /dev/${homedisk,,} mkpart primary btrfs 1MiB 100% -s
                 mkfs.btrfs -f /dev/${homedisk,,}1
 
         elif [ "$filesystem" = "f2fs" ];then
-                parted /dev/${homedisk,,} mkpart primary f2fs 301MiB 100% -s
+                parted /dev/${homedisk,,} mkpart primary f2fs 1MiB 100% -s
                 mkfs.f2fs -f /dev/${homedisk,,}1
 
         elif [ "$filesystem" = "xfs" ];then
-                parted /dev/${homedisk,,} mkpart primary xfs 301MiB 100% -s
+                parted /dev/${homedisk,,} mkpart primary xfs 1MiB 100% -s
                 mkfs.xfs -f /dev/${homedisk,,}1
 
         fi
@@ -156,19 +156,19 @@ elif [  $(echo $installdisk | grep -c nvme) = 1 ]; then
 echo "NVME"
         parted /dev/${homedisk,,} mklabel gpt -s
         if [ "$filesystem" = "ext4" ];then
-                parted /dev/${homedisk,,} mkpart primary ext4 301MiB 100% -s
+                parted /dev/${homedisk,,} mkpart primary ext4 1MiB 100% -s
                 mkfs.ext4 -F /dev/${homedisk,,}p1
 
         elif [ "$filesystem" = "btrfs" ];then
-                parted /dev/${homedisk,,} mkpart primary btrfs 301MiB 100% -s
+                parted /dev/${homedisk,,} mkpart primary btrfs 1MiB 100% -s
                 mkfs.btrfs -f /dev/${homedisk,,}p1
 
         elif [ "$filesystem" = "f2fs" ];then
-                parted /dev/${homedisk,,} mkpart primary f2fs 301MiB 100% -s
+                parted /dev/${homedisk,,} mkpart primary f2fs 1MiB 100% -s
                 mkfs.f2fs -f /dev/${homedisk,,}p1
 
         elif [ "$filesystem" = "xfs" ];then
-                parted /dev/${homedisk,,} mkpart primary xfs 301MiB 100% -s
+                parted /dev/${homedisk,,} mkpart primary xfs 1MiB 100% -s
                 mkfs.xfs -f /dev/${homedisk,,}p1
         fi
 
@@ -178,13 +178,13 @@ fi
 
 echo "Montando /home"
 
-        if [  $(echo $installdisk | grep -c sd) = 1 ]; then
+        if [  $(echo $homedisk | grep -c sd) = 1 ]; then
         echo "sda"
         mount /dev/${homedisk,,}1 /mnt/home
 
-        elif [  $(echo $installdisk | grep -c nvme) = 1 ]; then
+        elif [  $(echo $homedisk | grep -c nvme) = 1 ]; then
         echo "NVME"
-        mount /dev/${homedisk,,}p1
+        mount /dev/${homedisk,,}p1 /mnt/home
         fi
 
 fi
