@@ -111,6 +111,9 @@ fi
 
 
 
+
+if [ "$separatehome" = "SIM" ];then
+
 printf '\x1bc';
 PS3=$'\nSelecione uma opção: ';
 echo -e "Formatar /home?:"
@@ -167,12 +170,12 @@ echo "NVME"
         elif [ "$filesystem" = "xfs" ];then
                 parted /dev/${homedisk,,} mkpart primary xfs 301MiB 100% -s
                 mkfs.xfs -f /dev/${homedisk,,}p1
-fi
+        fi
 
+fi
 
 ### MONTAR /HOME
 
-if [ ! -d "/dev/$homedisk" ];then
 echo "Montando /home"
 
         if [  $(echo $installdisk | grep -c sd) = 1 ]; then
@@ -183,8 +186,9 @@ echo "Montando /home"
         echo "NVME"
         mount /dev/${homedisk,,}p1
         fi
-else
-echo "/home separada: Não"
+
+fi
+
 
 fi
 
