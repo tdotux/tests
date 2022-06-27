@@ -93,6 +93,8 @@ else
 
 echo "Sim"
 
+mkdir /mnt/home
+
 printf '\x1bc';
 PS3=$'\nSelecione uma opção: ';
 echo -e "Lista de Dispositivos:"
@@ -353,19 +355,6 @@ parted /dev/${installdisk,,} mklabel msdos -s
 fi
 
 
-
-### MONTAR /HOME
-
-echo "Montando /home"
-
-        if [  $(echo $homedisk | grep -c sd) = 1 ]; then
-        echo "sda"
-        mount /dev/${homedisk,,}1 /mnt/home
-
-        elif [  $(echo $homedisk | grep -c nvme) = 1 ]; then
-        echo "NVME"
-        mount /dev/${homedisk,,}p1 /mnt/home
-        fi
 
 
 
