@@ -134,6 +134,7 @@ if [  $(echo $installdisk | grep -c sd) = 1 ]; then
 echo "sda"
 
         parted /dev/${homedisk,,} mklabel gpt -s
+	
         if [ "$filesystem" = "ext4" ];then
                 parted /dev/${homedisk,,} mkpart primary ext4 1MiB 100% -s
                 mkfs.ext4 -F /dev/${homedisk,,}1
@@ -174,18 +175,6 @@ echo "NVME"
 
 fi
 
-### MONTAR /HOME
-
-echo "Montando /home"
-
-        if [  $(echo $homedisk | grep -c sd) = 1 ]; then
-        echo "sda"
-        mount /dev/${homedisk,,}1 /mnt/home
-
-        elif [  $(echo $homedisk | grep -c nvme) = 1 ]; then
-        echo "NVME"
-        mount /dev/${homedisk,,}p1 /mnt/home
-        fi
 
 fi
 
@@ -362,6 +351,21 @@ parted /dev/${installdisk,,} mklabel msdos -s
 
       fi
 fi
+
+
+
+### MONTAR /HOME
+
+echo "Montando /home"
+
+        if [  $(echo $homedisk | grep -c sd) = 1 ]; then
+        echo "sda"
+        mount /dev/${homedisk,,}1 /mnt/home
+
+        elif [  $(echo $homedisk | grep -c nvme) = 1 ]; then
+        echo "NVME"
+        mount /dev/${homedisk,,}p1 /mnt/home
+        fi
 
 
 
